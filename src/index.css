@@ -2,41 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Snoozies Design System - Soft, calming bedtime colors and elements */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fredoka:wght@300;400;500;600&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Snoozies Brand Colors - Soft pastels for bedtime calm */
+    --background: 240 45% 98%;              /* Soft cream background */
+    --foreground: 230 15% 25%;              /* Gentle dark blue-gray text */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;                      /* Pure white cards */
+    --card-foreground: 230 15% 25%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 230 15% 25%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary: Dreamy lavender */
+    --primary: 255 40% 75%;                 /* Soft lavender */
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 255 60% 85%;            /* Lighter lavender for glow effects */
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary: Powder blue */
+    --secondary: 200 45% 85%;               /* Powder blue */
+    --secondary-foreground: 230 15% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted: Very light lavender */
+    --muted: 250 30% 95%;
+    --muted-foreground: 230 10% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent: Soft cream */
+    --accent: 50 25% 92%;
+    --accent-foreground: 230 15% 25%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 75% 70%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 240 20% 90%;
+    --input: 240 20% 90%;
+    --ring: 255 40% 75%;
 
-    --radius: 0.5rem;
+    /* Custom Snoozies Colors */
+    --dreamy-blue: 210 50% 80%;             /* Soft blue for accents */
+    --sleepy-cream: 45 30% 94%;             /* Warm cream */
+    --star-yellow: 50 60% 85%;              /* Gentle yellow for stars */
+    --cloud-white: 0 0% 97%;                /* Soft white for clouds */
+    --moon-silver: 220 10% 88%;             /* Silver for moon elements */
+
+    /* Gradients */
+    --gradient-dreamy: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--dreamy-blue)));
+    --gradient-sunset: linear-gradient(180deg, hsl(var(--star-yellow)), hsl(var(--primary-glow)));
+    --gradient-night: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--dreamy-blue)) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px hsl(var(--primary) / 0.15);
+    --shadow-dreamy: 0 8px 30px hsl(var(--primary) / 0.2);
+    --shadow-float: 0 6px 25px hsl(var(--dreamy-blue) / 0.3);
+
+    /* Animation variables */
+    --transition-dreamy: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --float-duration: 3s;
+
+    --radius: 1rem;                         /* More rounded for kid-friendly feel */
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +127,72 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter;
+  }
+}
+
+@layer components {
+  /* Snoozies Custom Components */
+  .btn-dreamy {
+    @apply bg-gradient-to-r from-primary to-secondary text-primary-foreground font-medium px-6 py-3 rounded-full shadow-soft hover:shadow-dreamy transition-all duration-300 hover:scale-105;
+  }
+
+  .btn-sleepy {
+    @apply bg-accent text-accent-foreground border border-primary/20 font-medium px-6 py-3 rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300;
+  }
+
+  .card-story {
+    @apply bg-card rounded-3xl p-6 shadow-soft hover:shadow-dreamy transition-all duration-300 hover:-translate-y-1;
+  }
+
+  .gradient-dreamy {
+    background: var(--gradient-dreamy);
+  }
+
+  .gradient-sunset {
+    background: var(--gradient-sunset);
+  }
+
+  .gradient-night {
+    background: var(--gradient-night);
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+}
+
+@layer utilities {
+  /* Floating animations for whimsical elements */
+  .float {
+    animation: float var(--float-duration) ease-in-out infinite;
+  }
+
+  .float-delayed {
+    animation: float var(--float-duration) ease-in-out infinite;
+    animation-delay: 1.5s;
+  }
+
+  .sparkle {
+    animation: sparkle 2s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes sparkle {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
+  /* Font utilities */
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .font-fredoka {
+    font-family: 'Fredoka', cursive;
   }
 }
