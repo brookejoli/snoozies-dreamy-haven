@@ -23,10 +23,10 @@ const Navigation = () => {
   return (
     <nav className="bg-card/80 backdrop-blur-sm border-b border-border sticky top-0 z-50 shadow-soft">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-12">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
-            <img src={logoImage} alt="Snoozies" className="h-8 w-auto" />
+            <img src={logoImage} alt="Snoozies" className="h-6 w-auto" />
             <span className="text-2xl font-nunito font-semibold text-gradient">
               Snoozies
             </span>
