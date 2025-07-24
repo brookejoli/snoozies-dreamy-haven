@@ -5,84 +5,117 @@ import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import AudioPlayer from '@/components/AudioPlayer';
-import featuredStoryImage from '@/assets/featured-story.jpg';
+import littleCloudsImage from '@/assets/little-clouds-journey.jpg';
+import broccoliTreeImage from '@/assets/broccoli-tree.jpg';
+import sleepySunflowerImage from '@/assets/sleepy-sunflower.jpg';
+import lazyRiverImage from '@/assets/lazy-river.jpg';
+import lunaLightningBugImage from '@/assets/luna-lightning-bug.jpg';
+import letsTalkDirtImage from '@/assets/lets-talk-dirt.jpg';
+import girlCollectedStarsImage from '@/assets/girl-collected-stars.jpg';
+import grandpaLeftShoeImage from '@/assets/grandpa-left-shoe.jpg';
 
 const Stories = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-  const categories = ['All', 'Adventure', 'Nature', 'Fantasy', 'Animals', 'Friendship'];
+  const categories = ['All', 'Magical + Mundane', 'Really Boring', 'Mundane + Playful'];
 
   const stories = [
     {
       id: 1,
-      title: "Luna's Moonlight Adventure",
-      description: "Join Luna as she travels through dreamy clouds to help the sleepy moon find his way home.",
+      title: "The Little Clouds Evening Journey",
+      description: "Float along with a tiny cloud as it drifts across skies and rooftops on a gentle evening adventure. With whispers of wind and soft glows of sunset, this calming tale will lull little listeners into sweet, sleepy dreams.",
       duration: "8:45",
-      category: "Adventure",
-      image: featuredStoryImage,
+      category: "Magical + Mundane",
+      image: littleCloudsImage,
       featured: true,
       rating: 4.9,
       ageGroup: "3-7 years",
-      youtubeUrl: "https://www.youtube.com/@snooziestories" // Replace with actual video URL
+      youtubeUrl: "https://www.youtube.com/@snooziestories"
     },
     {
       id: 2,
-      title: "The Sleepy Forest Friends",
-      description: "Discover how woodland animals prepare for their peaceful night's sleep.",
+      title: "The Tree That Looked Like Broccoli",
+      description: "Meet a tree that looks suspiciously like broccoli — and the kid who thinks it might just be too broccoli-like. Nothing much happens. And that's kind of the point.",
       duration: "6:30",
-      category: "Nature",
-      image: featuredStoryImage,
-      featured: false,
+      category: "Magical + Mundane",
+      image: broccoliTreeImage,
+      featured: true,
       rating: 4.8,
       ageGroup: "2-6 years",
-      youtubeUrl: "https://www.youtube.com/@snooziestories" // Replace with actual video URL
+      youtubeUrl: "https://www.youtube.com/@snooziestories"
     },
     {
       id: 3,
-      title: "Captain Cozy's Dream Ship",
-      description: "Sail away on Captain Cozy's magical ship through the sea of dreams.",
-      duration: "10:15",
-      category: "Fantasy",
-      image: featuredStoryImage,
-      featured: true,
-      rating: 4.9,
-      ageGroup: "4-8 years",
-      youtubeUrl: "https://www.youtube.com/@snooziestories" // Replace with actual video URL
+      title: "The Sleepy Sunflower",
+      description: "A tall sunflower in a garden slowly turns to follow the sun throughout a long summer day, eventually settling into peaceful sleep as twilight comes. The story follows her gentle observations of the garden's quiet summer rhythms - bees humming, butterflies visiting, and the soft evening breeze.",
+      duration: "7:15",
+      category: "Magical + Mundane",
+      image: sleepySunflowerImage,
+      featured: false,
+      rating: 4.7,
+      ageGroup: "3-8 years",
+      youtubeUrl: "https://www.youtube.com/@snooziestories"
     },
     {
       id: 4,
-      title: "Whiskers the Sleepy Cat",
-      description: "Follow Whiskers as he finds the perfect cozy spot for his afternoon nap.",
-      duration: "5:45",
-      category: "Animals",
-      image: featuredStoryImage,
+      title: "The Lazy River's Journey",
+      description: "Following a gentle stream as it meanders through summer meadows, past sleepy cattle, under old stone bridges, carrying lily pads and reflecting clouds. The water moves slowly, peacefully, with no urgency - just the quiet music of flowing water.",
+      duration: "9:20",
+      category: "Really Boring",
+      image: lazyRiverImage,
       featured: false,
-      rating: 4.7,
-      ageGroup: "2-5 years",
-      youtubeUrl: "https://www.youtube.com/@snooziestories" // Replace with actual video URL
+      rating: 4.6,
+      ageGroup: "2-7 years",
+      youtubeUrl: "https://www.youtube.com/@snooziestories"
     },
     {
       id: 5,
-      title: "The Gentle Giant's Lullaby",
-      description: "A kind giant helps the village children sleep with his magical lullabies.",
-      duration: "9:20",
-      category: "Fantasy",
-      image: featuredStoryImage,
+      title: "Luna the Lightning Bug's First Glow",
+      description: "A young firefly discovers her gentle light for the first time on a warm summer evening. She practices her soft blinking among the tall grass, joins the peaceful dance of other lightning bugs, and learns that her glow is perfect for lighting the way to dreams.",
+      duration: "8:10",
+      category: "Mundane + Playful",
+      image: lunaLightningBugImage,
       featured: false,
       rating: 4.8,
-      ageGroup: "4-9 years"
+      ageGroup: "3-6 years",
+      youtubeUrl: "https://www.youtube.com/@snooziestories"
     },
     {
       id: 6,
-      title: "Best Friends' Sleepover",
-      description: "Two best friends learn that bedtime can be fun even when you're not at home.",
-      duration: "7:15",
-      category: "Friendship",
-      image: featuredStoryImage,
+      title: "Let's Talk About Dirt",
+      description: "Dirt doesn't ask for much. Dust's older cousin, crumb's quiet friend — this sleepy story celebrates the quiet, cozy world underfoot.",
+      duration: "5:45",
+      category: "Really Boring",
+      image: letsTalkDirtImage,
       featured: false,
-      rating: 4.6,
-      ageGroup: "3-7 years"
+      rating: 4.5,
+      ageGroup: "2-8 years",
+      youtubeUrl: "https://www.youtube.com/@snooziestories"
+    },
+    {
+      id: 7,
+      title: "The Girl Who Collected Stars",
+      description: "In a town where the sky never rushed, a quiet girl begins to notice something… different. A shimmering, starry tale about collecting, letting go, and learning to see beauty without needing to keep it.",
+      duration: "10:30",
+      category: "Magical + Mundane",
+      image: girlCollectedStarsImage,
+      featured: false,
+      rating: 4.9,
+      ageGroup: "4-9 years",
+      youtubeUrl: "https://www.youtube.com/@snooziestories"
+    },
+    {
+      id: 8,
+      title: "Grandpa and the Left Shoe",
+      description: "Grandpa keeps losing just one shoe — always the left one. Sometimes it's in the bread box. Sometimes it's under a tree. Once, it was wearing a hat made of grocery lists.",
+      duration: "6:55",
+      category: "Mundane + Playful",
+      image: grandpaLeftShoeImage,
+      featured: false,
+      rating: 4.7,
+      ageGroup: "3-8 years",
+      youtubeUrl: "https://www.youtube.com/@snooziestories"
     }
   ];
 
