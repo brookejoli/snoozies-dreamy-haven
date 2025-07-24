@@ -9,9 +9,9 @@ import featuredStoryImage from '@/assets/featured-story.jpg';
 
 const Stories = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedStyle, setSelectedStyle] = useState('All');
 
-  const categories = ['All', 'Magical + Mundane', 'Really Boring', 'Mundane + Playful'];
+  const styles = ['All', 'Magical', 'Mundane', 'Magical + Mundane', 'Playful + Mundane', 'Really Boring'];
 
   const stories = [
     {
@@ -19,7 +19,7 @@ const Stories = () => {
       title: "The Little Clouds Evening Journey",
       description: "Float along with a tiny cloud as it drifts across skies and rooftops on a gentle evening adventure. With whispers of wind and soft glows of sunset, this calming tale will lull little listeners into sweet, sleepy dreams.",
       duration: "8:45",
-      category: "Magical + Mundane",
+      style: "Magical + Mundane",
       image: featuredStoryImage,
       featured: true,
       rating: 4.9,
@@ -31,7 +31,7 @@ const Stories = () => {
       title: "The Tree That Looked Like Broccoli",
       description: "Meet a tree that looks suspiciously like broccoli — and the kid who thinks it might just be too broccoli-like. Nothing much happens. And that's kind of the point.",
       duration: "6:30",
-      category: "Magical + Mundane",
+      style: "Magical + Mundane",
       image: featuredStoryImage,
       featured: true,
       rating: 4.8,
@@ -43,7 +43,7 @@ const Stories = () => {
       title: "The Sleepy Sunflower",
       description: "A tall sunflower in a garden slowly turns to follow the sun throughout a long summer day, eventually settling into peaceful sleep as twilight comes. The story follows her gentle observations of the garden's quiet summer rhythms - bees humming, butterflies visiting, and the soft evening breeze.",
       duration: "7:15",
-      category: "Magical + Mundane",
+      style: "Magical + Mundane",
       image: featuredStoryImage,
       featured: false,
       rating: 4.7,
@@ -55,7 +55,7 @@ const Stories = () => {
       title: "The Lazy River's Journey",
       description: "Following a gentle stream as it meanders through summer meadows, past sleepy cattle, under old stone bridges, carrying lily pads and reflecting clouds. The water moves slowly, peacefully, with no urgency - just the quiet music of flowing water.",
       duration: "9:20",
-      category: "Really Boring",
+      style: "Really Boring",
       image: featuredStoryImage,
       featured: false,
       rating: 4.6,
@@ -67,7 +67,7 @@ const Stories = () => {
       title: "Luna the Lightning Bug's First Glow",
       description: "A young firefly discovers her gentle light for the first time on a warm summer evening. She practices her soft blinking among the tall grass, joins the peaceful dance of other lightning bugs, and learns that her glow is perfect for lighting the way to dreams.",
       duration: "8:10",
-      category: "Mundane + Playful",
+      style: "Playful + Mundane",
       image: featuredStoryImage,
       featured: false,
       rating: 4.8,
@@ -79,7 +79,7 @@ const Stories = () => {
       title: "Let's Talk About Dirt",
       description: "Dirt doesn't ask for much. Dust's older cousin, crumb's quiet friend — this sleepy story celebrates the quiet, cozy world underfoot.",
       duration: "5:45",
-      category: "Really Boring",
+      style: "Really Boring",
       image: featuredStoryImage,
       featured: false,
       rating: 4.5,
@@ -91,7 +91,7 @@ const Stories = () => {
       title: "The Girl Who Collected Stars",
       description: "In a town where the sky never rushed, a quiet girl begins to notice something… different. A shimmering, starry tale about collecting, letting go, and learning to see beauty without needing to keep it.",
       duration: "10:30",
-      category: "Magical + Mundane",
+      style: "Magical + Mundane",
       image: featuredStoryImage,
       featured: false,
       rating: 4.9,
@@ -103,7 +103,7 @@ const Stories = () => {
       title: "Grandpa and the Left Shoe",
       description: "Grandpa keeps losing just one shoe — always the left one. Sometimes it's in the bread box. Sometimes it's under a tree. Once, it was wearing a hat made of grocery lists.",
       duration: "6:55",
-      category: "Mundane + Playful",
+      style: "Playful + Mundane",
       image: featuredStoryImage,
       featured: false,
       rating: 4.7,
@@ -115,8 +115,8 @@ const Stories = () => {
   const filteredStories = stories.filter(story => {
     const matchesSearch = story.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          story.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'All' || story.category === selectedCategory;
-    return matchesSearch && matchesCategory;
+    const matchesStyle = selectedStyle === 'All' || story.style === selectedStyle;
+    return matchesSearch && matchesStyle;
   });
 
   return (
@@ -145,15 +145,15 @@ const Stories = () => {
               />
             </div>
             <div className="flex gap-2 flex-wrap">
-              {categories.map((category) => (
+              {styles.map((style) => (
                 <Button
-                  key={category}
-                  variant={selectedCategory === category ? "default" : "outline"}
+                  key={style}
+                  variant={selectedStyle === style ? "default" : "outline"}
                   size="sm"
-                  onClick={() => setSelectedCategory(category)}
-                  className={selectedCategory === category ? "btn-dreamy" : "btn-sleepy"}
+                  onClick={() => setSelectedStyle(style)}
+                  className={selectedStyle === style ? "btn-dreamy" : "btn-sleepy"}
                 >
-                  {category}
+                  {style}
                 </Button>
               ))}
             </div>
@@ -185,7 +185,7 @@ const Stories = () => {
                   <div className="md:w-1/2 p-6">
                     <div className="flex items-center gap-2 mb-2">
                       <Badge variant="outline" className="text-xs">
-                        {story.category}
+                        {story.style}
                       </Badge>
                       <div className="flex items-center gap-1">
                         <Star className="h-3 w-3 text-star-yellow fill-current" />
@@ -243,7 +243,7 @@ const Stories = () => {
                   </div>
                   <div className="absolute top-4 left-4 flex gap-2">
                     <Badge className="bg-card/90 backdrop-blur-sm text-primary text-xs">
-                      {story.category}
+                      {story.style}
                     </Badge>
                     {story.featured && (
                       <Badge className="bg-star-yellow text-foreground text-xs">
@@ -300,7 +300,7 @@ const Stories = () => {
             <Button 
               onClick={() => {
                 setSearchTerm('');
-                setSelectedCategory('All');
+                setSelectedStyle('All');
               }}
               className="btn-dreamy"
             >
