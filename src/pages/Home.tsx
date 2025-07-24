@@ -45,10 +45,10 @@ const Home = () => {
         <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
           <div className="mb-8">
             <Star className="h-12 w-12 text-star-yellow mx-auto mb-4 float" />
-            <h1 className="text-6xl md:text-8xl font-fredoka font-bold text-white mb-4 leading-tight drop-shadow-2xl">
+            <h1 className="text-6xl md:text-8xl font-nunito font-bold text-white mb-4 leading-tight drop-shadow-2xl">
               Snoozies
             </h1>
-            <p className="text-2xl md:text-3xl font-comfortaa font-medium text-white/95 mb-2 drop-shadow-lg">
+            <p className="text-2xl md:text-3xl font-nunito font-medium text-white/95 mb-2 drop-shadow-lg">
               Boring Stories for Sleepy Kids
             </p>
             <p className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto drop-shadow-md">
