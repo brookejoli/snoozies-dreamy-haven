@@ -23,7 +23,8 @@ const Stories = () => {
       image: featuredStoryImage,
       featured: true,
       rating: 4.9,
-      ageGroup: "3-7 years"
+      ageGroup: "3-7 years",
+      youtubeUrl: "https://www.youtube.com/@snooziestories" // Replace with actual video URL
     },
     {
       id: 2,
@@ -34,7 +35,8 @@ const Stories = () => {
       image: featuredStoryImage,
       featured: false,
       rating: 4.8,
-      ageGroup: "2-6 years"
+      ageGroup: "2-6 years",
+      youtubeUrl: "https://www.youtube.com/@snooziestories" // Replace with actual video URL
     },
     {
       id: 3,
@@ -45,7 +47,8 @@ const Stories = () => {
       image: featuredStoryImage,
       featured: true,
       rating: 4.9,
-      ageGroup: "4-8 years"
+      ageGroup: "4-8 years",
+      youtubeUrl: "https://www.youtube.com/@snooziestories" // Replace with actual video URL
     },
     {
       id: 4,
@@ -56,7 +59,8 @@ const Stories = () => {
       image: featuredStoryImage,
       featured: false,
       rating: 4.7,
-      ageGroup: "2-5 years"
+      ageGroup: "2-5 years",
+      youtubeUrl: "https://www.youtube.com/@snooziestories" // Replace with actual video URL
     },
     {
       id: 5,
@@ -202,8 +206,11 @@ const Stories = () => {
                     alt={story.title}
                     className="w-full h-48 object-cover rounded-2xl"
                   />
-                  <div className="absolute inset-0 bg-primary/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <Button className="btn-dreamy">
+                   <div className="absolute inset-0 bg-primary/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <Button 
+                      className="btn-dreamy"
+                      onClick={() => window.open(story.youtubeUrl, '_blank')}
+                    >
                       <Play className="h-4 w-4 mr-2" />
                       Listen
                     </Button>
@@ -238,8 +245,12 @@ const Stories = () => {
                   {story.description}
                 </p>
                 
-                <div className="flex gap-2">
-                  <Button size="sm" className="btn-dreamy flex-1">
+                 <div className="flex gap-2">
+                  <Button 
+                    size="sm" 
+                    className="btn-dreamy flex-1"
+                    onClick={() => window.open(story.youtubeUrl, '_blank')}
+                  >
                     <Play className="h-3 w-3 mr-1" />
                     Play
                   </Button>

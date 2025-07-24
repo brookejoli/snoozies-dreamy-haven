@@ -27,7 +27,8 @@ const Home = () => {
       description: "Join Luna as she travels through dreamy clouds to help the sleepy moon find his way home.",
       duration: "8:45",
       category: "Adventure",
-      image: featuredStoryImage
+      image: featuredStoryImage,
+      youtubeUrl: "https://www.youtube.com/@snooziestories" // Replace with actual video URL
     },
     {
       id: 2,
@@ -35,7 +36,8 @@ const Home = () => {
       description: "Discover how woodland animals prepare for their peaceful night's sleep.",
       duration: "6:30",
       category: "Nature",
-      image: featuredStoryImage
+      image: featuredStoryImage,
+      youtubeUrl: "https://www.youtube.com/@snooziestories" // Replace with actual video URL
     },
     {
       id: 3,
@@ -43,7 +45,8 @@ const Home = () => {
       description: "Sail away on Captain Cozy's magical ship through the sea of dreams.",
       duration: "10:15",
       category: "Fantasy",
-      image: featuredStoryImage
+      image: featuredStoryImage,
+      youtubeUrl: "https://www.youtube.com/@snooziestories" // Replace with actual video URL
     }
   ];
 
@@ -179,7 +182,10 @@ const Home = () => {
                     className="w-full h-48 object-cover rounded-2xl"
                   />
                   <div className="absolute inset-0 bg-primary/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <Button className="btn-dreamy">
+                    <Button 
+                      className="btn-dreamy"
+                      onClick={() => window.open(story.youtubeUrl, '_blank')}
+                    >
                       <Play className="h-4 w-4 mr-2" />
                       Listen
                     </Button>
