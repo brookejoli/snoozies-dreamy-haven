@@ -23,22 +23,22 @@ const Navigation = () => {
   return (
     <nav className="bg-card/80 backdrop-blur-sm border-b border-border sticky top-0 z-50 shadow-soft">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-12">
+        <div className="flex justify-between items-center h-8">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
-            <img src={logoImage} alt="Snoozies" className="h-6 w-auto" />
-            <span className="text-2xl font-nunito font-semibold text-gradient">
+            <img src={logoImage} alt="Snoozies" className="h-4 w-auto" />
+            <span className="text-lg font-nunito font-semibold text-gradient">
               Snoozies
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-4">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
-                className={`font-medium transition-colors duration-300 hover:text-primary ${
+                className={`font-medium text-sm transition-colors duration-300 hover:text-primary ${
                   isActive(item.path)
                     ? 'text-primary border-b-2 border-primary'
                     : 'text-foreground'
@@ -53,14 +53,14 @@ const Navigation = () => {
               href="https://www.youtube.com/@snooziestories"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-300 px-2 py-1 rounded-lg hover:bg-accent"
+              className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-300 px-1 py-1 rounded-lg hover:bg-accent"
               title="Visit our YouTube channel"
             >
-              <Youtube className="h-5 w-5" />
-              <span className="text-sm font-medium">Stories</span>
+              <Youtube className="h-4 w-4" />
+              <span className="text-xs font-medium">Stories</span>
             </a>
             
-            <Button className="btn-dreamy">
+            <Button className="btn-dreamy text-xs px-3 py-1">
               Try Free
             </Button>
           </div>
