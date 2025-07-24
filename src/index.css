@@ -4,55 +4,56 @@
 
 /* Snoozies Design System - Soft, calming bedtime colors and elements */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fredoka:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Comfortaa:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap');
 
 @layer base {
   :root {
-    /* Snoozies Brand Colors - Soft pastels for bedtime calm */
-    --background: 240 45% 98%;              /* Soft cream background */
-    --foreground: 230 15% 25%;              /* Gentle dark blue-gray text */
+    /* Snoozies Brand Colors - Matching the whimsical logo aesthetic */
+    --background: 320 25% 97%;              /* Very soft lavender-white */
+    --foreground: 260 20% 25%;              /* Deep purple-gray text */
 
     --card: 0 0% 100%;                      /* Pure white cards */
-    --card-foreground: 230 15% 25%;
+    --card-foreground: 260 20% 25%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 230 15% 25%;
+    --popover-foreground: 260 20% 25%;
 
-    /* Primary: Dreamy lavender */
-    --primary: 255 40% 75%;                 /* Soft lavender */
+    /* Primary: Rich purple from logo */
+    --primary: 270 60% 70%;                 /* Rich purple */
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 255 60% 85%;            /* Lighter lavender for glow effects */
+    --primary-glow: 280 50% 80%;            /* Lighter purple for glow effects */
 
-    /* Secondary: Powder blue */
-    --secondary: 200 45% 85%;               /* Powder blue */
-    --secondary-foreground: 230 15% 25%;
+    /* Secondary: Soft blue from logo */
+    --secondary: 220 60% 75%;               /* Soft blue */
+    --secondary-foreground: 0 0% 100%;
 
-    /* Muted: Very light lavender */
-    --muted: 250 30% 95%;
-    --muted-foreground: 230 10% 45%;
+    /* Muted: Very light purple */
+    --muted: 270 25% 95%;
+    --muted-foreground: 260 15% 45%;
 
-    /* Accent: Soft cream */
-    --accent: 50 25% 92%;
-    --accent-foreground: 230 15% 25%;
+    /* Accent: Warm cream */
+    --accent: 40 30% 95%;
+    --accent-foreground: 260 20% 25%;
 
     --destructive: 0 75% 70%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 20% 90%;
-    --input: 240 20% 90%;
-    --ring: 255 40% 75%;
+    --border: 270 20% 90%;
+    --input: 270 20% 90%;
+    --ring: 270 60% 70%;
 
-    /* Custom Snoozies Colors */
-    --dreamy-blue: 210 50% 80%;             /* Soft blue for accents */
-    --sleepy-cream: 45 30% 94%;             /* Warm cream */
-    --star-yellow: 50 60% 85%;              /* Gentle yellow for stars */
-    --cloud-white: 0 0% 97%;                /* Soft white for clouds */
-    --moon-silver: 220 10% 88%;             /* Silver for moon elements */
+    /* Custom Snoozies Colors - Matching logo palette */
+    --dreamy-blue: 220 60% 75%;             /* Logo blue */
+    --dreamy-purple: 270 60% 70%;           /* Logo purple */
+    --sleepy-pink: 320 50% 80%;             /* Soft pink from gradient */
+    --cloud-cream: 40 30% 95%;              /* Warm cream for clouds */
+    --star-yellow: 50 80% 75%;              /* Bright yellow for stars */
 
-    /* Gradients */
-    --gradient-dreamy: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--dreamy-blue)));
-    --gradient-sunset: linear-gradient(180deg, hsl(var(--star-yellow)), hsl(var(--primary-glow)));
-    --gradient-night: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--dreamy-blue)) 100%);
+    /* Gradients - Matching logo aesthetics */
+    --gradient-dreamy: linear-gradient(135deg, hsl(270 60% 70%), hsl(220 60% 75%));
+    --gradient-sunset: linear-gradient(180deg, hsl(320 50% 80%), hsl(270 60% 70%));
+    --gradient-night: linear-gradient(135deg, hsl(270 60% 70%) 0%, hsl(240 70% 65%) 100%);
+    --gradient-pink-purple: linear-gradient(135deg, hsl(320 50% 80%), hsl(270 60% 70%));
 
     /* Shadows */
     --shadow-soft: 0 4px 20px hsl(var(--primary) / 0.15);
@@ -127,7 +128,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-inter;
+    @apply bg-background text-foreground font-nunito;
   }
 }
 
@@ -192,7 +193,11 @@
     font-family: 'Inter', sans-serif;
   }
 
-  .font-fredoka {
-    font-family: 'Fredoka', cursive;
+  .font-comfortaa {
+    font-family: 'Comfortaa', cursive;
+  }
+
+  .font-nunito {
+    font-family: 'Nunito', sans-serif;
   }
 }

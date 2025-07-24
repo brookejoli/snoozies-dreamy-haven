@@ -63,16 +63,17 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Snoozies custom colors
+				// Snoozies custom colors - matching logo palette
 				'dreamy-blue': 'hsl(var(--dreamy-blue))',
-				'sleepy-cream': 'hsl(var(--sleepy-cream))',
-				'star-yellow': 'hsl(var(--star-yellow))',
-				'cloud-white': 'hsl(var(--cloud-white))',
-				'moon-silver': 'hsl(var(--moon-silver))'
+				'dreamy-purple': 'hsl(var(--dreamy-purple))',
+				'sleepy-pink': 'hsl(var(--sleepy-pink))',
+				'cloud-cream': 'hsl(var(--cloud-cream))',
+				'star-yellow': 'hsl(var(--star-yellow))'
 			},
 			fontFamily: {
 				inter: ['Inter', 'sans-serif'],
-				fredoka: ['Fredoka', 'cursive']
+				comfortaa: ['Comfortaa', 'cursive'],
+				nunito: ['Nunito', 'sans-serif']
 			},
 			boxShadow: {
 				'soft': 'var(--shadow-soft)',
