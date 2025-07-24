@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
+import logoImage from '@/assets/snoozies-logo.png';
 
 const StorySuggestions = () => {
   const [formData, setFormData] = useState({
@@ -79,8 +80,7 @@ const StorySuggestions = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-2 mb-6">
-            <Lightbulb className="h-10 w-10 text-star-yellow" />
-            <Star className="h-6 w-6 text-primary sparkle" />
+            <img src={logoImage} alt="Snoozies Logo" className="h-12 w-auto" />
           </div>
           <h1 className="text-4xl md:text-5xl font-nunito font-bold text-foreground mb-6">
             Share Your Story Ideas
