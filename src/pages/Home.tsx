@@ -11,11 +11,11 @@ import featuredStoryImage from '@/assets/featured-story.jpg';
 const Home = () => {
   const [showNewsletterPopup, setShowNewsletterPopup] = useState(false);
 
-  // Show newsletter popup after 8 seconds
+  // Show newsletter popup after 18 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowNewsletterPopup(true);
-    }, 8000);
+    }, 18000);
 
     return () => clearTimeout(timer);
   }, []);
