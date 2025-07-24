@@ -3,6 +3,7 @@ import { X, Mail, Star, Moon } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { useToast } from '@/hooks/use-toast';
+import logoImage from '@/assets/snoozies-logo.png';
 
 interface NewsletterPopupProps {
   isVisible: boolean;
@@ -56,8 +57,7 @@ const NewsletterPopup = ({ isVisible, onClose }: NewsletterPopupProps) => {
         {/* Header */}
         <div className="text-center mb-6">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Moon className="h-8 w-8 text-primary float" />
-            <Star className="h-4 w-4 text-star-yellow sparkle" />
+            <img src={logoImage} alt="Snoozies Logo" className="h-12 w-auto" />
           </div>
           <h3 className="text-2xl font-nunito font-bold text-foreground mb-2">
             Sweet Dreams Await ✨

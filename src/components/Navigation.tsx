@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Moon, Menu, X, Star, Youtube } from 'lucide-react';
 import { Button } from './ui/button';
+import logoImage from '@/assets/snoozies-logo.png';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,10 +26,7 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
-            <div className="relative">
-              <Moon className="h-8 w-8 text-primary group-hover:text-primary-glow transition-colors duration-300" />
-              <Star className="h-3 w-3 text-star-yellow absolute -top-1 -right-1 sparkle" />
-            </div>
+            <img src={logoImage} alt="Snoozies" className="h-8 w-auto" />
             <span className="text-2xl font-nunito font-semibold text-gradient">
               Snoozies
             </span>
