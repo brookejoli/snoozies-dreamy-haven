@@ -110,7 +110,7 @@ const AudioPlayer = ({ src, title, duration = "0:00", compact = false }: AudioPl
       <audio ref={audioRef} src={src} />
       
       <div className="text-center mb-6">
-        <h3 className="text-lg font-fredoka font-medium text-foreground mb-2">{title}</h3>
+        <h3 className="text-lg font-nunito font-medium text-foreground mb-2">{title}</h3>
         <p className="text-sm text-muted-foreground">Duration: {totalDuration > 0 ? formatTime(totalDuration) : duration}</p>
       </div>
 

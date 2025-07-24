@@ -54,7 +54,7 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-fredoka font-bold text-foreground mb-6">
+          <h1 className="text-4xl md:text-5xl font-nunito font-bold text-foreground mb-6">
             Get in Touch
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -71,7 +71,7 @@ const Contact = () => {
                 <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                   <Icon className="h-8 w-8 text-primary" />
                 </div>
-                <h3 className="font-fredoka font-semibold text-foreground mb-2">
+                <h3 className="font-nunito font-semibold text-foreground mb-2">
                   {method.title}
                 </h3>
                 <p className="text-muted-foreground text-sm mb-3">
@@ -93,7 +93,7 @@ const Contact = () => {
           {/* Contact Form */}
           <div className="lg:col-span-2">
             <Card className="card-story">
-              <h2 className="text-2xl font-fredoka font-bold text-foreground mb-6">
+              <h2 className="text-2xl font-nunito font-bold text-foreground mb-6">
                 Send us a Message
               </h2>
               <form className="space-y-6">
@@ -165,7 +165,7 @@ const Contact = () => {
           {/* Contact Info */}
           <div className="space-y-6">
             <Card className="card-story">
-              <h3 className="font-fredoka font-semibold text-foreground mb-4">
+              <h3 className="font-nunito font-semibold text-foreground mb-4">
                 <MapPin className="h-5 w-5 inline mr-2" />
                 Our Office
               </h3>
@@ -178,7 +178,7 @@ const Contact = () => {
             </Card>
 
             <Card className="card-story">
-              <h3 className="font-fredoka font-semibold text-foreground mb-4">
+              <h3 className="font-nunito font-semibold text-foreground mb-4">
                 <Clock className="h-5 w-5 inline mr-2" />
                 Business Hours
               </h3>
@@ -200,7 +200,7 @@ const Contact = () => {
 
             <Card className="card-story bg-gradient-dreamy text-white">
               <Heart className="h-8 w-8 mb-4" />
-              <h3 className="font-fredoka font-semibold mb-2">
+              <h3 className="font-nunito font-semibold mb-2">
                 We Love Hearing from You!
               </h3>
               <p className="text-white/90 text-sm">
@@ -213,7 +213,7 @@ const Contact = () => {
         {/* FAQ Section */}
         <div className="mb-16">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-fredoka font-bold text-foreground mb-4">
+            <h2 className="text-3xl font-nunito font-bold text-foreground mb-4">
               Frequently Asked Questions
             </h2>
             <p className="text-muted-foreground">
@@ -224,7 +224,7 @@ const Contact = () => {
           <div className="max-w-3xl mx-auto space-y-6">
             {faqs.map((faq, index) => (
               <Card key={index} className="card-story">
-                <h3 className="font-fredoka font-semibold text-foreground mb-3">
+                <h3 className="font-nunito font-semibold text-foreground mb-3">
                   {faq.question}
                 </h3>
                 <p className="text-muted-foreground">
@@ -237,7 +237,7 @@ const Contact = () => {
 
         {/* Emergency Support */}
         <Card className="card-story text-center bg-gradient-night text-white">
-          <h2 className="text-2xl font-fredoka font-bold mb-4">
+          <h2 className="text-2xl font-nunito font-bold mb-4">
             Need Immediate Help?
           </h2>
           <p className="text-white/80 mb-6">

@@ -94,7 +94,7 @@ const Stories = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-fredoka font-bold text-foreground mb-6">
+          <h1 className="text-4xl md:text-5xl font-nunito font-bold text-foreground mb-6">
             Bedtime Story Collection
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -134,7 +134,7 @@ const Stories = () => {
         <div className="mb-12">
           <div className="flex items-center gap-2 mb-6">
             <Star className="h-6 w-6 text-star-yellow" />
-            <h2 className="text-2xl font-fredoka font-semibold text-foreground">
+            <h2 className="text-2xl font-nunito font-semibold text-foreground">
               Featured Stories
             </h2>
           </div>
@@ -162,7 +162,7 @@ const Stories = () => {
                         <span className="text-xs text-muted-foreground">{story.rating}</span>
                       </div>
                     </div>
-                    <h3 className="text-xl font-fredoka font-semibold text-foreground mb-2">
+                    <h3 className="text-xl font-nunito font-semibold text-foreground mb-2">
                       {story.title}
                     </h3>
                     <p className="text-sm text-muted-foreground mb-4">
@@ -190,7 +190,7 @@ const Stories = () => {
 
         {/* All Stories */}
         <div>
-          <h2 className="text-2xl font-fredoka font-semibold text-foreground mb-6">
+          <h2 className="text-2xl font-nunito font-semibold text-foreground mb-6">
             All Stories ({filteredStories.length})
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -231,7 +231,7 @@ const Stories = () => {
                   <span className="text-xs text-muted-foreground">{story.ageGroup}</span>
                 </div>
                 
-                <h3 className="text-lg font-fredoka font-semibold text-foreground mb-2">
+                <h3 className="text-lg font-nunito font-semibold text-foreground mb-2">
                   {story.title}
                 </h3>
                 <p className="text-sm text-muted-foreground mb-4">
@@ -257,7 +257,7 @@ const Stories = () => {
           <div className="text-center py-12">
             <div className="text-muted-foreground mb-4">
               <Search className="h-12 w-12 mx-auto mb-4" />
-              <h3 className="text-xl font-fredoka font-semibold mb-2">No stories found</h3>
+              <h3 className="text-xl font-nunito font-semibold mb-2">No stories found</h3>
               <p>Try adjusting your search or filters to find more stories.</p>
             </div>
             <Button 
@@ -276,7 +276,7 @@ const Stories = () => {
         <div className="mt-16 text-center">
           <Card className="card-story max-w-2xl mx-auto">
             <Star className="h-8 w-8 text-star-yellow mx-auto mb-4 sparkle" />
-            <h3 className="text-2xl font-fredoka font-bold text-foreground mb-4">
+            <h3 className="text-2xl font-nunito font-bold text-foreground mb-4">
               Want unlimited access to all stories?
             </h3>
             <p className="text-muted-foreground mb-6">

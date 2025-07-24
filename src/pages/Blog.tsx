@@ -88,7 +88,7 @@ const Blog = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-fredoka font-bold text-foreground mb-6">
+          <h1 className="text-4xl md:text-5xl font-nunito font-bold text-foreground mb-6">
             Bedtime & Sleep Blog
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -110,7 +110,7 @@ const Blog = () => {
                   <Badge className="bg-primary text-primary-foreground mb-4">
                     ✨ Featured Article
                   </Badge>
-                  <h2 className="text-2xl md:text-3xl font-fredoka font-bold text-foreground mb-4">
+                  <h2 className="text-2xl md:text-3xl font-nunito font-bold text-foreground mb-4">
                     {featuredPost.title}
                   </h2>
                   <p className="text-muted-foreground mb-6">
@@ -172,7 +172,7 @@ const Blog = () => {
                 </Badge>
               </div>
               
-              <h3 className="text-lg font-fredoka font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+              <h3 className="text-lg font-nunito font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                 {post.title}
               </h3>
               <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
@@ -201,7 +201,7 @@ const Blog = () => {
         {/* Newsletter Signup */}
         <div className="bg-gradient-night rounded-3xl p-12 text-center">
           <Moon className="h-12 w-12 text-star-yellow mx-auto mb-6 float" />
-          <h2 className="text-3xl font-fredoka font-bold text-white mb-4">
+          <h2 className="text-3xl font-nunito font-bold text-white mb-4">
             Never Miss a Sleep Tip
           </h2>
           <p className="text-white/80 mb-8 max-w-2xl mx-auto">

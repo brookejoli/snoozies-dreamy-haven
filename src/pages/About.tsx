@@ -87,7 +87,7 @@ const About = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-fredoka font-bold text-foreground mb-6">
+          <h1 className="text-4xl md:text-5xl font-nunito font-bold text-foreground mb-6">
             About Snoozies
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
@@ -98,7 +98,7 @@ const About = () => {
         {/* Mission Statement */}
         <div className="bg-gradient-dreamy rounded-3xl p-12 text-center mb-16">
           <Moon className="h-16 w-16 text-white mx-auto mb-6 float" />
-          <h2 className="text-3xl font-fredoka font-bold text-white mb-6">
+          <h2 className="text-3xl font-nunito font-bold text-white mb-6">
             Our Mission
           </h2>
           <p className="text-white/90 text-lg max-w-3xl mx-auto leading-relaxed">
@@ -109,7 +109,7 @@ const About = () => {
         {/* Story */}
         <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
           <div>
-            <h2 className="text-3xl font-fredoka font-bold text-foreground mb-6">
+            <h2 className="text-3xl font-nunito font-bold text-foreground mb-6">
               Our Story
             </h2>
             <div className="space-y-4 text-muted-foreground">
@@ -132,7 +132,7 @@ const About = () => {
         {/* Values */}
         <div className="mb-16">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-fredoka font-bold text-foreground mb-4">
+            <h2 className="text-3xl font-nunito font-bold text-foreground mb-4">
               Our Values
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -148,7 +148,7 @@ const About = () => {
                   <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <Icon className="h-8 w-8 text-primary" />
                   </div>
-                  <h3 className="font-fredoka font-semibold text-foreground mb-3">
+                  <h3 className="font-nunito font-semibold text-foreground mb-3">
                     {value.title}
                   </h3>
                   <p className="text-muted-foreground text-sm">
@@ -163,7 +163,7 @@ const About = () => {
         {/* Team */}
         <div className="mb-16">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-fredoka font-bold text-foreground mb-4">
+            <h2 className="text-3xl font-nunito font-bold text-foreground mb-4">
               Meet Our Team
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -177,7 +177,7 @@ const About = () => {
                 <div className="w-24 h-24 bg-gradient-dreamy rounded-full mx-auto mb-4 flex items-center justify-center">
                   <Users className="h-12 w-12 text-white" />
                 </div>
-                <h3 className="font-fredoka font-semibold text-foreground mb-1">
+                <h3 className="font-nunito font-semibold text-foreground mb-1">
                   {member.name}
                 </h3>
                 <p className="text-primary text-sm mb-3">
@@ -194,7 +194,7 @@ const About = () => {
         {/* Timeline */}
         <div className="mb-16">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-fredoka font-bold text-foreground mb-4">
+            <h2 className="text-3xl font-nunito font-bold text-foreground mb-4">
               Our Journey
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -205,11 +205,11 @@ const About = () => {
           <div className="space-y-8">
             {milestones.map((milestone, index) => (
               <div key={index} className="flex gap-6 items-start">
-                <div className="bg-primary text-primary-foreground rounded-full w-16 h-16 flex items-center justify-center font-fredoka font-bold text-sm flex-shrink-0">
+                <div className="bg-primary text-primary-foreground rounded-full w-16 h-16 flex items-center justify-center font-nunito font-bold text-sm flex-shrink-0">
                   {milestone.year}
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-fredoka font-semibold text-foreground mb-2">
+                  <h3 className="font-nunito font-semibold text-foreground mb-2">
                     {milestone.title}
                   </h3>
                   <p className="text-muted-foreground">
@@ -224,7 +224,7 @@ const About = () => {
         {/* Recognition */}
         <div className="bg-card rounded-3xl p-12 shadow-soft mb-16">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-fredoka font-bold text-foreground mb-4">
+            <h2 className="text-3xl font-nunito font-bold text-foreground mb-4">
               Recognition & Awards
             </h2>
           </div>
@@ -232,7 +232,7 @@ const About = () => {
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
               <Star className="h-12 w-12 text-star-yellow mx-auto mb-4" />
-              <h3 className="font-fredoka font-semibold text-foreground mb-2">
+              <h3 className="font-nunito font-semibold text-foreground mb-2">
                 Parent's Choice Gold Award
               </h3>
               <p className="text-muted-foreground text-sm">
@@ -242,7 +242,7 @@ const About = () => {
 
             <div>
               <Heart className="h-12 w-12 text-primary mx-auto mb-4" />
-              <h3 className="font-fredoka font-semibold text-foreground mb-2">
+              <h3 className="font-nunito font-semibold text-foreground mb-2">
                 Family App of the Year
               </h3>
               <p className="text-muted-foreground text-sm">
@@ -252,7 +252,7 @@ const About = () => {
 
             <div>
               <Shield className="h-12 w-12 text-dreamy-blue mx-auto mb-4" />
-              <h3 className="font-fredoka font-semibold text-foreground mb-2">
+              <h3 className="font-nunito font-semibold text-foreground mb-2">
                 Child Safety Certified
               </h3>
               <p className="text-muted-foreground text-sm">
@@ -266,7 +266,7 @@ const About = () => {
         <div className="text-center">
           <Card className="card-story max-w-2xl mx-auto">
             <Moon className="h-12 w-12 text-primary mx-auto mb-6 sparkle" />
-            <h3 className="text-2xl font-fredoka font-bold text-foreground mb-4">
+            <h3 className="text-2xl font-nunito font-bold text-foreground mb-4">
               Join Our Mission
             </h3>
             <p className="text-muted-foreground mb-6">

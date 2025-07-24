@@ -28,7 +28,7 @@ const Navigation = () => {
               <Moon className="h-8 w-8 text-primary group-hover:text-primary-glow transition-colors duration-300" />
               <Star className="h-3 w-3 text-star-yellow absolute -top-1 -right-1 sparkle" />
             </div>
-            <span className="text-2xl font-fredoka font-semibold text-gradient">
+            <span className="text-2xl font-nunito font-semibold text-gradient">
               Snoozies
             </span>
           </Link>

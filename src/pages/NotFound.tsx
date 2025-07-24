@@ -20,8 +20,8 @@ const NotFound = () => {
           <Moon className="h-24 w-24 text-star-yellow mx-auto mb-4 float" />
           <Star className="h-8 w-8 text-primary mx-auto sparkle" />
         </div>
-        <h1 className="text-6xl font-fredoka font-bold text-white mb-4">404</h1>
-        <h2 className="text-2xl font-fredoka font-semibold text-white mb-4">
+        <h1 className="text-6xl font-nunito font-bold text-white mb-4">404</h1>
+        <h2 className="text-2xl font-nunito font-semibold text-white mb-4">
           Oops! This page is still dreaming
         </h2>
         <p className="text-white/80 mb-8 text-lg">

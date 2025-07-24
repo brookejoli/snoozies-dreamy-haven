@@ -88,7 +88,7 @@ const Home = () => {
       <section className="py-20 bg-gradient-sunset">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-comfortaa font-bold text-foreground mb-6">
+            <h2 className="text-4xl md:text-5xl font-nunito font-bold text-foreground mb-6">
               Tonight's Featured Story
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -110,7 +110,7 @@ const Home = () => {
                   <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium mb-4">
                     ✨ Featured Tonight
                   </span>
-                  <h3 className="text-2xl md:text-3xl font-comfortaa font-bold text-foreground mb-4">
+                  <h3 className="text-2xl md:text-3xl font-nunito font-bold text-foreground mb-4">
                     Luna's Moonlight Adventure
                   </h3>
                   <p className="text-muted-foreground mb-6">
@@ -148,7 +148,7 @@ const Home = () => {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-comfortaa font-bold text-foreground mb-6">
+            <h2 className="text-4xl md:text-5xl font-nunito font-bold text-foreground mb-6">
               A World of Dreamy Stories
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -178,7 +178,7 @@ const Home = () => {
                     {story.duration}
                   </span>
                 </div>
-                <h3 className="text-xl font-comfortaa font-semibold text-foreground mb-3">
+                <h3 className="text-xl font-nunito font-semibold text-foreground mb-3">
                   {story.title}
                 </h3>
                 <p className="text-muted-foreground">
@@ -203,7 +203,7 @@ const Home = () => {
       <section className="py-20 bg-gradient-night">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-comfortaa font-bold text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-nunito font-bold text-white mb-6">
               Why Parents Love Snoozies
             </h2>
             <p className="text-xl text-white/80 max-w-2xl mx-auto">
@@ -216,7 +216,7 @@ const Home = () => {
               <div className="bg-white/10 backdrop-blur-sm rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
                 <Moon className="h-8 w-8 text-star-yellow" />
               </div>
-              <h3 className="text-xl font-comfortaa font-semibold text-white mb-4">
+              <h3 className="text-xl font-nunito font-semibold text-white mb-4">
                 Calming & Peaceful
               </h3>
               <p className="text-white/70">
@@ -228,7 +228,7 @@ const Home = () => {
               <div className="bg-white/10 backdrop-blur-sm rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
                 <Heart className="h-8 w-8 text-star-yellow" />
               </div>
-              <h3 className="text-xl font-comfortaa font-semibold text-white mb-4">
+              <h3 className="text-xl font-nunito font-semibold text-white mb-4">
                 Age-Appropriate
               </h3>
               <p className="text-white/70">
@@ -240,7 +240,7 @@ const Home = () => {
               <div className="bg-white/10 backdrop-blur-sm rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
                 <Star className="h-8 w-8 text-star-yellow sparkle" />
               </div>
-              <h3 className="text-xl font-comfortaa font-semibold text-white mb-4">
+              <h3 className="text-xl font-nunito font-semibold text-white mb-4">
                 New Stories Weekly
               </h3>
               <p className="text-white/70">
@@ -256,7 +256,7 @@ const Home = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="bg-card rounded-3xl p-12 shadow-dreamy">
             <Star className="h-12 w-12 text-star-yellow mx-auto mb-6 sparkle" />
-            <h2 className="text-3xl md:text-4xl font-comfortaa font-bold text-foreground mb-6">
+            <h2 className="text-3xl md:text-4xl font-nunito font-bold text-foreground mb-6">
               Start Your Bedtime Adventure Tonight
             </h2>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">

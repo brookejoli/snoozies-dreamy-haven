@@ -87,7 +87,7 @@ const Subscribe = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-fredoka font-bold text-foreground mb-6">
+          <h1 className="text-4xl md:text-5xl font-nunito font-bold text-foreground mb-6">
             Choose Your Bedtime Plan
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
@@ -143,7 +143,7 @@ const Subscribe = () => {
                   <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full mb-4">
                     <Icon className="h-6 w-6 text-primary" />
                   </div>
-                  <h3 className="text-xl font-fredoka font-semibold text-foreground mb-2">
+                  <h3 className="text-xl font-nunito font-semibold text-foreground mb-2">
                     {plan.name}
                   </h3>
                   <p className="text-muted-foreground text-sm mb-4">
@@ -191,7 +191,7 @@ const Subscribe = () => {
         {/* Features Section */}
         <div className="bg-card rounded-3xl p-12 shadow-soft mb-16">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-fredoka font-bold text-foreground mb-4">
+            <h2 className="text-3xl font-nunito font-bold text-foreground mb-4">
               What's Included in Your Subscription
             </h2>
             <p className="text-muted-foreground">
@@ -204,7 +204,7 @@ const Subscribe = () => {
               <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <Star className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-fredoka font-semibold text-foreground mb-2">
+              <h3 className="font-nunito font-semibold text-foreground mb-2">
                 Premium Stories
               </h3>
               <p className="text-sm text-muted-foreground">
@@ -216,7 +216,7 @@ const Subscribe = () => {
               <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <Users className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-fredoka font-semibold text-foreground mb-2">
+              <h3 className="font-nunito font-semibold text-foreground mb-2">
                 Multiple Profiles
               </h3>
               <p className="text-sm text-muted-foreground">
@@ -228,7 +228,7 @@ const Subscribe = () => {
               <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <Gift className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-fredoka font-semibold text-foreground mb-2">
+              <h3 className="font-nunito font-semibold text-foreground mb-2">
                 Weekly Releases
               </h3>
               <p className="text-sm text-muted-foreground">
@@ -240,7 +240,7 @@ const Subscribe = () => {
               <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <Crown className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-fredoka font-semibold text-foreground mb-2">
+              <h3 className="font-nunito font-semibold text-foreground mb-2">
                 Offline Access
               </h3>
               <p className="text-sm text-muted-foreground">
@@ -253,7 +253,7 @@ const Subscribe = () => {
         {/* Testimonials */}
         <div className="mb-16">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-fredoka font-bold text-foreground mb-4">
+            <h2 className="text-3xl font-nunito font-bold text-foreground mb-4">
               What Parents Are Saying
             </h2>
             <p className="text-muted-foreground">
@@ -273,7 +273,7 @@ const Subscribe = () => {
                   "{testimonial.quote}"
                 </blockquote>
                 <div>
-                  <div className="font-fredoka font-semibold text-foreground">
+                  <div className="font-nunito font-semibold text-foreground">
                     {testimonial.name}
                   </div>
                   <div className="text-sm text-muted-foreground">
@@ -288,14 +288,14 @@ const Subscribe = () => {
         {/* FAQ Section */}
         <div className="bg-card rounded-3xl p-12 shadow-soft">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-fredoka font-bold text-foreground mb-4">
+            <h2 className="text-3xl font-nunito font-bold text-foreground mb-4">
               Frequently Asked Questions
             </h2>
           </div>
 
           <div className="max-w-3xl mx-auto space-y-6">
             <div>
-              <h3 className="font-fredoka font-semibold text-foreground mb-2">
+              <h3 className="font-nunito font-semibold text-foreground mb-2">
                 Can I cancel my subscription anytime?
               </h3>
               <p className="text-muted-foreground">
@@ -304,7 +304,7 @@ const Subscribe = () => {
             </div>
 
             <div>
-              <h3 className="font-fredoka font-semibold text-foreground mb-2">
+              <h3 className="font-nunito font-semibold text-foreground mb-2">
                 How many devices can I use?
               </h3>
               <p className="text-muted-foreground">
@@ -313,7 +313,7 @@ const Subscribe = () => {
             </div>
 
             <div>
-              <h3 className="font-fredoka font-semibold text-foreground mb-2">
+              <h3 className="font-nunito font-semibold text-foreground mb-2">
                 Are new stories really added every week?
               </h3>
               <p className="text-muted-foreground">
@@ -322,7 +322,7 @@ const Subscribe = () => {
             </div>
 
             <div>
-              <h3 className="font-fredoka font-semibold text-foreground mb-2">
+              <h3 className="font-nunito font-semibold text-foreground mb-2">
                 Is there a family discount?
               </h3>
               <p className="text-muted-foreground">
