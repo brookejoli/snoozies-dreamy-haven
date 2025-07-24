@@ -4,7 +4,7 @@
 
 /* Snoozies Design System - Soft, calming bedtime colors and elements */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Comfortaa:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Comfortaa:wght@300;400;500;600;700&family=Nunito:wght@300;400;500;600;700;800&family=Bungee:wght@400&family=Fredoka:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
@@ -199,5 +199,13 @@
 
   .font-nunito {
     font-family: 'Nunito', sans-serif;
+  }
+
+  .font-bungee {
+    font-family: 'Bungee', cursive;
+  }
+
+  .font-fredoka {
+    font-family: 'Fredoka', cursive;
   }
 }

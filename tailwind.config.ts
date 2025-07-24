@@ -73,7 +73,9 @@ export default {
 			fontFamily: {
 				inter: ['Inter', 'sans-serif'],
 				comfortaa: ['Comfortaa', 'cursive'],
-				nunito: ['Nunito', 'sans-serif']
+				nunito: ['Nunito', 'sans-serif'],
+				bungee: ['Bungee', 'cursive'],
+				fredoka: ['Fredoka', 'cursive']
 			},
 			boxShadow: {
 				'soft': 'var(--shadow-soft)',
