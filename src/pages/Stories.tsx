@@ -168,21 +168,21 @@ const Stories = () => {
               Featured Stories
             </h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-8">
             {stories.filter(story => story.featured).map((story) => (
               <Card key={story.id} className="card-story overflow-hidden">
-                <div className="md:flex">
-                  <div className="md:w-1/2 relative">
+                <div className="flex flex-col">
+                  <div className="relative">
                     <img 
                       src={story.image} 
                       alt={story.title}
-                      className="w-full h-48 md:h-full object-cover"
+                      className="w-full h-56 object-cover"
                     />
                     <Badge className="absolute top-4 left-4 bg-star-yellow text-foreground">
                       ✨ Featured
                     </Badge>
                   </div>
-                  <div className="md:w-1/2 p-6">
+                  <div className="p-6 flex flex-col h-full">
                     <div className="flex items-center gap-2 mb-2">
                       <Badge variant="outline" className="text-xs">
                         {story.style}
@@ -195,7 +195,7 @@ const Stories = () => {
                     <h3 className="text-xl font-nunito font-semibold text-foreground mb-2">
                       {story.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground mb-4">
+                    <p className="text-sm text-muted-foreground mb-4 flex-grow">
                       {story.description}
                     </p>
                     <div className="flex items-center justify-between text-xs text-muted-foreground mb-4">
@@ -205,12 +205,14 @@ const Stories = () => {
                       </div>
                       <span>{story.ageGroup}</span>
                     </div>
-                    <AudioPlayer 
-                      src="/audio/sample-story.mp3" 
-                      title={story.title}
-                      duration={story.duration}
-                      compact={true}
-                    />
+                    <div className="mt-auto">
+                      <AudioPlayer 
+                        src="/audio/sample-story.mp3" 
+                        title={story.title}
+                        duration={story.duration}
+                        compact={true}
+                      />
+                    </div>
                   </div>
                 </div>
               </Card>
