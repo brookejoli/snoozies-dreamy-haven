@@ -1,12 +1,25 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Star, Moon, Cloud, Play, ArrowRight, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import AudioPlayer from '@/components/AudioPlayer';
+import NewsletterPopup from '@/components/NewsletterPopup';
 import heroImage from '@/assets/hero-bedtime.jpg';
 import featuredStoryImage from '@/assets/featured-story.jpg';
 
 const Home = () => {
+  const [showNewsletterPopup, setShowNewsletterPopup] = useState(false);
+
+  // Show newsletter popup after 8 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowNewsletterPopup(true);
+    }, 8000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const featuredStories = [
     {
       id: 1,
@@ -277,6 +290,12 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Newsletter Popup */}
+      <NewsletterPopup 
+        isVisible={showNewsletterPopup} 
+        onClose={() => setShowNewsletterPopup(false)} 
+      />
     </div>
   );
 };

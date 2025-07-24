@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Moon, Menu, X, Star } from 'lucide-react';
+import { Moon, Menu, X, Star, Youtube } from 'lucide-react';
 import { Button } from './ui/button';
 
 const Navigation = () => {
@@ -34,7 +34,7 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
               <Link
                 key={item.name}
@@ -48,6 +48,19 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
+            
+            {/* YouTube Button */}
+            <a
+              href="https://www.youtube.com/@snooziestories"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-300 px-2 py-1 rounded-lg hover:bg-accent"
+              title="Visit our YouTube channel"
+            >
+              <Youtube className="h-5 w-5" />
+              <span className="text-sm font-medium">Stories</span>
+            </a>
+            
             <Button className="btn-dreamy">
               Try Free
             </Button>
@@ -86,6 +99,19 @@ const Navigation = () => {
                   {item.name}
                 </Link>
               ))}
+              
+              {/* Mobile YouTube Button */}
+              <a
+                href="https://www.youtube.com/@snooziestories"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 px-3 py-2 rounded-md text-base font-medium text-foreground hover:text-primary hover:bg-accent transition-colors duration-300"
+                onClick={() => setIsOpen(false)}
+              >
+                <Youtube className="h-5 w-5" />
+                YouTube Stories
+              </a>
+              
               <div className="px-3 py-2">
                 <Button className="btn-dreamy w-full">
                   Try Free
