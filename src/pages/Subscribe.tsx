@@ -9,53 +9,58 @@ const Subscribe = () => {
 
   const plans = [
     {
-      name: "Free Trial",
-      price: isAnnual ? "0" : "0",
-      period: "7 days",
-      description: "Perfect for trying out Snoozies",
+      name: "Free on YouTube",
+      price: "0",
+      period: "forever",
+      description: "Basic bedtime stories to get started",
       features: [
-        "Access to 5 bedtime stories",
+        "5-8 minute story previews",
         "Basic audio quality",
-        "No commitment",
-        "Cancel anytime"
+        "Ads included",
+        "No downloads",
+        "Limited story library"
       ],
-      buttonText: "Start Free Trial",
+      buttonText: "Visit YouTube",
       popular: false,
-      icon: Gift
+      icon: Gift,
+      isYoutube: true
     },
     {
-      name: "Monthly",
+      name: "Premium Stories",
       price: isAnnual ? "59" : "9.99",
       period: isAnnual ? "year" : "month",
-      description: "Best for regular bedtime routines",
+      description: "Extended stories & exclusive premium content",
       features: [
-        "Unlimited access to all stories",
-        "High-quality audio",
-        "New stories every week",
-        "Offline listening",
-        "Sleep timer",
-        "Multiple child profiles",
-        "Ad-free experience"
+        "20-30 minute extended story versions",
+        "Exclusive premium-only stories",
+        "Ad-free, uninterrupted listening",
+        "Offline downloads for travel",
+        "Sleep timer with gentle fade-out",
+        "Early access to new stories",
+        "High-quality lossless audio",
+        "Personalized story recommendations"
       ],
-      buttonText: "Get Monthly Access",
+      buttonText: "Get Premium Access",
       popular: true,
       icon: Star
     },
     {
-      name: "Family",
+      name: "Family Plus",
       price: isAnnual ? "99" : "15.99",
       period: isAnnual ? "year" : "month",
-      description: "Perfect for families with multiple children",
+      description: "Premium features + personalized family content",
       features: [
-        "Everything in Monthly plan",
-        "Up to 6 child profiles",
-        "Parental controls",
-        "Family progress tracking",
-        "Priority customer support",
-        "Early access to new features",
-        "Bedtime routine templates"
+        "Everything in Premium Stories",
+        "Custom stories with your child's name",
+        "Up to 6 personalized child profiles",
+        "Monthly story requests & suggestions",
+        "Interactive bedtime routine guides",
+        "Seasonal & holiday story collections",
+        "Live monthly story sessions",
+        "Printable story companion books",
+        "Priority customer support"
       ],
-      buttonText: "Get Family Plan",
+      buttonText: "Get Family Plus",
       popular: false,
       icon: Crown
     }
@@ -157,12 +162,12 @@ const Subscribe = () => {
                       /{plan.period}
                     </span>
                   </div>
-                  {isAnnual && plan.name === "Monthly" && (
+                  {isAnnual && plan.name === "Premium Stories" && (
                     <p className="text-sm text-muted-foreground mt-1">
                       Billed annually ($59/year)
                     </p>
                   )}
-                  {isAnnual && plan.name === "Family" && (
+                  {isAnnual && plan.name === "Family Plus" && (
                     <p className="text-sm text-muted-foreground mt-1">
                       Billed annually ($99/year)
                     </p>
@@ -180,6 +185,11 @@ const Subscribe = () => {
 
                 <Button 
                   className={plan.popular ? "btn-dreamy w-full" : "btn-sleepy w-full"}
+                  onClick={() => {
+                    if (plan.isYoutube) {
+                      window.open('https://www.youtube.com/@snooziestories', '_blank');
+                    }
+                  }}
                 >
                   {plan.buttonText}
                 </Button>
@@ -204,48 +214,48 @@ const Subscribe = () => {
               <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <Star className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-nunito font-semibold text-foreground mb-2">
-                Premium Stories
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                Access to our complete library of professionally narrated bedtime stories
-              </p>
+               <h3 className="font-nunito font-semibold text-foreground mb-2">
+                 Extended Premium Stories
+               </h3>
+               <p className="text-sm text-muted-foreground">
+                 20-30 minute extended versions of stories available only to subscribers
+               </p>
             </div>
 
             <div className="text-center">
               <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <Users className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-nunito font-semibold text-foreground mb-2">
-                Multiple Profiles
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                Create personalized profiles for each child with their favorite stories
-              </p>
+               <h3 className="font-nunito font-semibold text-foreground mb-2">
+                 Personalized Content
+               </h3>
+               <p className="text-sm text-muted-foreground">
+                 Custom stories featuring your child's name and personalized adventures
+               </p>
             </div>
 
             <div className="text-center">
               <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <Gift className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-nunito font-semibold text-foreground mb-2">
-                Weekly Releases
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                New stories added every week to keep bedtime fresh and exciting
-              </p>
+               <h3 className="font-nunito font-semibold text-foreground mb-2">
+                 Early Access & Exclusives
+               </h3>
+               <p className="text-sm text-muted-foreground">
+                 Get new stories 2 weeks before they're released on YouTube
+               </p>
             </div>
 
             <div className="text-center">
               <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                 <Crown className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="font-nunito font-semibold text-foreground mb-2">
-                Offline Access
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                Download stories for offline listening, perfect for travel or poor reception
-              </p>
+               <h3 className="font-nunito font-semibold text-foreground mb-2">
+                 Ad-Free Experience
+               </h3>
+               <p className="text-sm text-muted-foreground">
+                 Uninterrupted listening with offline downloads and sleep timer
+               </p>
             </div>
           </div>
         </div>
