@@ -295,6 +295,12 @@ const Home = () => {
                   Browse Stories
                 </Link>
               </Button>
+              <Button asChild variant="secondary" className="text-lg px-8 py-4">
+                <Link to="/story-suggestions">
+                  <Heart className="h-5 w-5 mr-2" />
+                  Suggest a Story
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
