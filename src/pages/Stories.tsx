@@ -7,13 +7,13 @@ import { Badge } from '@/components/ui/badge';
 import AudioPlayer from '@/components/AudioPlayer';
 import featuredStoryImage from '@/assets/featured-story.jpg';
 import treeMakingToastImage from '@/assets/tree-making-toast.jpg';
-import littleCloudJourneyImage from '@/assets/little-cloud-journey.jpg';
-import broccoliTreeImage from '@/assets/broccoli-tree.jpg';
-import sleepySunflowerImage from '@/assets/sleepy-sunflower.jpg';
+import littleCloudJourneyImage from '@/assets/little-cloud-journey-dreamy.jpg';
+import broccoliTreeImage from '@/assets/broccoli-tree-dreamy.jpg';
+import sleepySunflowerImage from '@/assets/sleepy-sunflower-dreamy.jpg';
 import lazyRiverImage from '@/assets/lazy-river.jpg';
 import lightningBugImage from '@/assets/lightning-bug.jpg';
-import letsTalkDirtImage from '@/assets/lets-talk-dirt.jpg';
-import girlCollectingStarsImage from '@/assets/girl-collecting-stars.jpg';
+import letsTalkDirtImage from '@/assets/lets-talk-dirt-friendly.jpg';
+import girlCollectingStarsImage from '@/assets/girl-collecting-stars-dreamy.jpg';
 
 const Stories = () => {
   const [searchTerm, setSearchTerm] = useState('');
