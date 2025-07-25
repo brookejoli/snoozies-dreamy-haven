@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import AudioPlayer from '@/components/AudioPlayer';
 import featuredStoryImage from '@/assets/featured-story.jpg';
+import treeMakingToastImage from '@/assets/tree-making-toast.jpg';
 
 const Stories = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -100,14 +101,14 @@ const Stories = () => {
     },
     {
       id: 8,
-      title: "Grandpa and the Left Shoe",
-      description: "Grandpa keeps losing just one shoe — always the left one. Sometimes it's in the bread box. Sometimes it's under a tree. Once, it was wearing a hat made of grocery lists.",
-      duration: "6:55",
-      style: "Playful + Mundane",
-      image: featuredStoryImage,
+      title: "The Tree That Made Toast",
+      description: "This is a boring bedtime story. On purpose. In this slow, sleepy tale, a tree quietly makes toast. That's it. Nothing much happens, which is exactly what you need to drift off.",
+      duration: "5:20",
+      style: "Mundane",
+      image: treeMakingToastImage,
       featured: false,
-      rating: 4.7,
-      ageGroup: "3-8 years",
+      rating: 4.6,
+      ageGroup: "2-8 years",
       youtubeUrl: "https://www.youtube.com/@snooziestories"
     }
   ];
