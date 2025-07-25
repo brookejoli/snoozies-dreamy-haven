@@ -41,7 +41,7 @@ const Stories = () => {
       duration: "6:30",
       style: "Magical + Mundane",
       image: broccoliTreeImage,
-      featured: false,
+      featured: true,
       rating: 4.8,
       ageGroup: "2-6 years",
       youtubeUrl: "https://www.youtube.com/@snooziestories"
@@ -53,7 +53,7 @@ const Stories = () => {
       duration: "7:15",
       style: "Magical + Mundane",
       image: sleepySunflowerImage,
-      featured: true,
+      featured: false,
       rating: 4.7,
       ageGroup: "3-8 years",
       youtubeUrl: "https://www.youtube.com/@snooziestories"
