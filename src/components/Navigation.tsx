@@ -33,7 +33,7 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-end space-x-8 pb-2">
+          <div className="hidden md:flex items-end space-x-6 pb-2">
             {navItems.map((item) => (
               <Link
                 key={item.name}
@@ -82,7 +82,7 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden border-t border-border">
+          <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-card">
               {navItems.map((item) => (
                 <Link
