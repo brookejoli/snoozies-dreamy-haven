@@ -7,7 +7,7 @@ import AudioPlayer from '@/components/AudioPlayer';
 import NewsletterPopup from '@/components/NewsletterPopup';
 import heroImage from '@/assets/hero-bedtime.jpg';
 import featuredStoryImage from '@/assets/featured-story.jpg';
-import littleCloudJourneyImage from '@/assets/little-cloud-journey.jpg';
+import littleCloudJourneyImage from '@/assets/little-cloud-journey-new.jpg';
 import treeMakingToastImage from '@/assets/tree-making-toast.jpg';
 import broccoliTreeImage from '@/assets/broccoli-tree.jpg';
 
