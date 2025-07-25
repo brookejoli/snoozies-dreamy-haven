@@ -248,7 +248,7 @@ const Contact = () => {
               <MessageCircle className="h-4 w-4 mr-2" />
               Start Live Chat
             </Button>
-            <Button variant="outline" className="border-white text-white hover:bg-white hover:text-foreground">
+            <Button variant="outline" className="border-white text-black bg-white hover:bg-white/90 hover:text-black">
               <Phone className="h-4 w-4 mr-2" />
               Call Support
             </Button>
