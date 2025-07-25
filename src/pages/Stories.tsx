@@ -7,6 +7,13 @@ import { Badge } from '@/components/ui/badge';
 import AudioPlayer from '@/components/AudioPlayer';
 import featuredStoryImage from '@/assets/featured-story.jpg';
 import treeMakingToastImage from '@/assets/tree-making-toast.jpg';
+import littleCloudJourneyImage from '@/assets/little-cloud-journey.jpg';
+import broccoliTreeImage from '@/assets/broccoli-tree.jpg';
+import sleepySunflowerImage from '@/assets/sleepy-sunflower.jpg';
+import lazyRiverImage from '@/assets/lazy-river.jpg';
+import lightningBugImage from '@/assets/lightning-bug.jpg';
+import letsTalkDirtImage from '@/assets/lets-talk-dirt.jpg';
+import girlCollectingStarsImage from '@/assets/girl-collecting-stars.jpg';
 
 const Stories = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -21,7 +28,7 @@ const Stories = () => {
       description: "Float along with a tiny cloud as it drifts across skies and rooftops on a gentle evening adventure. With whispers of wind and soft glows of sunset, this calming tale will lull little listeners into sweet, sleepy dreams.",
       duration: "8:45",
       style: "Magical + Mundane",
-      image: featuredStoryImage,
+      image: littleCloudJourneyImage,
       featured: true,
       rating: 4.9,
       ageGroup: "3-7 years",
@@ -33,7 +40,7 @@ const Stories = () => {
       description: "Meet a tree that looks suspiciously like broccoli — and the kid who thinks it might just be too broccoli-like. Nothing much happens. And that's kind of the point.",
       duration: "6:30",
       style: "Magical + Mundane",
-      image: featuredStoryImage,
+      image: broccoliTreeImage,
       featured: true,
       rating: 4.8,
       ageGroup: "2-6 years",
@@ -45,7 +52,7 @@ const Stories = () => {
       description: "A tall sunflower in a garden slowly turns to follow the sun throughout a long summer day, eventually settling into peaceful sleep as twilight comes. The story follows her gentle observations of the garden's quiet summer rhythms - bees humming, butterflies visiting, and the soft evening breeze.",
       duration: "7:15",
       style: "Magical + Mundane",
-      image: featuredStoryImage,
+      image: sleepySunflowerImage,
       featured: false,
       rating: 4.7,
       ageGroup: "3-8 years",
@@ -57,7 +64,7 @@ const Stories = () => {
       description: "Following a gentle stream as it meanders through summer meadows, past sleepy cattle, under old stone bridges, carrying lily pads and reflecting clouds. The water moves slowly, peacefully, with no urgency - just the quiet music of flowing water.",
       duration: "9:20",
       style: "Really Boring",
-      image: featuredStoryImage,
+      image: lazyRiverImage,
       featured: false,
       rating: 4.6,
       ageGroup: "2-7 years",
@@ -69,7 +76,7 @@ const Stories = () => {
       description: "A young firefly discovers her gentle light for the first time on a warm summer evening. She practices her soft blinking among the tall grass, joins the peaceful dance of other lightning bugs, and learns that her glow is perfect for lighting the way to dreams.",
       duration: "8:10",
       style: "Playful + Mundane",
-      image: featuredStoryImage,
+      image: lightningBugImage,
       featured: false,
       rating: 4.8,
       ageGroup: "3-6 years",
@@ -81,7 +88,7 @@ const Stories = () => {
       description: "Dirt doesn't ask for much. Dust's older cousin, crumb's quiet friend — this sleepy story celebrates the quiet, cozy world underfoot.",
       duration: "5:45",
       style: "Really Boring",
-      image: featuredStoryImage,
+      image: letsTalkDirtImage,
       featured: false,
       rating: 4.5,
       ageGroup: "2-8 years",
@@ -93,7 +100,7 @@ const Stories = () => {
       description: "In a town where the sky never rushed, a quiet girl begins to notice something… different. A shimmering, starry tale about collecting, letting go, and learning to see beauty without needing to keep it.",
       duration: "10:30",
       style: "Magical + Mundane",
-      image: featuredStoryImage,
+      image: girlCollectingStarsImage,
       featured: false,
       rating: 4.9,
       ageGroup: "4-9 years",
