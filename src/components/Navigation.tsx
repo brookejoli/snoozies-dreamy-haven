@@ -38,10 +38,10 @@ const Navigation = () => {
               <Link
                 key={item.name}
                 to={item.path}
-                className={`font-medium text-base transition-colors duration-300 hover:text-primary px-2 py-1 rounded-lg ${
+                className={`font-bold text-base transition-colors duration-300 hover:text-white px-2 py-1 rounded-lg ${
                   isActive(item.path)
-                    ? 'text-primary bg-primary/10'
-                    : 'text-foreground hover:bg-accent/50'
+                    ? 'text-white bg-white/20'
+                    : 'text-white/90 hover:bg-white/10'
                 }`}
               >
                 {item.name}
@@ -53,11 +53,11 @@ const Navigation = () => {
               href="https://www.youtube.com/@snooziestories"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-300 px-2 py-1 rounded-lg hover:bg-accent/50"
+              className="flex items-center gap-2 text-white/90 hover:text-white transition-colors duration-300 px-2 py-1 rounded-lg hover:bg-white/10 font-bold"
               title="Visit our YouTube channel"
             >
               <Youtube className="h-5 w-5" />
-              <span className="text-sm font-medium">Stories</span>
+              <span className="text-sm font-bold">Stories</span>
             </a>
             
             <Button className="btn-dreamy text-sm px-4 py-2">
