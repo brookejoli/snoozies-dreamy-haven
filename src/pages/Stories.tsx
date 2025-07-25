@@ -29,7 +29,7 @@ const Stories = () => {
       duration: "8:45",
       style: "Magical + Mundane",
       image: littleCloudJourneyImage,
-      featured: false,
+      featured: true,
       rating: 4.9,
       ageGroup: "3-7 years",
       youtubeUrl: "https://www.youtube.com/@snooziestories"
@@ -101,7 +101,7 @@ const Stories = () => {
       duration: "10:30",
       style: "Magical + Mundane",
       image: girlCollectingStarsImage,
-      featured: true,
+      featured: false,
       rating: 4.9,
       ageGroup: "4-9 years",
       youtubeUrl: "https://www.youtube.com/@snooziestories"
