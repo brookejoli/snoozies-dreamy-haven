@@ -7,6 +7,9 @@ import AudioPlayer from '@/components/AudioPlayer';
 import NewsletterPopup from '@/components/NewsletterPopup';
 import heroImage from '@/assets/hero-bedtime.jpg';
 import featuredStoryImage from '@/assets/featured-story.jpg';
+import littleCloudJourneyImage from '@/assets/little-cloud-journey.jpg';
+import treeMakingToastImage from '@/assets/tree-making-toast.jpg';
+import broccoliTreeImage from '@/assets/broccoli-tree.jpg';
 
 const Home = () => {
   const [showNewsletterPopup, setShowNewsletterPopup] = useState(false);
@@ -23,30 +26,30 @@ const Home = () => {
   const featuredStories = [
     {
       id: 1,
-      title: "Luna's Moonlight Adventure",
-      description: "Join Luna as she travels through dreamy clouds to help the sleepy moon find his way home.",
+      title: "The Little Cloud's Evening Journey",
+      description: "Float along with a tiny cloud as it drifts across skies and rooftops on a gentle evening adventure.",
       duration: "8:45",
-      category: "Adventure",
-      image: featuredStoryImage,
-      youtubeUrl: "https://www.youtube.com/@snooziestories" // Replace with actual video URL
+      category: "Magical + Mundane",
+      image: littleCloudJourneyImage,
+      youtubeUrl: "https://www.youtube.com/@snooziestories"
     },
     {
       id: 2,
-      title: "The Sleepy Forest Friends",
-      description: "Discover how woodland animals prepare for their peaceful night's sleep.",
+      title: "The Tree That Made Toast",
+      description: "This is a boring bedtime story. On purpose. In this slow, sleepy tale, a tree quietly makes toast.",
       duration: "6:30",
-      category: "Nature",
-      image: featuredStoryImage,
-      youtubeUrl: "https://www.youtube.com/@snooziestories" // Replace with actual video URL
+      category: "Mundane",
+      image: treeMakingToastImage,
+      youtubeUrl: "https://www.youtube.com/@snooziestories"
     },
     {
       id: 3,
-      title: "Captain Cozy's Dream Ship",
-      description: "Sail away on Captain Cozy's magical ship through the sea of dreams.",
+      title: "The Tree That Looked Like Broccoli",
+      description: "Meet a tree that looks suspiciously like broccoli — and the kid who thinks it might just be too broccoli-like.",
       duration: "10:15",
-      category: "Fantasy",
-      image: featuredStoryImage,
-      youtubeUrl: "https://www.youtube.com/@snooziestories" // Replace with actual video URL
+      category: "Magical + Mundane",
+      image: broccoliTreeImage,
+      youtubeUrl: "https://www.youtube.com/@snooziestories"
     }
   ];
 
@@ -127,17 +130,17 @@ const Home = () => {
                     ✨ Featured Tonight
                   </span>
                   <h3 className="text-2xl md:text-3xl font-nunito font-bold text-foreground mb-4">
-                    Luna's Moonlight Adventure
+                    The Little Cloud's Evening Journey
                   </h3>
                   <p className="text-muted-foreground mb-6">
-                    Join Luna as she travels through dreamy clouds to help the sleepy moon find his way home. 
-                    A gentle story about friendship, courage, and the magic of bedtime.
+                    Float along with a tiny cloud as it drifts across skies and rooftops on a gentle evening adventure. 
+                    With whispers of wind and soft glows of sunset, this calming tale will lull little listeners into sweet dreams.
                   </p>
                 </div>
 
                 <AudioPlayer 
-                  src="/audio/sample-story.mp3" 
-                  title="Luna's Moonlight Adventure"
+                  src="/audio/the-little-clouds-evening-journey.mp3" 
+                  title="The Little Cloud's Evening Journey"
                   duration="8:45"
                   compact={true}
                 />
