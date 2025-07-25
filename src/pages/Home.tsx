@@ -6,7 +6,7 @@ import { Card } from '@/components/ui/card';
 import AudioPlayer from '@/components/AudioPlayer';
 import NewsletterPopup from '@/components/NewsletterPopup';
 import heroImage from '@/assets/hero-bedtime.jpg';
-import featuredStoryImage from '@/assets/little-cloud-journey-new.jpg';
+import featuredStoryImage from '@/assets/lets-talk-dirt.jpg';
 import littleCloudJourneyImage from '@/assets/little-cloud-journey-new.jpg';
 import treeMakingToastImage from '@/assets/tree-making-toast.jpg';
 import broccoliTreeImage from '@/assets/broccoli-tree.jpg';
@@ -130,18 +130,17 @@ const Home = () => {
                     ✨ Featured Tonight
                   </span>
                   <h3 className="text-2xl md:text-3xl font-nunito font-bold text-foreground mb-4">
-                    The Little Cloud's Evening Journey
+                    Let's Talk About Dirt
                   </h3>
                   <p className="text-muted-foreground mb-6">
-                    Float along with a tiny cloud as it drifts across skies and rooftops on a gentle evening adventure. 
-                    With whispers of wind and soft glows of sunset, this calming tale will lull little listeners into sweet dreams.
+                    A wonderfully boring bedtime story about dirt. Just dirt. Perfect for helping little minds slow down and drift off to sleep with gentle, earthy thoughts.
                   </p>
                 </div>
 
                 <AudioPlayer 
-                  src="/audio/the-little-clouds-evening-journey.mp3" 
-                  title="The Little Cloud's Evening Journey"
-                  duration="8:45"
+                  src="/audio/lets-talk-about-dirt.mp3" 
+                  title="Let's Talk About Dirt"
+                  duration="7:20"
                   compact={true}
                 />
 
