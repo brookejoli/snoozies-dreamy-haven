@@ -107,25 +107,44 @@ const About = () => {
         </div>
 
         {/* Story */}
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-          <div>
-            <h2 className="text-3xl font-nunito font-bold text-foreground mb-6">
-              Our Story
+        <div className="bg-gradient-dreamy rounded-3xl p-12 mb-16">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-kalam font-bold text-white mb-8 text-center">
+              My Story
             </h2>
-            <div className="space-y-4 text-muted-foreground">
+            <div className="space-y-6 text-white font-kalam text-lg font-bold leading-relaxed">
               <p>
-                Snoozies was born from a simple realization: bedtime doesn't have to be a battle. Our founder, Sarah Johnson, was a pediatric sleep specialist who saw countless families struggling with evening routines.
+                I created Snoozies because I know what it's like to struggle with sleep.
               </p>
               <p>
-                After years of research into the science of sleep and storytelling, she discovered that the right combination of narrative structure, calming audio design, and age-appropriate content could transform bedtime into a peaceful, anticipated part of the day.
+                I've always had trouble falling asleep — and I'm not alone. Some of my friends' kids have the same challenge. They're full of energy, full of stories, and sometimes just can't slow down at the end of the day.
               </p>
               <p>
-                Today, we're proud to serve over 100,000 families worldwide, with a growing library of stories that help children not just fall asleep, but develop a lifelong love of bedtime.
+                That's why I started Snoozies: a bedtime story series made to be simple, soothing, and actually helpful. These stories are slow, gentle, and sometimes a little boring — on purpose. They're designed to quiet busy minds and help kids (and grownups) drift off peacefully.
               </p>
+              <div className="my-8">
+                <p className="mb-4"><strong>Snoozies features:</strong></p>
+                <div className="space-y-2 ml-4">
+                  <p>🌙 Sleep stories read in a soft, calming voice</p>
+                  <p>🎵 Quiet music and peaceful visuals for wind-down routines</p>
+                  <p>📚 Stories with no big twists, just slow, cozy pacing</p>
+                  <p>💭 Magical, mundane, and sleepy tales — inspired by real kids' imaginations</p>
+                </div>
+              </div>
+              <p>
+                I'm still building this — it's a work in progress. I'm always open to story ideas from listeners, because the best ones usually come from kids themselves.
+              </p>
+              <p>
+                Whether you're a parent, teacher, therapist, or someone like me who just wants a little calm at the end of the day… I hope Snoozies helps you or someone you love feel a little more peaceful.
+              </p>
+              <p>
+                Thanks for being here. Sweet dreams.
+              </p>
+              <div className="text-right mt-8">
+                <p className="text-xl">xoxo,</p>
+                <p className="text-2xl font-bold">Brooke</p>
+              </div>
             </div>
-          </div>
-          <div className="bg-gradient-sunset rounded-3xl p-8 flex items-center justify-center h-80">
-            <Book className="h-32 w-32 text-white/50" />
           </div>
         </div>
 

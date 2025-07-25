@@ -75,7 +75,8 @@ export default {
 				comfortaa: ['Comfortaa', 'cursive'],
 				nunito: ['Nunito', 'sans-serif'],
 				bungee: ['Bungee', 'cursive'],
-				fredoka: ['Fredoka', 'cursive']
+				fredoka: ['Fredoka', 'cursive'],
+				kalam: ['Kalam', 'cursive']
 			},
 			boxShadow: {
 				'soft': 'var(--shadow-soft)',
