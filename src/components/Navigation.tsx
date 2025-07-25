@@ -21,27 +21,27 @@ const Navigation = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="bg-card/80 backdrop-blur-sm border-b border-border sticky top-0 z-50 shadow-soft">
+    <nav className="sticky top-0 z-50 py-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-24">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
-            <img src={logoImage} alt="Snoozies" className="h-16 w-auto" />
-            <span className="text-2xl font-nunito font-semibold text-gradient">
+          <Link to="/" className="flex items-center space-x-3 group">
+            <img src={logoImage} alt="Snoozies" className="h-20 w-auto" />
+            <span className="text-4xl font-nunito font-bold text-gradient">
               Snoozies
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
-                className={`font-medium text-sm transition-colors duration-300 hover:text-primary ${
+                className={`font-medium text-base transition-colors duration-300 hover:text-primary px-2 py-1 rounded-lg ${
                   isActive(item.path)
-                    ? 'text-primary border-b-2 border-primary'
-                    : 'text-foreground'
+                    ? 'text-primary bg-primary/10'
+                    : 'text-foreground hover:bg-accent/50'
                 }`}
               >
                 {item.name}
@@ -53,14 +53,14 @@ const Navigation = () => {
               href="https://www.youtube.com/@snooziestories"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-300 px-1 py-1 rounded-lg hover:bg-accent"
+              className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-300 px-2 py-1 rounded-lg hover:bg-accent/50"
               title="Visit our YouTube channel"
             >
-              <Youtube className="h-4 w-4" />
-              <span className="text-xs font-medium">Stories</span>
+              <Youtube className="h-5 w-5" />
+              <span className="text-sm font-medium">Stories</span>
             </a>
             
-            <Button className="btn-dreamy text-xs px-3 py-1">
+            <Button className="btn-dreamy text-sm px-4 py-2">
               Try Free
             </Button>
           </div>
