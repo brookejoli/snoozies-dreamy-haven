@@ -26,7 +26,7 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-8">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
-            <img src={logoImage} alt="Snoozies" className="h-4 w-auto" />
+            <img src={logoImage} alt="Snoozies" className="h-8 w-auto" />
             <span className="text-lg font-nunito font-semibold text-gradient">
               Snoozies
             </span>
