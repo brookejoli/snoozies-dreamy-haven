@@ -183,16 +183,18 @@ const Subscribe = () => {
                   ))}
                 </ul>
 
-                <Button 
-                  className={plan.popular ? "btn-dreamy w-full" : "btn-sleepy w-full"}
-                  onClick={() => {
-                    if (plan.isYoutube) {
-                      window.open('https://www.youtube.com/@snooziestories', '_blank');
-                    }
-                  }}
-                >
-                  {plan.buttonText}
-                </Button>
+                {plan.isYoutube ? (
+                  <Button 
+                    className="btn-sleepy w-full"
+                    onClick={() => window.open('https://www.youtube.com/@snooziestories', '_blank')}
+                  >
+                    {plan.buttonText}
+                  </Button>
+                ) : (
+                  <div className="text-center py-3">
+                    <p className="text-muted-foreground text-sm">Coming Soon</p>
+                  </div>
+                )}
               </Card>
             );
           })}
