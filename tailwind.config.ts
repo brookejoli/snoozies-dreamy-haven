@@ -68,6 +68,8 @@ export default {
 				'dreamy-purple': 'hsl(var(--dreamy-purple))',
 				'sleepy-pink': 'hsl(var(--sleepy-pink))',
 				'cloud-cream': 'hsl(var(--cloud-cream))',
+				'cloud-white': 'hsl(var(--cloud-white))',
+				'moon-silver': 'hsl(var(--moon-silver))',
 				'star-yellow': 'hsl(var(--star-yellow))'
 			},
 			fontFamily: {
