@@ -23,37 +23,13 @@ const Stories = () => {
 
   const stories = [
     {
-      id: 1,
-      title: "The Little Clouds Evening Journey",
-      description: "Float along with a tiny cloud as it drifts across skies and rooftops on a gentle evening adventure. With whispers of wind and soft glows of sunset, this calming tale will lull little listeners into sweet, sleepy dreams.",
-      duration: "8:45",
-      style: "Magical + Mundane",
-      image: littleCloudJourneyImage,
-      featured: true,
-      rating: 4.9,
-      ageGroup: "3-7 years",
-      youtubeUrl: "https://www.youtube.com/@snooziestories"
-    },
-    {
-      id: 2,
-      title: "The Tree That Looked Like Broccoli",
-      description: "Meet a tree that looks suspiciously like broccoli — and the kid who thinks it might just be too broccoli-like. Nothing much happens. And that's kind of the point.",
-      duration: "6:30",
-      style: "Magical + Mundane",
-      image: broccoliTreeImage,
-      featured: true,
-      rating: 4.8,
-      ageGroup: "2-6 years",
-      youtubeUrl: "https://www.youtube.com/@snooziestories"
-    },
-    {
       id: 3,
       title: "The Sleepy Sunflower",
       description: "A tall sunflower in a garden slowly turns to follow the sun throughout a long summer day, eventually settling into peaceful sleep as twilight comes. The story follows her gentle observations of the garden's quiet summer rhythms - bees humming, butterflies visiting, and the soft evening breeze.",
       duration: "7:15",
       style: "Magical + Mundane",
       image: sleepySunflowerImage,
-      featured: false,
+      featured: true,
       rating: 4.7,
       ageGroup: "3-8 years",
       youtubeUrl: "https://www.youtube.com/@snooziestories"
@@ -101,7 +77,7 @@ const Stories = () => {
       duration: "10:30",
       style: "Magical + Mundane",
       image: girlCollectingStarsImage,
-      featured: false,
+      featured: true,
       rating: 4.9,
       ageGroup: "4-9 years",
       youtubeUrl: "https://www.youtube.com/@snooziestories"
