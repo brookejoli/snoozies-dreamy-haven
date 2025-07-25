@@ -27,7 +27,7 @@ const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
             <img src={logoImage} alt="Snoozies" className="h-16 w-auto" />
-            <span className="text-lg font-nunito font-semibold text-gradient">
+            <span className="text-2xl font-nunito font-semibold text-gradient">
               Snoozies
             </span>
           </Link>
