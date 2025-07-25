@@ -222,10 +222,10 @@ const Home = () => {
       <section className="py-20 bg-gradient-night">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-nunito font-bold text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-nunito font-bold text-foreground mb-6">
               Why Parents Love Snoozies
             </h2>
-            <p className="text-xl text-white/80 max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Thoughtfully crafted stories that create the perfect bedtime routine
             </p>
           </div>
@@ -235,10 +235,10 @@ const Home = () => {
               <div className="bg-white/10 backdrop-blur-sm rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
                 <Moon className="h-8 w-8 text-star-yellow" />
               </div>
-              <h3 className="text-xl font-nunito font-semibold text-white mb-4">
+              <h3 className="text-xl font-nunito font-semibold text-foreground mb-4">
                 Calming & Peaceful
               </h3>
-              <p className="text-white/70">
+              <p className="text-muted-foreground">
                 Every story is designed with gentle narratives and soothing soundscapes to help children relax
               </p>
             </div>
@@ -247,10 +247,10 @@ const Home = () => {
               <div className="bg-white/10 backdrop-blur-sm rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
                 <Heart className="h-8 w-8 text-star-yellow" />
               </div>
-              <h3 className="text-xl font-nunito font-semibold text-white mb-4">
+              <h3 className="text-xl font-nunito font-semibold text-foreground mb-4">
                 Age-Appropriate
               </h3>
-              <p className="text-white/70">
+              <p className="text-muted-foreground">
                 Stories crafted for different age groups, ensuring content that's just right for your child
               </p>
             </div>
@@ -259,10 +259,10 @@ const Home = () => {
               <div className="bg-white/10 backdrop-blur-sm rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
                 <Star className="h-8 w-8 text-star-yellow sparkle" />
               </div>
-              <h3 className="text-xl font-nunito font-semibold text-white mb-4">
+              <h3 className="text-xl font-nunito font-semibold text-foreground mb-4">
                 New Stories Weekly
               </h3>
-              <p className="text-white/70">
+              <p className="text-muted-foreground">
                 Fresh adventures delivered every week to keep bedtime exciting and anticipated
               </p>
             </div>
