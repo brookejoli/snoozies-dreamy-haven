@@ -18,19 +18,19 @@ const Navigation = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 py-6 bg-background/80 backdrop-blur-md border-b border-border/20">
+    <nav className="fixed top-0 left-0 right-0 z-50 py-2 bg-background/80 backdrop-blur-md border-b border-border/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-28">
+        <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-4 group">
-            <img src={logoImage} alt="Snoozies" className="h-24 w-auto" />
-            <span className="text-5xl font-nunito font-bold text-gradient">
+          <Link to="/" className="flex items-center space-x-3 group">
+            <img src={logoImage} alt="Snoozies" className="h-12 w-auto" />
+            <span className="text-2xl font-nunito font-bold text-gradient">
               Snoozies
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-end space-x-10 pb-2">
+          <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
               <Link
                 key={item.name}
