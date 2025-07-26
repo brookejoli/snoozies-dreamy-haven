@@ -83,7 +83,7 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen py-12">
+    <div className="min-h-screen pt-24 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section */}
         <div className="text-center mb-16">
@@ -293,8 +293,8 @@ const About = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild className="btn-dreamy">
-                <Link to="/subscribe">
-                  Start Free Trial
+                <Link to="/stories">
+                  Browse Stories
                 </Link>
               </Button>
               <Button asChild variant="outline" className="btn-sleepy">
