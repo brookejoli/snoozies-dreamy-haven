@@ -31,6 +31,7 @@ const Home = () => {
       duration: "8:45",
       category: "Magical + Mundane",
       image: littleCloudJourneyImage,
+      audioSrc: "/audio/the-little-clouds-evening-journey.mp3",
       youtubeUrl: "https://www.youtube.com/@snooziestories"
     },
     {
@@ -40,6 +41,7 @@ const Home = () => {
       duration: "6:30",
       category: "Mundane",
       image: treeMakingToastImage,
+      audioSrc: "/audio/the-tree-that-made-toast.mp3",
       youtubeUrl: "https://www.youtube.com/@snooziestories"
     },
     {
@@ -49,6 +51,7 @@ const Home = () => {
       duration: "10:15",
       category: "Magical + Mundane",
       image: broccoliTreeImage,
+      audioSrc: "/audio/the-tree-that-looked-like-broccoli.mp3",
       youtubeUrl: "https://www.youtube.com/@snooziestories"
     }
   ];
@@ -202,9 +205,15 @@ const Home = () => {
                 <h3 className="text-xl font-nunito font-semibold text-foreground mb-3">
                   {story.title}
                 </h3>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground mb-4">
                   {story.description}
                 </p>
+                <AudioPlayer 
+                  src={story.audioSrc} 
+                  title={story.title}
+                  duration={story.duration}
+                  compact={true}
+                />
               </Card>
             ))}
           </div>
