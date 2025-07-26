@@ -56,29 +56,29 @@ const About = () => {
 
   const milestones = [
     {
-      year: "2020",
+      year: "2024",
       title: "The Beginning",
       description: "Founded by a sleep-deprived parent who believed bedtime could be magical, not stressful."
     },
     {
-      year: "2021",
+      year: "Early 2024",
       title: "First Stories",
-      description: "Launched with 25 carefully crafted bedtime stories, reaching 1,000 families in our first month."
+      description: "Launched with our first collection of carefully crafted bedtime stories, focusing on gentle, boring tales."
     },
     {
-      year: "2022",
+      year: "Mid 2024",
       title: "Growing Community",
-      description: "Reached 50,000 active families and introduced personalized story recommendations."
+      description: "Building our YouTube channel and connecting with families who believe in peaceful bedtime routines."
     },
     {
-      year: "2023",
-      title: "Global Reach",
-      description: "Expanded internationally with multilingual stories, serving families in 15 countries."
+      year: "Late 2024",
+      title: "Story Collaboration",
+      description: "Launched story suggestion platform, inviting families to help create the bedtime stories they dream about."
     },
     {
-      year: "2024",
-      title: "Innovation Continues",
-      description: "Launched AI-powered sleep insights and interactive storytelling features."
+      year: "2025",
+      title: "Expanding the Dream",
+      description: "Planning new features, more stories, and building the ultimate bedtime community for families worldwide."
     }
   ];
 
