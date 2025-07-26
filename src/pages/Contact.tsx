@@ -13,13 +13,6 @@ const Contact = () => {
       description: "Get help from our friendly support team",
       contact: "hello@snoozies.com",
       responseTime: "Usually within 24 hours"
-    },
-    {
-      icon: MessageCircle,
-      title: "Live Chat",
-      description: "Chat with us in real-time",
-      contact: "Available in app",
-      responseTime: "Available 24/7"
     }
   ];
 
@@ -201,12 +194,15 @@ const Contact = () => {
             Need Immediate Help?
           </h2>
           <p className="text-white/80 mb-6">
-            If you're experiencing technical issues that prevent your child from accessing their bedtime stories, we're here to help right away.
+            If you're experiencing technical issues that prevent your child from accessing their bedtime stories, reach out to us via email for quick assistance.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-white text-foreground hover:bg-white/90">
-              <MessageCircle className="h-4 w-4 mr-2" />
-              Start Live Chat
+            <Button 
+              className="bg-white text-foreground hover:bg-white/90"
+              onClick={() => window.location.href = 'mailto:hello@snoozies.com'}
+            >
+              <Mail className="h-4 w-4 mr-2" />
+              Email Us
             </Button>
           </div>
         </Card>
