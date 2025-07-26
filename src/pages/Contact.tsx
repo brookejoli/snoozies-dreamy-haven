@@ -75,9 +75,9 @@ const Contact = () => {
         </div>
 
         {/* Contact Form & Info */}
-        <div className="grid lg:grid-cols-3 gap-12 mb-16">
+        <div className="grid lg:grid-cols-2 gap-12 mb-16">
           {/* Contact Form */}
-          <div className="lg:col-span-2">
+          <div>
             <Card className="card-story">
               <h2 className="text-2xl font-nunito font-bold text-foreground mb-6">
                 Send us a Message
@@ -148,17 +148,31 @@ const Contact = () => {
             </Card>
           </div>
 
-          {/* Contact Info */}
-          <div className="space-y-6">
-
-            <Card className="card-story bg-gradient-dreamy text-white">
-              <Heart className="h-8 w-8 mb-4" />
-              <h3 className="font-nunito font-semibold mb-2">
-                We Love Hearing from You!
-              </h3>
-              <p className="text-white/90 text-sm">
-                Your feedback helps us create better bedtime experiences for families worldwide. Every message matters to us.
-              </p>
+          {/* We Love Hearing from You */}
+          <div className="flex items-center">
+            <Card className="card-story bg-gradient-dreamy text-white h-full flex flex-col justify-center">
+              <div className="text-center">
+                <Heart className="h-12 w-12 mb-6 mx-auto" />
+                <h3 className="text-2xl font-nunito font-bold mb-4">
+                  We Love Hearing from You!
+                </h3>
+                <p className="text-white/90 text-lg mb-6 leading-relaxed">
+                  Your feedback helps us create better bedtime experiences for families worldwide. Every message matters to us.
+                </p>
+                <p className="text-white/80 text-base mb-6">
+                  Whether you have a story suggestion, need technical help, or just want to share how Snoozies has helped your family's bedtime routine, we're here to listen.
+                </p>
+                <div className="space-y-3 text-white/90">
+                  <div className="flex items-center justify-center">
+                    <Clock className="h-5 w-5 mr-2" />
+                    <span>Usually respond within 24 hours</span>
+                  </div>
+                  <div className="flex items-center justify-center">
+                    <Heart className="h-5 w-5 mr-2" />
+                    <span>Every message gets personal attention</span>
+                  </div>
+                </div>
+              </div>
             </Card>
           </div>
         </div>
