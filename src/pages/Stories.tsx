@@ -19,6 +19,18 @@ const Stories = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedStyle, setSelectedStyle] = useState('All');
 
+  // Audio file mapping
+  const audioFiles: { [key: number]: string } = {
+    1: '/audio/the-little-clouds-evening-journey.mp3',
+    2: '/audio/the-tree-that-looked-like-broccoli.mp3', 
+    3: '/audio/the-sleepy-sunflower.mp3',
+    4: '/audio/the-lazy-rivers-journey.mp3',
+    5: '/audio/the-little-clouds-evening-journey.mp3', // fallback
+    6: '/audio/lets-talk-about-dirt.mp3',
+    7: '/audio/the-girl-who-collected-stars.mp3',
+    8: '/audio/the-tree-that-made-toast.mp3'
+  };
+
   const styles = ['All', 'Magical', 'Mundane', 'Magical + Mundane', 'Playful + Mundane', 'Really Boring'];
 
   const stories = [
@@ -215,7 +227,7 @@ const Stories = () => {
                     </div>
                     <div className="mt-auto">
                       <AudioPlayer 
-                        src={`/audio/${story.title.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-')}.mp3`}
+                        src={audioFiles[story.id]}
                         title={story.title}
                         duration={story.duration}
                         compact={true}
