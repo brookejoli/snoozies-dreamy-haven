@@ -85,11 +85,13 @@ const Home = () => {
                 Listen Now
               </Link>
             </Button>
-            <Button asChild variant="outline" className="btn-sleepy text-lg px-8 py-4 bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white hover:text-primary">
-              <Link to="/subscribe">
-                Start Free Trial
-                <ArrowRight className="h-5 w-5 ml-2" />
-              </Link>
+            <Button 
+              onClick={() => setShowNewsletterPopup(true)}
+              variant="outline" 
+              className="btn-sleepy text-lg px-8 py-4 bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white hover:text-primary"
+            >
+              Get New Stories
+              <ArrowRight className="h-5 w-5 ml-2" />
             </Button>
           </div>
         </div>
@@ -153,10 +155,12 @@ const Home = () => {
                       Listen to More Stories
                     </Link>
                   </Button>
-                  <Button asChild variant="outline" className="btn-sleepy">
-                    <Link to="/subscribe">
-                      Get Full Access
-                    </Link>
+                  <Button 
+                    onClick={() => setShowNewsletterPopup(true)}
+                    variant="outline" 
+                    className="btn-sleepy"
+                  >
+                    Get Updates
                   </Button>
                 </div>
               </div>
@@ -291,26 +295,28 @@ const Home = () => {
           <div className="bg-card rounded-3xl p-12 shadow-dreamy">
             <Star className="h-12 w-12 text-star-yellow mx-auto mb-6 sparkle" />
             <h2 className="text-3xl md:text-4xl font-nunito font-bold text-foreground mb-6">
-              Start Your Bedtime Adventure Tonight
+              Join Our Story Community
             </h2>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Join thousands of families who have made bedtime peaceful and magical with Snoozies
+              Help us create the bedtime stories your family dreams about. Together, we'll build a magical world of peaceful sleep.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild className="btn-dreamy text-lg px-8 py-4">
-                <Link to="/subscribe">
-                  Start Free Trial
-                </Link>
-              </Button>
-              <Button asChild variant="outline" className="btn-sleepy text-lg px-8 py-4">
-                <Link to="/stories">
-                  Browse Stories
-                </Link>
-              </Button>
-              <Button asChild variant="secondary" className="text-lg px-8 py-4">
                 <Link to="/story-suggestions">
                   <Heart className="h-5 w-5 mr-2" />
-                  Suggest a Story
+                  Help Create Stories
+                </Link>
+              </Button>
+              <Button 
+                onClick={() => setShowNewsletterPopup(true)}
+                variant="outline" 
+                className="btn-sleepy text-lg px-8 py-4"
+              >
+                Get Story Updates
+              </Button>
+              <Button asChild variant="secondary" className="text-lg px-8 py-4">
+                <Link to="/stories">
+                  Browse Stories
                 </Link>
               </Button>
             </div>
