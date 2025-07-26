@@ -19,14 +19,7 @@ const Contact = () => {
       title: "Live Chat",
       description: "Chat with us in real-time",
       contact: "Available in app",
-      responseTime: "Mon-Fri, 9AM-5PM EST"
-    },
-    {
-      icon: Phone,
-      title: "Phone Support",
-      description: "Speak directly with our team",
-      contact: "1-800-SNOOZIE",
-      responseTime: "Mon-Fri, 9AM-6PM EST"
+      responseTime: "Available 24/7"
     }
   ];
 
@@ -164,39 +157,6 @@ const Contact = () => {
 
           {/* Contact Info */}
           <div className="space-y-6">
-            <Card className="card-story">
-              <h3 className="font-nunito font-semibold text-foreground mb-4">
-                <MapPin className="h-5 w-5 inline mr-2" />
-                Our Office
-              </h3>
-              <div className="text-muted-foreground space-y-2">
-                <p>Snoozies Sleep Stories</p>
-                <p>123 Dreamy Lane</p>
-                <p>Peaceful Valley, CA 90210</p>
-                <p>United States</p>
-              </div>
-            </Card>
-
-            <Card className="card-story">
-              <h3 className="font-nunito font-semibold text-foreground mb-4">
-                <Clock className="h-5 w-5 inline mr-2" />
-                Business Hours
-              </h3>
-              <div className="text-muted-foreground space-y-2">
-                <div className="flex justify-between">
-                  <span>Monday - Friday</span>
-                  <span>9AM - 6PM EST</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Saturday</span>
-                  <span>10AM - 4PM EST</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Sunday</span>
-                  <span>Closed</span>
-                </div>
-              </div>
-            </Card>
 
             <Card className="card-story bg-gradient-dreamy text-white">
               <Heart className="h-8 w-8 mb-4" />
@@ -247,10 +207,6 @@ const Contact = () => {
             <Button className="bg-white text-foreground hover:bg-white/90">
               <MessageCircle className="h-4 w-4 mr-2" />
               Start Live Chat
-            </Button>
-            <Button variant="outline" className="border-white text-black bg-white hover:bg-white/90 hover:text-black">
-              <Phone className="h-4 w-4 mr-2" />
-              Call Support
             </Button>
           </div>
         </Card>
