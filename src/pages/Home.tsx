@@ -179,7 +179,7 @@ const Home = () => {
 
           <div className="grid md:grid-cols-3 gap-8">
             {featuredStories.map((story) => (
-              <Card key={story.id} className="card-story group">
+              <Card key={story.id} className="card-story group flex flex-col">
                 <div className="relative mb-4">
                   <img 
                     src={story.image} 
@@ -202,18 +202,22 @@ const Home = () => {
                     {story.duration}
                   </span>
                 </div>
-                <h3 className="text-xl font-nunito font-semibold text-foreground mb-3">
-                  {story.title}
-                </h3>
-                <p className="text-muted-foreground mb-4">
-                  {story.description}
-                </p>
-                <AudioPlayer 
-                  src={story.audioSrc} 
-                  title={story.title}
-                  duration={story.duration}
-                  compact={true}
-                />
+                <div className="flex-1 flex flex-col">
+                  <h3 className="text-xl font-nunito font-semibold text-foreground mb-3">
+                    {story.title}
+                  </h3>
+                  <p className="text-muted-foreground mb-4 flex-1">
+                    {story.description}
+                  </p>
+                  <div className="mt-auto">
+                    <AudioPlayer 
+                      src={story.audioSrc} 
+                      title={story.title}
+                      duration={story.duration}
+                      compact={true}
+                    />
+                  </div>
+                </div>
               </Card>
             ))}
           </div>

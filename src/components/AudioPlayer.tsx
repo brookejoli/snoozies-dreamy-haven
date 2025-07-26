@@ -75,21 +75,21 @@ const AudioPlayer = ({ src, title, duration = "0:00", compact = false }: AudioPl
 
   if (compact) {
     return (
-      <div className="flex items-center space-x-3 bg-card rounded-xl p-3 shadow-soft">
+      <div className="flex items-center space-x-2 bg-card rounded-xl p-3 shadow-soft">
         <audio ref={audioRef} src={src} />
         <Button
           onClick={togglePlay}
           size="sm"
-          className="btn-dreamy h-10 w-10 rounded-full p-0"
+          className="btn-dreamy h-8 w-8 rounded-full p-0 flex-shrink-0"
         >
           {isPlaying ? (
-            <Pause className="h-4 w-4" />
+            <Pause className="h-3 w-3" />
           ) : (
-            <Play className="h-4 w-4 ml-0.5" />
+            <Play className="h-3 w-3 ml-0.5" />
           )}
         </Button>
-        <div className="flex-1">
-          <p className="text-sm font-medium text-foreground truncate">{title}</p>
+        <div className="flex-1 min-w-0">
+          <p className="text-xs font-medium text-foreground truncate">{title}</p>
           <Slider
             value={[progress]}
             onValueChange={handleSeek}
@@ -98,8 +98,8 @@ const AudioPlayer = ({ src, title, duration = "0:00", compact = false }: AudioPl
             className="mt-1"
           />
         </div>
-        <span className="text-xs text-muted-foreground">
-          {formatTime(currentTime)} / {totalDuration > 0 ? formatTime(totalDuration) : duration}
+        <span className="text-xs text-muted-foreground flex-shrink-0">
+          {formatTime(currentTime)}/{totalDuration > 0 ? formatTime(totalDuration) : duration}
         </span>
       </div>
     );
