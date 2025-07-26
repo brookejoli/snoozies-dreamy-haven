@@ -221,17 +221,18 @@ const About = () => {
             </p>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-12">
             {milestones.map((milestone, index) => (
-              <div key={index} className="flex gap-6 items-start">
-                <div className="bg-primary text-primary-foreground rounded-full w-16 h-16 flex items-center justify-center font-nunito font-bold text-sm flex-shrink-0">
-                  {milestone.year}
+              <div key={index} className="flex gap-8 items-start">
+                <div className="bg-gradient-dreamy text-white rounded-full w-24 h-24 flex flex-col items-center justify-center font-nunito font-bold text-sm flex-shrink-0 shadow-dreamy">
+                  <div className="text-xs opacity-90">Year</div>
+                  <div className="text-lg">{milestone.year}</div>
                 </div>
-                <div className="flex-1">
-                  <h3 className="font-nunito font-semibold text-foreground mb-2">
+                <div className="flex-1 pt-4">
+                  <h3 className="text-2xl font-nunito font-bold text-foreground mb-4">
                     {milestone.title}
                   </h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-muted-foreground text-lg leading-relaxed">
                     {milestone.description}
                   </p>
                 </div>
