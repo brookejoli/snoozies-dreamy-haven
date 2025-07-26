@@ -215,7 +215,7 @@ const Stories = () => {
                     </div>
                     <div className="mt-auto">
                       <AudioPlayer 
-                        src="/audio/sample-story.mp3" 
+                        src={`/audio/${story.title.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-')}.mp3`}
                         title={story.title}
                         duration={story.duration}
                         compact={true}
