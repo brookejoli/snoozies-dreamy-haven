@@ -57,9 +57,6 @@ const Navigation = () => {
               <span className="text-sm font-bold">Stories</span>
             </a>
             
-            <Button className="btn-dreamy text-sm px-4 py-2">
-              Try Free
-            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -108,11 +105,6 @@ const Navigation = () => {
                 YouTube Stories
               </a>
               
-              <div className="px-3 py-2">
-                <Button className="btn-dreamy w-full">
-                  Try Free
-                </Button>
-              </div>
             </div>
           </div>
         )}
