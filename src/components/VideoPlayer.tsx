@@ -10,6 +10,7 @@ interface VideoPlayerProps {
 }
 
 export const VideoPlayer: React.FC<VideoPlayerProps> = ({ youtubeId, audioUrl }) => {
+  // Embed YouTube when an ID is provided
   if (youtubeId) {
     return (
       <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg mb-8">
@@ -25,6 +26,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ youtubeId, audioUrl })
     );
   }
 
+  // Otherwise show a styled audio player
   if (audioUrl) {
     return (
       <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
@@ -37,5 +39,6 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ youtubeId, audioUrl })
     );
   }
 
+  // Nothing to render if neither is provided
   return null;
 };
