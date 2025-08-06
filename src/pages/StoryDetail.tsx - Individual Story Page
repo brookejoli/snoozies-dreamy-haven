@@ -43,9 +43,15 @@ const StoryDetail: React.FC = () => {
           <h1 className="text-4xl font-bold mb-2">{story.title}</h1>
           <p className="text-lg opacity-90">{story.excerpt}</p>
           <div className="flex flex-wrap justify-center gap-4 mt-4 text-sm opacity-80">
-            <span className="flex items-center gap-1"><Clock className="w-4 h-4"/> {story.duration}</span>
-            <span className="flex items-center gap-1"><Calendar className="w-4 h-4"/> {story.publishedAt}</span>
-            <span className="flex items-center gap-1"><User className="w-4 h-4"/> Snoozies Stories</span>
+            <span className="flex items-center gap-1">
+              <Clock className="w-4 h-4" /> {story.duration}
+            </span>
+            <span className="flex items-center gap-1">
+              <Calendar className="w-4 h-4" /> {story.publishedAt}
+            </span>
+            <span className="flex items-center gap-1">
+              <User className="w-4 h-4" /> Snoozies Stories
+            </span>
           </div>
         </div>
       </div>
@@ -58,8 +64,10 @@ const StoryDetail: React.FC = () => {
       {/* Full Text */}
       <div className="max-w-4xl mx-auto px-4 pb-8 text-gray-700 leading-relaxed">
         {story.fullText ? (
-          story.fullText.split('\n').map((para, idx) => (
-            <p key={idx} className="mb-4">{para}</p>
+          story.fullText.split('\n').map((para, i) => (
+            <p key={i} className="mb-4">
+              {para}
+            </p>
           ))
         ) : (
           <p className="italic">Full story text coming soon!</p>
