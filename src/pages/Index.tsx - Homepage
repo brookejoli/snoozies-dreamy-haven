@@ -1,207 +1,240 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Play, Clock, ArrowLeft, Heart, Star, Mail } from 'lucide-react';
+import storiesData from '../data/stories.json';
+
+interface Story {
+  id: string;
+  title: string;
+  excerpt: string;
+  thumbnailUrl: string;
+  youtubeId: string;
+  duration: string;
+  publishedAt: string;
+  tags: string[];
+}
 
 const App = () => {
-  const [showStoryDetail, setShowStoryDetail] = useState(false);
-  const [selectedStory, setSelectedStory] = useState(null);
+  const [showStoryDetail, setShowStoryDetail] = useState<Story | null>(null);
+  const [selectedStory, setSelectedStory] = useState<Story | null>(null);
 
-  // Your stories data
-  const storiesData = {
-    stories: [
-      {
-        id: '1',
-        title: 'The Magical Garden Adventure',
-        excerpt: 'Join Snooie as they discover a secret garden filled with talking flowers and friendly butterflies!',
-        thumbnailUrl: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=500&h=300&fit=crop',
-        youtubeId: 'dQw4w9WgXcQ',
-        duration: '12:34',
-        publishedAt: '2024-01-15',
-        tags: ['Adventure', 'Nature', 'Magic', 'Friendship']
-      },
-      {
-        id: '2',
-        title: 'The Enchanted Forest Journey',
-        excerpt: 'Follow Snooie through a mystical forest where trees whisper secrets.',
-        thumbnailUrl: 'https://images.unsplash.com/photo-1441906363658-8b8bdaf5e6b8?w=500&h=300&fit=crop',
-        youtubeId: null,
-        duration: '15:22',
-        publishedAt: '2024-01-10',
-        tags: ['Forest', 'Adventure']
-      }
-    ]
-  };
+  // Convert the imported data to the expected format
+  const stories: Story[] = storiesData.stories;
 
-  const featuredStory = storiesData.stories[0];
-
-  const viewStory = (story) => {
-    setSelectedStory(story);
-    setShowStoryDetail(true);
-  };
-
-  const backToHome = () => {
-    setShowStoryDetail(false);
-    setSelectedStory(null);
-  };
-
-  // Story Detail View
-  if (showStoryDetail && selectedStory) {
-    return (
-      <div className="min-h-screen bg-gray-50">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-8">
-          <div className="max-w-6xl mx-auto px-4 flex items-center gap-4">
-            <button
-              onClick={backToHome}
-              className="flex items-center gap-2 text-white hover:text-purple-200 transition-colors"
-            >
-              <ArrowLeft className="w-5 h-5" />
-              Back to Home
-            </button>
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
+      {/* Header */}
+      <header className="bg-black/20 backdrop-blur-md border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-lg">S</span>
+              </div>
+              <h1 className="text-2xl font-bold text-white">Snoozies Dreamy Haven</h1>
+            </div>
+            <nav className="hidden md:flex space-x-8">
+              <a href="#" className="text-white/80 hover:text-white transition-colors">Stories</a>
+              <a href="#" className="text-white/80 hover:text-white transition-colors">About</a>
+              <a href="#" className="text-white/80 hover:text-white transition-colors">Contact</a>
+            </nav>
           </div>
         </div>
+      </header>
 
-        {/* Story Content */}
-        <div className="max-w-4xl mx-auto px-4 py-12">
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-            <img
-              src={selectedStory.thumbnailUrl}
-              alt={selectedStory.title}
-              className="w-full h-64 object-cover"
-            />
-            <div className="p-8">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">{selectedStory.title}</h1>
-              <p className="text-gray-600 mb-6">{selectedStory.excerpt}</p>
-
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2 mb-6">
-                {selectedStory.tags.map((tag, idx) => (
-                  <span
-                    key={idx}
-                    className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm"
-                  >
-                    {tag}
-                  </span>
-                ))}
+      {showStoryDetail ? (
+        /* Story Detail View */
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <button
+            onClick={() => setShowStoryDetail(null)}
+            className="flex items-center space-x-2 text-white/80 hover:text-white transition-colors mb-6"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back to Stories</span>
+          </button>
+          
+          <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20">
+            <div className="aspect-video bg-black rounded-2xl mb-6 relative overflow-hidden">
+              {showStoryDetail.youtubeId ? (
+                <iframe
+                  src={`https://www.youtube.com/embed/${showStoryDetail.youtubeId}`}
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                <div className="flex items-center justify-center h-full">
+                  <Play className="w-16 h-16 text-white/50" />
+                </div>
+              )}
+            </div>
+            
+            <div className="flex flex-wrap items-center gap-4 text-sm text-white/60 mb-4">
+              <div className="flex items-center space-x-1">
+                <Clock className="w-4 h-4" />
+                <span>{showStoryDetail.duration}</span>
               </div>
-
-              {/* Video/Audio Player */}
-              <div className="mb-6">
-                {selectedStory.youtubeId ? (
-                  <iframe
-                    src={`https://www.youtube.com/embed/${selectedStory.youtubeId}`}
-                    title={selectedStory.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full h-96 rounded-xl"
-                  />
-                ) : (
-                  <div className="bg-gray-100 rounded-xl p-8 text-center">
-                    <Play className="w-16 h-16 text-purple-500 mx-auto mb-4" />
-                    <h3 className="text-xl font-semibold mb-2">Audio Story</h3>
-                    <p className="text-gray-600 mb-4">Listen to this story</p>
-                    <button className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors flex items-center gap-2 mx-auto">
-                      <Play className="w-4 h-4" /> Play Audio
-                    </button>
-                  </div>
-                )}
-              </div>
-
-              {/* Meta Info */}
-              <div className="flex items-center gap-4 mb-6 text-gray-500 text-sm">
-                <span className="flex items-center gap-1">
-                  <Clock className="w-4 h-4" /> {selectedStory.duration}
+              <span>•</span>
+              <span>{new Date(showStoryDetail.publishedAt).toLocaleDateString()}</span>
+            </div>
+            
+            <h1 className="text-4xl font-bold text-white mb-4">{showStoryDetail.title}</h1>
+            <p className="text-lg text-white/80 mb-6">{showStoryDetail.excerpt}</p>
+            
+            <div className="flex flex-wrap gap-2">
+              {showStoryDetail.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="px-3 py-1 bg-purple-500/20 text-purple-200 rounded-full text-sm border border-purple-400/30"
+                >
+                  {tag}
                 </span>
-                <span>{new Date(selectedStory.publishedAt).toLocaleDateString()}</span>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex gap-3">
-                <button className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors flex items-center gap-2">
-                  <Play className="w-4 h-4" /> Listen Now
-                </button>
-                <button className="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2">
-                  <Heart className="w-4 h-4" /> Save
-                </button>
-              </div>
+              ))}
             </div>
           </div>
         </div>
-      </div>
-    );
-  }
-
-  // Homepage View
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-400 via-pink-500 to-red-500">
-      {/* Hero Section */}
-      <div className="relative overflow-hidden">
-        <div className="max-w-6xl mx-auto px-4 py-20 text-center text-white">
-          <h1 className="text-6xl md:text-7xl font-bold mb-6 leading-tight">
-            Snooies
-            <br />
-            <span className="text-yellow-300">Loveable Stories</span>
-          </h1>
-          <p className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed">
-            Magical audio stories that spark imagination, teach valuable lessons, and create bedtime memories your children will treasure forever.
-          </p>
-
-          {/* Hero Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={() => viewStory(featuredStory)}
-              className="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-opacity-90 transition-colors flex items-center gap-2 justify-center"
-            >
-              <Play className="w-5 h-5" />
-              Listen to Latest Story
-            </button>
-            <button className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-purple-600 transition-colors flex items-center gap-2 justify-center">
-              <Mail className="w-5 h-5" />
-              Get Weekly Stories
-            </button>
+      ) : (
+        /* Main Stories Grid */
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          {/* Hero Section */}
+          <div className="text-center mb-16">
+            <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
+              Sweet Dreams Await
+            </h2>
+            <p className="text-xl text-white/80 max-w-3xl mx-auto mb-8">
+              Drift into magical worlds with our collection of soothing bedtime stories, 
+              crafted to help you relax and fall asleep peacefully.
+            </p>
+            <div className="flex items-center justify-center space-x-4">
+              <div className="flex items-center space-x-2 text-white/60">
+                <Star className="w-5 h-5 text-yellow-400 fill-current" />
+                <span>Premium sleep stories</span>
+              </div>
+              <span className="text-white/40">•</span>
+              <div className="flex items-center space-x-2 text-white/60">
+                <Heart className="w-5 h-5 text-red-400 fill-current" />
+                <span>Loved by thousands</span>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      {/* Stories Preview */}
-      <div className="bg-white py-20">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center text-gray-800 mb-4">
-            Popular Stories
-          </h2>
-          <p className="text-xl text-gray-600 text-center mb-12">
-            Discover magical adventures that kids love
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {storiesData.stories.map((story) => (
-              <div key={story.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                <img
-                  src={story.thumbnailUrl}
-                  alt={story.title}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-2">{story.title}</h3>
-                  <p className="text-gray-600 mb-4">{story.excerpt}</p>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-gray-500">
-                      <Clock className="w-4 h-4" />
-                      <span>{story.duration}</span>
+          {/* Stories Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {stories.map((story) => (
+              <div
+                key={story.id}
+                className="group bg-white/10 backdrop-blur-md rounded-3xl overflow-hidden border border-white/20 hover:border-white/40 transition-all duration-300 hover:transform hover:scale-105"
+              >
+                <div className="aspect-video relative overflow-hidden">
+                  <img
+                    src={story.thumbnailUrl}
+                    alt={story.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <button
+                    onClick={() => setShowStoryDetail(story)}
+                    className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  >
+                    <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30">
+                      <Play className="w-6 h-6 text-white ml-1" />
                     </div>
-                    <button
-                      onClick={() => viewStory(story)}
-                      className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors flex items-center gap-2"
-                    >
-                      <Play className="w-4 h-4" />
-                      Listen
-                    </button>
+                  </button>
+                  <div className="absolute bottom-4 left-4 flex items-center space-x-1 text-white text-sm">
+                    <Clock className="w-4 h-4" />
+                    <span>{story.duration}</span>
+                  </div>
+                </div>
+                
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-200 transition-colors">
+                    {story.title}
+                  </h3>
+                  <p className="text-white/70 mb-4 line-clamp-3">
+                    {story.excerpt}
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {story.tags.slice(0, 2).map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-3 py-1 bg-purple-500/20 text-purple-200 rounded-full text-xs border border-purple-400/30"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                    {story.tags.length > 2 && (
+                      <span className="px-3 py-1 bg-white/10 text-white/60 rounded-full text-xs border border-white/20">
+                        +{story.tags.length - 2}
+                      </span>
+                    )}
+                  </div>
+                  
+                  <div className="text-sm text-white/50">
+                    {new Date(story.publishedAt).toLocaleDateString()}
                   </div>
                 </div>
               </div>
             ))}
           </div>
+
+          {/* Call to Action */}
+          <div className="text-center mt-16 bg-white/5 backdrop-blur-md rounded-3xl p-12 border border-white/10">
+            <h3 className="text-3xl font-bold text-white mb-4">Ready for Sweet Dreams?</h3>
+            <p className="text-white/80 mb-8 max-w-2xl mx-auto">
+              Join thousands of happy sleepers who have discovered the magic of our bedtime stories. 
+              Perfect for winding down after a long day.
+            </p>
+            <button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 mx-auto">
+              <Mail className="w-5 h-5" />
+              <span>Get New Stories</span>
+            </button>
+          </div>
+        </main>
+      )}
+
+      {/* Footer */}
+      <footer className="bg-black/20 backdrop-blur-md border-t border-white/10 mt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="md:col-span-2">
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="w-8 h-8 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center">
+                  <span className="text-white font-bold">S</span>
+                </div>
+                <h3 className="text-xl font-bold text-white">Snoozies Dreamy Haven</h3>
+              </div>
+              <p className="text-white/70 mb-4">
+                Creating magical bedtime experiences, one story at a time. 
+                Sweet dreams are made of these gentle tales that guide you to peaceful slumber.
+              </p>
+            </div>
+            
+            <div>
+              <h4 className="text-white font-semibold mb-4">Stories</h4>
+              <ul className="space-y-2 text-white/70">
+                <li><a href="#" className="hover:text-white transition-colors">Adventure</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Nature</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Magic</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Friendship</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-white font-semibold mb-4">Connect</h4>
+              <ul className="space-y-2 text-white/70">
+                <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Newsletter</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Support</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="border-t border-white/10 mt-12 pt-8 text-center text-white/50">
+            <p>&copy; 2024 Snoozies Dreamy Haven. All rights reserved. Sweet dreams! 🌙</p>
+          </div>
         </div>
-      </div>
+      </footer>
     </div>
   );
 };
