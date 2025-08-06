@@ -12,7 +12,7 @@ interface VideoPlayerProps {
 export const VideoPlayer: React.FC<VideoPlayerProps> = ({ youtubeId, audioUrl }) => {
   if (youtubeId) {
     return (
-      <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg">
+      <div className="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg mb-8">
         <iframe
           className="w-full h-full"
           src={`https://www.youtube.com/embed/${youtubeId}`}
@@ -24,13 +24,18 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ youtubeId, audioUrl })
       </div>
     );
   }
+
   if (audioUrl) {
     return (
-      <audio controls className="w-full">
-        <source src={audioUrl} type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
+      <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">🎧 Listen to Audio</h2>
+        <audio controls className="w-full">
+          <source src={audioUrl} type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+      </div>
     );
   }
+
   return null;
 };
