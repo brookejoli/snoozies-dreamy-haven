@@ -1,350 +1,237 @@
-import { useState } from 'react';
-import { Search, Filter, Play, Clock, Star, Heart } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import AudioPlayer from '@/components/AudioPlayer';
-import featuredStoryImage from '@/assets/featured-story.jpg';
-import treeMakingToastImage from '@/assets/tree-making-toast.jpg';
-import littleCloudJourneyImage from '@/assets/little-cloud-journey-dreamy.jpg';
-import broccoliTreeImage from '@/assets/broccoli-tree-dreamy.jpg';
-import sleepySunflowerImage from '@/assets/sleepy-sunflower-dreamy.jpg';
-import lazyRiverImage from '@/assets/lazy-river.jpg';
-import lightningBugImage from '@/assets/lightning-bug.jpg';
-import letsTalkDirtImage from '@/assets/lets-talk-dirt-friendly.jpg';
-import girlCollectingStarsImage from '@/assets/girl-collecting-stars-dreamy.jpg';
+import React, { useState } from 'react';
+import { Search, Filter, Play, Heart, Clock, Star } from 'lucide-react';
+import storiesData from '../data/stories.json';
 
 const Stories = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedStyle, setSelectedStyle] = useState('All');
+  const [selectedTag, setSelectedTag] = useState('all');
 
-  // Audio file mapping
-  const audioFiles: { [key: number]: string } = {
-    1: '/audio/the-little-clouds-evening-journey.mp3',
-    2: '/audio/the-tree-that-looked-like-broccoli.mp3', 
-    3: '/audio/the-sleepy-sunflower.mp3',
-    4: '/audio/the-lazy-rivers-journey.mp3',
-    5: '/audio/the-little-clouds-evening-journey.mp3', // fallback
-    6: '/audio/lets-talk-about-dirt.mp3',
-    7: '/audio/the-girl-who-collected-stars.mp3',
-    8: '/audio/the-tree-that-made-toast.mp3'
-  };
+  // Get real stories from JSON file
+  const stories = storiesData.stories || [];
 
-  const styles = ['All', 'Magical', 'Mundane', 'Magical + Mundane', 'Playful + Mundane', 'Really Boring'];
-
-  const stories = [
-    {
-      id: 1,
-      title: "The Little Clouds Evening Journey",
-      description: "Float along with a tiny cloud as it drifts across skies and rooftops on a gentle evening adventure. With whispers of wind and soft glows of sunset, this calming tale will lull little listeners into sweet, sleepy dreams.",
-      duration: "8:45",
-      style: "Magical + Mundane",
-      image: littleCloudJourneyImage,
-      featured: true,
-      rating: 4.9,
-      ageGroup: "3-7 years",
-      youtubeUrl: "https://www.youtube.com/@snooziestories"
-    },
-    {
-      id: 2,
-      title: "The Tree That Looked Like Broccoli",
-      description: "Meet a tree that looks suspiciously like broccoli — and the kid who thinks it might just be too broccoli-like. Nothing much happens. And that's kind of the point.",
-      duration: "6:30",
-      style: "Magical + Mundane",
-      image: broccoliTreeImage,
-      featured: true,
-      rating: 4.8,
-      ageGroup: "2-6 years",
-      youtubeUrl: "https://www.youtube.com/@snooziestories"
-    },
-    {
-      id: 3,
-      title: "The Sleepy Sunflower",
-      description: "A tall sunflower in a garden slowly turns to follow the sun throughout a long summer day, eventually settling into peaceful sleep as twilight comes. The story follows her gentle observations of the garden's quiet summer rhythms - bees humming, butterflies visiting, and the soft evening breeze.",
-      duration: "7:15",
-      style: "Magical + Mundane",
-      image: sleepySunflowerImage,
-      featured: false,
-      rating: 4.7,
-      ageGroup: "3-8 years",
-      youtubeUrl: "https://www.youtube.com/@snooziestories"
-    },
-    {
-      id: 4,
-      title: "The Lazy River's Journey",
-      description: "Following a gentle stream as it meanders through summer meadows, past sleepy cattle, under old stone bridges, carrying lily pads and reflecting clouds. The water moves slowly, peacefully, with no urgency - just the quiet music of flowing water.",
-      duration: "9:20",
-      style: "Really Boring",
-      image: lazyRiverImage,
-      featured: false,
-      rating: 4.6,
-      ageGroup: "2-7 years",
-      youtubeUrl: "https://www.youtube.com/@snooziestories"
-    },
-    {
-      id: 5,
-      title: "Luna the Lightning Bug's First Glow",
-      description: "A young firefly discovers her gentle light for the first time on a warm summer evening. She practices her soft blinking among the tall grass, joins the peaceful dance of other lightning bugs, and learns that her glow is perfect for lighting the way to dreams.",
-      duration: "8:10",
-      style: "Playful + Mundane",
-      image: lightningBugImage,
-      featured: false,
-      rating: 4.8,
-      ageGroup: "3-6 years",
-      youtubeUrl: "https://www.youtube.com/@snooziestories"
-    },
-    {
-      id: 6,
-      title: "Let's Talk About Dirt",
-      description: "Dirt doesn't ask for much. Dust's older cousin, crumb's quiet friend — this sleepy story celebrates the quiet, cozy world underfoot.",
-      duration: "5:45",
-      style: "Really Boring",
-      image: letsTalkDirtImage,
-      featured: false,
-      rating: 4.5,
-      ageGroup: "2-8 years",
-      youtubeUrl: "https://www.youtube.com/@snooziestories"
-    },
-    {
-      id: 7,
-      title: "The Girl Who Collected Stars",
-      description: "In a town where the sky never rushed, a quiet girl begins to notice something… different. A shimmering, starry tale about collecting, letting go, and learning to see beauty without needing to keep it.",
-      duration: "10:30",
-      style: "Magical + Mundane",
-      image: girlCollectingStarsImage,
-      featured: false,
-      rating: 4.9,
-      ageGroup: "4-9 years",
-      youtubeUrl: "https://www.youtube.com/@snooziestories"
-    },
-    {
-      id: 8,
-      title: "The Tree That Made Toast",
-      description: "This is a boring bedtime story. On purpose. In this slow, sleepy tale, a tree quietly makes toast. That's it. Nothing much happens, which is exactly what you need to drift off.",
-      duration: "5:20",
-      style: "Mundane",
-      image: treeMakingToastImage,
-      featured: false,
-      rating: 4.6,
-      ageGroup: "2-8 years",
-      youtubeUrl: "https://www.youtube.com/@snooziestories"
-    }
-  ];
+  // Get all unique tags from all stories
+  const allTags = ['all', ...new Set(stories.flatMap(story => story.tags || []))];
 
   const filteredStories = stories.filter(story => {
     const matchesSearch = story.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         story.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStyle = selectedStyle === 'All' || story.style === selectedStyle;
-    return matchesSearch && matchesStyle;
+                         story.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesTag = selectedTag === 'all' || (story.tags && story.tags.includes(selectedTag));
+    return matchesSearch && matchesTag;
   });
 
   return (
-    <div className="min-h-screen pt-24 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-nunito font-bold text-foreground mb-6">
-            Bedtime Story Collection
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-16">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            Snoozies Story Collection
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Discover magical tales designed to help your little ones drift off to peaceful sleep
+          <p className="text-xl opacity-90 max-w-3xl mx-auto">
+            {stories.length > 0 
+              ? `A growing library of ${stories.length} magical bedtime stories to help your little ones drift off to dreamland. Each story is crafted with love and designed for peaceful sleep.`
+              : "Your magical bedtime story library is being prepared! Check back soon for calming tales designed for peaceful sleep."
+            }
           </p>
         </div>
+      </div>
 
-        {/* Search and Filters */}
-        <div className="bg-card rounded-2xl p-6 shadow-soft mb-12">
-          <div className="flex flex-col md:flex-row gap-4 items-center">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-              <Input
-                placeholder="Search for stories..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 bg-background border-border"
-              />
-            </div>
-            <div className="flex gap-2 flex-wrap">
-              {styles.map((style) => (
-                <Button
-                  key={style}
-                  variant={selectedStyle === style ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setSelectedStyle(style)}
-                  className={selectedStyle === style ? "btn-dreamy" : "btn-sleepy"}
+      <div className="max-w-6xl mx-auto px-4 py-12">
+        {/* Search and Filter - Only show if there are stories */}
+        {stories.length > 0 && (
+          <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <div className="flex flex-col md:flex-row gap-4">
+              {/* Search */}
+              <div className="flex-1 relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <input
+                  type="text"
+                  placeholder="Search for magical stories..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                />
+              </div>
+
+              {/* Tag Filter */}
+              <div className="flex items-center gap-2">
+                <Filter className="text-gray-400 w-5 h-5" />
+                <select
+                  value={selectedTag}
+                  onChange={(e) => setSelectedTag(e.target.value)}
+                  className="px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                 >
-                  {style}
-                </Button>
-              ))}
+                  {allTags.map(tag => (
+                    <option key={tag} value={tag}>
+                      {tag.charAt(0).toUpperCase() + tag.slice(1)}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
-          </div>
-        </div>
-
-        {/* Featured Stories */}
-        <div className="mb-12">
-          <div className="flex items-center gap-2 mb-6">
-            <Star className="h-6 w-6 text-star-yellow" />
-            <h2 className="text-2xl font-nunito font-semibold text-foreground">
-              Featured Stories
-            </h2>
-          </div>
-          <div className="grid lg:grid-cols-2 gap-8">
-            {stories.filter(story => story.featured).map((story) => (
-              <Card key={story.id} className="card-story overflow-hidden">
-                <div className="flex flex-col">
-                  <div className="relative">
-                    <img 
-                      src={story.image} 
-                      alt={story.title}
-                      className="w-full h-56 object-cover"
-                    />
-                    <Badge className="absolute top-4 left-4 bg-star-yellow text-foreground">
-                      ✨ Featured
-                    </Badge>
-                  </div>
-                  <div className="p-6 flex flex-col h-full">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Badge variant="outline" className="text-xs">
-                        {story.style}
-                      </Badge>
-                      <div className="flex items-center gap-1">
-                        <Star className="h-3 w-3 text-star-yellow fill-current" />
-                        <span className="text-xs text-muted-foreground">{story.rating}</span>
-                      </div>
-                    </div>
-                    <h3 className="text-xl font-nunito font-semibold text-foreground mb-2">
-                      {story.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-4 flex-grow">
-                      {story.description}
-                    </p>
-                    <div className="flex items-center justify-between text-xs text-muted-foreground mb-4">
-                      <div className="flex items-center gap-1">
-                        <Clock className="h-3 w-3" />
-                        {story.duration}
-                      </div>
-                      <span>{story.ageGroup}</span>
-                    </div>
-                    <div className="mt-auto">
-                      <AudioPlayer 
-                        src={audioFiles[story.id]}
-                        title={story.title}
-                        duration={story.duration}
-                        compact={true}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* All Stories */}
-        <div>
-          <h2 className="text-2xl font-nunito font-semibold text-foreground mb-6">
-            All Stories ({filteredStories.length})
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredStories.map((story) => (
-              <Card key={story.id} className="card-story group">
-                <div className="relative mb-4">
-                  <img 
-                    src={story.image} 
-                    alt={story.title}
-                    className="w-full h-48 object-cover rounded-2xl"
-                  />
-                   <div className="absolute inset-0 bg-primary/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <Button 
-                      className="btn-dreamy"
-                      onClick={() => window.open(story.youtubeUrl, '_blank')}
-                    >
-                      <Play className="h-4 w-4 mr-2" />
-                      Listen
-                    </Button>
-                  </div>
-                  <div className="absolute top-4 left-4 flex gap-2">
-                    <Badge className="bg-card/90 backdrop-blur-sm text-primary text-xs">
-                      {story.style}
-                    </Badge>
-                    {story.featured && (
-                      <Badge className="bg-star-yellow text-foreground text-xs">
-                        ✨
-                      </Badge>
-                    )}
-                  </div>
-                  <Badge className="absolute top-4 right-4 bg-card/90 backdrop-blur-sm text-muted-foreground text-xs">
-                    {story.duration}
-                  </Badge>
-                </div>
-                
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-1">
-                    <Star className="h-4 w-4 text-star-yellow fill-current" />
-                    <span className="text-sm text-muted-foreground">{story.rating}</span>
-                  </div>
-                  <span className="text-xs text-muted-foreground">{story.ageGroup}</span>
-                </div>
-                
-                <h3 className="text-lg font-nunito font-semibold text-foreground mb-2">
-                  {story.title}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  {story.description}
-                </p>
-                
-                 <div className="flex gap-2">
-                  <Button 
-                    size="sm" 
-                    className="btn-dreamy flex-1"
-                    onClick={() => window.open(story.youtubeUrl, '_blank')}
-                  >
-                    <Play className="h-3 w-3 mr-1" />
-                    Play
-                  </Button>
-                  <Button size="sm" variant="outline" className="btn-sleepy">
-                    <Heart className="h-3 w-3" />
-                  </Button>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* Empty State */}
-        {filteredStories.length === 0 && (
-          <div className="text-center py-12">
-            <div className="text-muted-foreground mb-4">
-              <Search className="h-12 w-12 mx-auto mb-4" />
-              <h3 className="text-xl font-nunito font-semibold mb-2">No stories found</h3>
-              <p>Try adjusting your search or filters to find more stories.</p>
-            </div>
-            <Button 
-              onClick={() => {
-                setSearchTerm('');
-                setSelectedStyle('All');
-              }}
-              className="btn-dreamy"
-            >
-              Clear Filters
-            </Button>
           </div>
         )}
 
-        {/* CTA Section */}
-        <div className="mt-16 text-center">
-          <Card className="card-story max-w-2xl mx-auto">
-            <Star className="h-8 w-8 text-star-yellow mx-auto mb-4 sparkle" />
-            <h3 className="text-2xl font-nunito font-bold text-foreground mb-4">
-              Want unlimited access to all stories?
-            </h3>
-            <p className="text-muted-foreground mb-6">
-              Subscribe now and get access to our complete library of bedtime stories, plus new releases every week.
+        {/* Stories Count */}
+        {stories.length > 0 && (
+          <div className="mb-8">
+            <p className="text-gray-600">
+              {filteredStories.length} {filteredStories.length === 1 ? 'story' : 'stories'} found
             </p>
-            <Button className="btn-dreamy">
-              Browse More Stories
-            </Button>
-          </Card>
+          </div>
+        )}
+
+        {/* Stories Grid or Empty State */}
+        {stories.length === 0 ? (
+          // Empty state when no stories exist yet
+          <div className="text-center py-16">
+            <div className="bg-gradient-to-br from-purple-100 to-blue-100 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6">
+              <Star className="w-12 h-12 text-purple-600" />
+            </div>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Your Story Library Awaits
+            </h2>
+            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+              We're preparing magical bedtime stories just for you! Once your automation is running, 
+              beautiful new stories will appear here every week.
+            </p>
+            <div className="bg-white rounded-xl shadow-lg p-8 max-w-2xl mx-auto">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                🌟 What to Expect:
+              </h3>
+              <div className="grid md:grid-cols-2 gap-4 text-left">
+                <div className="flex items-start gap-3">
+                  <div className="bg-purple-100 p-2 rounded-full">
+                    <Clock className="w-4 h-4 text-purple-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-gray-900">Weekly Stories</h4>
+                    <p className="text-sm text-gray-600">Fresh content every week</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-blue-100 p-2 rounded-full">
+                    <Play className="w-4 h-4 text-blue-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-gray-900">Audio & Video</h4>
+                    <p className="text-sm text-gray-600">Listen or watch along</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-green-100 p-2 rounded-full">
+                    <Search className="w-4 h-4 text-green-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-gray-900">Easy Discovery</h4>
+                    <p className="text-sm text-gray-600">Search and filter stories</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-yellow-100 p-2 rounded-full">
+                    <Heart className="w-4 h-4 text-yellow-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-gray-900">Save Favorites</h4>
+                    <p className="text-sm text-gray-600">Keep track of loved stories</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : filteredStories.length > 0 ? (
+          // Show stories when they exist
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredStories.map((story) => (
+              <div key={story.id} className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
+                <div className="relative">
+                  <img 
+                    src={story.thumbnailUrl} 
+                    alt={story.title}
+                    className="w-full h-48 object-cover"
+                    onError={(e) => {
+                      e.currentTarget.src = '/images/placeholder-thumb.jpg';
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-opacity flex items-center justify-center">
+                    <button className="opacity-0 hover:opacity-100 bg-white bg-opacity-90 p-3 rounded-full transition-opacity">
+                      <Play className="w-6 h-6 text-purple-600" />
+                    </button>
+                  </div>
+                  <div className="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white px-2 py-1 rounded text-sm flex items-center gap-1">
+                    <Clock className="w-3 h-3" />
+                    {story.duration}
+                  </div>
+                  <div className="absolute top-2 left-2">
+                    <button className="bg-white bg-opacity-80 p-2 rounded-full hover:bg-opacity-100 transition-colors">
+                      <Heart className="w-4 h-4 text-red-500" />
+                    </button>
+                  </div>
+                </div>
+                
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    {story.title}
+                  </h3>
+                  <p className="text-gray-600 mb-4 line-clamp-3">
+                    {story.excerpt}
+                  </p>
+                  
+                  {story.tags && (
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {story.tags.slice(0, 3).map((tag, idx) => (
+                        <span key={idx} className="bg-purple-100 text-purple-700 px-2 py-1 rounded-full text-xs font-medium">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-500">
+                      {new Date(story.publishedAt).toLocaleDateString()}
+                    </span>
+                    <div className="flex gap-2">
+                      <button className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors flex items-center gap-1">
+                        <Play className="w-4 h-4" />
+                        Listen
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          // No results found state
+          <div className="text-center py-12">
+            <Star className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-gray-600 mb-2">
+              No stories found
+            </h3>
+            <p className="text-gray-500">
+              Try adjusting your search or filter criteria
+            </p>
+          </div>
+        )}
+
+        {/* Newsletter CTA */}
+        <div className="bg-gradient-to-r from-purple-100 to-blue-100 rounded-xl p-8 mt-12 text-center">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            {stories.length > 0 
+              ? "Want new stories delivered weekly?"
+              : "Be the first to get new stories!"
+            }
+          </h2>
+          <p className="text-gray-600 mb-6">
+            {stories.length > 0
+              ? "Join thousands of parents getting fresh bedtime stories every week!"
+              : "Sign up now and get notified when your first magical story is ready!"
+            }
+          </p>
+          <button className="bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition-colors font-semibold">
+            Subscribe for Free Stories
+          </button>
         </div>
       </div>
     </div>
