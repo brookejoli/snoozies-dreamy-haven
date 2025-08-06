@@ -1,42 +1,156 @@
-import React from 'react';
-import { Moon, Star, Play, Mail, Heart, Clock } from 'lucide-react';
-import storiesData from '../data/stories.json';
+import React, { useState } from 'react';
+import { Play, Clock, ArrowLeft, Heart, Star, Mail } from 'lucide-react';
 
-const Index = () => {
-  // Get the latest story from the real data
-  const featuredStory = storiesData.stories && storiesData.stories.length > 0 
-    ? storiesData.stories[storiesData.stories.length - 1]
-    : {
-        title: "Coming Soon...",
-        excerpt: "Your first magical story is being crafted just for you!",
-        thumbnailUrl: "/images/placeholder-thumb.jpg",
-        duration: "0:00",
-        youtubeId: "coming-soon"
-      };
+const App = () => {
+  const [showStoryDetail, setShowStoryDetail] = useState(false);
+  const [selectedStory, setSelectedStory] = useState(null);
 
-  // Get recent stories for preview section
-  const recentStories = storiesData.stories ? storiesData.stories.slice(-3) : [];
+  // Your stories data
+  const storiesData = {
+    stories: [
+      {
+        id: '1',
+        title: 'The Magical Garden Adventure',
+        excerpt: 'Join Snooie as they discover a secret garden filled with talking flowers and friendly butterflies!',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=500&h=300&fit=crop',
+        youtubeId: 'dQw4w9WgXcQ',
+        duration: '12:34',
+        publishedAt: '2024-01-15',
+        tags: ['Adventure', 'Nature', 'Magic', 'Friendship']
+      },
+      {
+        id: '2',
+        title: 'The Enchanted Forest Journey',
+        excerpt: 'Follow Snooie through a mystical forest where trees whisper secrets.',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1441906363658-8b8bdaf5e6b8?w=500&h=300&fit=crop',
+        youtubeId: null,
+        duration: '15:22',
+        publishedAt: '2024-01-10',
+        tags: ['Forest', 'Adventure']
+      }
+    ]
+  };
 
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-blue-50">
-      {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 text-white">
-        <div className="absolute inset-0 bg-black opacity-20"></div>
-        <div className="relative max-w-6xl mx-auto px-4 py-20 text-center">
-          <div className="flex justify-center mb-6">
-            <div className="bg-white bg-opacity-20 p-4 rounded-full">
-              <Moon className="w-12 h-12" />
+  const featuredStory = storiesData.stories[0];
+
+  const viewStory = (story) => {
+    setSelectedStory(story);
+    setShowStoryDetail(true);
+  };
+
+  const backToHome = () => {
+    setShowStoryDetail(false);
+    setSelectedStory(null);
+  };
+
+  // Story Detail View
+  if (showStoryDetail && selectedStory) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        {/* Header */}
+        <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-8">
+          <div className="max-w-6xl mx-auto px-4 flex items-center gap-4">
+            <button
+              onClick={backToHome}
+              className="flex items-center gap-2 text-white hover:text-purple-200 transition-colors"
+            >
+              <ArrowLeft className="w-5 h-5" />
+              Back to Home
+            </button>
+          </div>
+        </div>
+
+        {/* Story Content */}
+        <div className="max-w-4xl mx-auto px-4 py-12">
+          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <img
+              src={selectedStory.thumbnailUrl}
+              alt={selectedStory.title}
+              className="w-full h-64 object-cover"
+            />
+            <div className="p-8">
+              <h1 className="text-4xl font-bold text-gray-900 mb-4">{selectedStory.title}</h1>
+              <p className="text-gray-600 mb-6">{selectedStory.excerpt}</p>
+
+              {/* Tags */}
+              <div className="flex flex-wrap gap-2 mb-6">
+                {selectedStory.tags.map((tag, idx) => (
+                  <span
+                    key={idx}
+                    className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Video/Audio Player */}
+              <div className="mb-6">
+                {selectedStory.youtubeId ? (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${selectedStory.youtubeId}`}
+                    title={selectedStory.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-96 rounded-xl"
+                  />
+                ) : (
+                  <div className="bg-gray-100 rounded-xl p-8 text-center">
+                    <Play className="w-16 h-16 text-purple-500 mx-auto mb-4" />
+                    <h3 className="text-xl font-semibold mb-2">Audio Story</h3>
+                    <p className="text-gray-600 mb-4">Listen to this story</p>
+                    <button className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors flex items-center gap-2 mx-auto">
+                      <Play className="w-4 h-4" /> Play Audio
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Meta Info */}
+              <div className="flex items-center gap-4 mb-6 text-gray-500 text-sm">
+                <span className="flex items-center gap-1">
+                  <Clock className="w-4 h-4" /> {selectedStory.duration}
+                </span>
+                <span>{new Date(selectedStory.publishedAt).toLocaleDateString()}</span>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-3">
+                <button className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors flex items-center gap-2">
+                  <Play className="w-4 h-4" /> Listen Now
+                </button>
+                <button className="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2">
+                  <Heart className="w-4 h-4" /> Save
+                </button>
+              </div>
             </div>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Welcome to Snoozies
+        </div>
+      </div>
+    );
+  }
+
+  // Homepage View
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-400 via-pink-500 to-red-500">
+      {/* Hero Section */}
+      <div className="relative overflow-hidden">
+        <div className="max-w-6xl mx-auto px-4 py-20 text-center text-white">
+          <h1 className="text-6xl md:text-7xl font-bold mb-6 leading-tight">
+            Snooies
+            <br />
+            <span className="text-yellow-300">Loveable Stories</span>
           </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90">
-            Magical bedtime stories that help your little ones drift off to dreamland. 
-            New calming adventures delivered weekly.
+          <p className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed">
+            Magical audio stories that spark imagination, teach valuable lessons, and create bedtime memories your children will treasure forever.
           </p>
+
+          {/* Hero Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-opacity-90 transition-colors flex items-center gap-2 justify-center">
+            <button
+              onClick={() => viewStory(featuredStory)}
+              className="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-opacity-90 transition-colors flex items-center gap-2 justify-center"
+            >
               <Play className="w-5 h-5" />
               Listen to Latest Story
             </button>
@@ -48,188 +162,48 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Featured Story - NOW PULLS FROM REAL DATA */}
-      <div className="max-w-6xl mx-auto px-4 py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            {storiesData.stories && storiesData.stories.length > 0 
-              ? "Tonight's Featured Story" 
-              : "Your First Story Coming Soon"}
+      {/* Stories Preview */}
+      <div className="bg-white py-20">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center text-gray-800 mb-4">
+            Popular Stories
           </h2>
-          <p className="text-xl text-gray-600">
-            {storiesData.stories && storiesData.stories.length > 0 
-              ? "Fresh from our storytelling garden 🌙"
-              : "We're preparing something magical for you! 🌟"}
+          <p className="text-xl text-gray-600 text-center mb-12">
+            Discover magical adventures that kids love
           </p>
-        </div>
-
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden max-w-4xl mx-auto">
-          <div className="md:flex">
-            <div className="md:w-1/2">
-              <div className="relative">
-                <img 
-                  src={featuredStory.thumbnailUrl} 
-                  alt={featuredStory.title}
-                  className="w-full h-64 md:h-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.src = '/images/placeholder-thumb.jpg';
-                  }}
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {storiesData.stories.map((story) => (
+              <div key={story.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <img
+                  src={story.thumbnailUrl}
+                  alt={story.title}
+                  className="w-full h-48 object-cover"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                  <button className="bg-white bg-opacity-90 p-4 rounded-full hover:bg-opacity-100 transition-colors">
-                    <Play className="w-8 h-8 text-purple-600" />
-                  </button>
-                </div>
-                <div className="absolute bottom-4 right-4 bg-black bg-opacity-70 text-white px-3 py-1 rounded-full text-sm flex items-center gap-1">
-                  <Clock className="w-3 h-3" />
-                  {featuredStory.duration}
-                </div>
-              </div>
-            </div>
-            <div className="md:w-1/2 p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                {featuredStory.title}
-              </h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                {featuredStory.excerpt}
-              </p>
-              
-              {/* Show tags if they exist */}
-              {featuredStory.tags && (
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {featuredStory.tags.slice(0, 3).map((tag, idx) => (
-                    <span key={idx} className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-medium">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-              
-              <div className="flex gap-3">
-                <button className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors flex items-center gap-2">
-                  <Play className="w-4 h-4" />
-                  Listen Now
-                </button>
-                <button className="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2">
-                  <Heart className="w-4 h-4" />
-                  Save
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Newsletter Signup */}
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-16">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <Star className="w-12 h-12 mx-auto mb-6" />
-          <h2 className="text-3xl font-bold mb-4">
-            Never Miss a Bedtime Story
-          </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Get new Snoozies stories delivered to your inbox every week. 
-            Perfect for busy parents who want magical bedtimes!
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email address"
-              className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-300"
-            />
-            <button className="bg-yellow-400 text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition-colors">
-              Subscribe Free
-            </button>
-          </div>
-          <p className="text-sm opacity-75 mt-3">
-            ✨ Free forever. Unsubscribe anytime. No spam, just sweet dreams!
-          </p>
-        </div>
-      </div>
-
-      {/* Recent Stories Preview - NOW SHOWS REAL STORIES */}
-      <div className="max-w-6xl mx-auto px-4 py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            {recentStories.length > 0 ? "More Sweet Dreams" : "Stories Coming Soon"}
-          </h2>
-          <p className="text-xl text-gray-600">
-            {recentStories.length > 0 
-              ? "Explore our collection of calming bedtime stories"
-              : "More magical stories will appear here as they're created"}
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6 mb-8">
-          {recentStories.length > 0 ? (
-            recentStories.map((story) => (
-              <div key={story.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                <div className="relative">
-                  <img 
-                    src={story.thumbnailUrl} 
-                    alt={story.title}
-                    className="w-full h-48 object-cover"
-                    onError={(e) => {
-                      e.currentTarget.src = '/images/placeholder-thumb.jpg';
-                    }}
-                  />
-                  <div className="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white px-2 py-1 rounded text-sm flex items-center gap-1">
-                    <Clock className="w-3 h-3" />
-                    {story.duration}
-                  </div>
-                </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    {story.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    {story.excerpt.substring(0, 100)}...
-                  </p>
+                  <h3 className="text-2xl font-bold mb-2">{story.title}</h3>
+                  <p className="text-gray-600 mb-4">{story.excerpt}</p>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-500">
-                      {new Date(story.publishedAt).toLocaleDateString()}
-                    </span>
-                    <button className="text-purple-600 hover:text-purple-700 transition-colors">
-                      <Heart className="w-5 h-5" />
+                    <div className="flex items-center gap-2 text-gray-500">
+                      <Clock className="w-4 h-4" />
+                      <span>{story.duration}</span>
+                    </div>
+                    <button
+                      onClick={() => viewStory(story)}
+                      className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors flex items-center gap-2"
+                    >
+                      <Play className="w-4 h-4" />
+                      Listen
                     </button>
                   </div>
                 </div>
               </div>
-            ))
-          ) : (
-            // Show placeholder cards when no stories exist yet
-            [1, 2, 3].map((i) => (
-              <div key={i} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                <div className="h-48 bg-gradient-to-br from-purple-200 to-blue-200 flex items-center justify-center">
-                  <Star className="w-12 h-12 text-purple-400" />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    Coming Soon...
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    More magical stories are being crafted just for you!
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-gray-500">Soon</span>
-                    <button className="text-purple-600 hover:text-purple-700 transition-colors">
-                      <Heart className="w-5 h-5" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))
-          )}
-        </div>
-
-        <div className="text-center">
-          <button className="bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition-colors font-semibold">
-            {recentStories.length > 0 ? "View All Stories" : "Start Creating Stories"}
-          </button>
+            ))}
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default Index;
+export default App;
