@@ -1,24 +1,25 @@
+// src/pages/StoryDetail.tsx
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Play, Pause, Heart, Clock, ArrowLeft, Calendar, User, Share2, Star } from 'lucide-react';
+import { ArrowLeft, Star } from 'lucide-react';
 import storiesData from '../data/stories.json';
 
+import { VideoPlayer } from '../components/VideoPlayer';
+import { AffiliateLinks } from '../components/AffiliateLinks';
+
 const StoryDetail = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const story = storiesData.stories.find((s) => s.id === id);
 
   if (!story) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center p-8">
           <Star className="w-12 h-12 text-purple-400 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">Story Not Found</h2>
-          <p className="text-gray-600 mb-4">Oops! The story you're looking for doesn't exist.</p>
-          <Link
-            to="/stories"
-            className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors"
-          >
-            Back to Stories
+          <h2 className="text-2xl font-bold mb-2">Story Not Found</h2>
+          <p className="text-gray-600 mb-4">We couldn’t find that story.</p>
+          <Link to="/stories" className="text-purple-600 hover:underline">
+            ← Back to Stories
           </Link>
         </div>
       </div>
@@ -27,132 +28,40 @@ const StoryDetail = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Back Button */}
+      {/* Back nav */}
       <div className="bg-white border-b">
         <div className="max-w-4xl mx-auto px-4 py-4">
-          <Link
-            to="/stories"
-            className="flex items-center gap-2 text-purple-600 hover:text-purple-700 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
+          <Link to="/stories" className="flex items-center text-purple-600 hover:underline">
+            <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Stories
           </Link>
         </div>
       </div>
 
-      {/* Story Header */}
+      {/* Header */}
       <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-12">
-        <div className="max-w-4xl mx-auto px-4 flex flex-col md:flex-row gap-8 items-center">
-          <div className="md:w-1/3">
-            <img
-              src={story.thumbnailUrl}
-              alt={story.title}
-              className="w-full rounded-xl shadow-lg"
-              onError={(e) => (e.currentTarget.src = '/images/placeholder-thumb.jpg')}
-            />
-          </div>
-          <div className="md:w-2/3">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">{story.title}</h1>
-            <p className="text-xl opacity-90 mb-6">{story.excerpt}</p>
-
-            <div className="flex flex-wrap gap-4 text-sm opacity-80 mb-6">
-              <div className="flex items-center gap-1">
-                <Clock className="w-4 h-4" /> {story.duration}
-              </div>
-              <div className="flex items-center gap-1">
-                <Calendar className="w-4 h-4" /> {story.publishedAt}
-              </div>
-              <div className="flex items-center gap-1">
-                <User className="w-4 h-4" /> Snoozies Stories
-              </div>
-            </div>
-
-            <div className="flex flex-wrap gap-2 mb-6">
-              {story.tags?.map((tag, idx) => (
-                <span key={idx} className="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            <div className="flex gap-3">
-              <button className="bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors flex items-center gap-2">
-                <Play className="w-4 h-4" /> Listen Now
-              </button>
-              <button className="border-2 border-white text-white px-6 py-3 rounded-lg hover:bg-white hover:text-purple-600 transition-colors flex items-center gap-2">
-                <Heart className="w-4 h-4" /> Save
-              </button>
-              <button className="border-2 border-white text-white px-4 py-3 rounded-lg hover:bg-white hover:text-purple-600 transition-colors">
-                <Share2 className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h1 className="text-4xl font-bold mb-2">{story.title}</h1>
+          <p className="italic opacity-90">{story.excerpt}</p>
         </div>
       </div>
 
-      {/* Story Body */}
-      <div className="max-w-4xl mx-auto px-4 py-12">
-        {/* Audio or YouTube */}
-        {story.youtubeId ? (
-          <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">🎧 Watch or Listen</h2>
-            <div className="aspect-w-16 aspect-h-9">
-              <iframe
-                className="w-full h-96 rounded-lg"
-                src={`https://www.youtube.com/embed/${story.youtubeId}`}
-                title={story.title}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          </div>
-        ) : story.audioUrl ? (
-          <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">🎧 Listen to Audio</h2>
-            <audio controls className="w-full">
-              <source src={story.audioUrl} type="audio/mpeg" />
-              Your browser does not support the audio element.
-            </audio>
-          </div>
-        ) : null}
+      {/* Media */}
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <VideoPlayer youtubeId={story.youtubeId} audioUrl={story.audioUrl} />
+      </div>
 
-        {/* Full Text */}
-        <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">📖 Read Along</h2>
-          {story.fullText ? (
-            <div className="space-y-4 text-gray-700 leading-relaxed">
-              {story.fullText.split('\n').map((para, idx) => (
-                <p key={idx}>{para}</p>
-              ))}
-            </div>
-          ) : (
-            <p className="italic text-gray-500">Full story text coming soon!</p>
-          )}
-        </div>
+      {/* Story Text */}
+      <div className="max-w-4xl mx-auto px-4 pb-8 text-gray-700 leading-relaxed">
+        {story.fullText
+          ? story.fullText.split('\n').map((p, i) => <p key={i} className="mb-4">{p}</p>)
+          : <p className="italic">Full text coming soon!</p>
+        }
+      </div>
 
-        {/* Affiliate Products */}
-        {story.affiliateProducts && story.affiliateProducts.length > 0 && (
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">🛍 Related Products</h2>
-            <ul className="space-y-4">
-              {story.affiliateProducts.map((product, idx) => (
-                <li key={idx} className="border-t pt-4 first:border-none first:pt-0">
-                  <h3 className="font-semibold text-lg text-purple-700">{product.name}</h3>
-                  <p className="text-gray-600 text-sm mb-2">{product.context}</p>
-                  <a
-                    href={product.amazonUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-purple-600 hover:underline"
-                  >
-                    View on Amazon <Share2 className="w-4 h-4 ml-1" />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+      {/* Affiliate Products */}
+      <div className="max-w-4xl mx-auto px-4 pb-12">
+        <AffiliateLinks products={story.affiliateProducts || []} />
       </div>
     </div>
   );
