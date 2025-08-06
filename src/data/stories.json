@@ -1,1 +1,26 @@
-[]
+{
+  "stories": [
+    {
+      "id": "the-sleepy-forest-friends",
+      "title": "The Sleepy Forest Friends",
+      "excerpt": "Join Benny the Bear and Luna the Rabbit as they discover the secret to peaceful sleep in the enchanted forest.",
+      "thumbnailUrl": "/images/the-sleepy-forest-friends.jpg",
+      "audioUrl": "/audio/the-sleepy-forest-friends.mp3",
+      "youtubeId": "dQw4w9WgXcQ",
+      "duration": "12:30",
+      "tags": ["forest", "animals", "sleepy"],
+      "publishedAt": "2025-08-05"
+    },
+    {
+      "id": "the-dreamy-cloud-ride",
+      "title": "The Dreamy Cloud Ride",
+      "excerpt": "Fly through the starry night sky on a magical cloud with Oliver and his cat Whiskers.",
+      "thumbnailUrl": "/images/the-dreamy-cloud-ride.jpg",
+      "audioUrl": "/audio/the-dreamy-cloud-ride.mp3",
+      "youtubeId": "Z1LmpiIGYNs",
+      "duration": "10:45",
+      "tags": ["clouds", "night sky", "magical"],
+      "publishedAt": "2025-08-03"
+    }
+  ]
+}
