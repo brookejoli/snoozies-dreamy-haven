@@ -107,7 +107,7 @@ const Stories = () => {
                 thumbnailUrl={story.thumbnailUrl}
                 publishedAt={story.publishedAt}
                 tags={story.tags}
-                onClick={() => alert('Card clicked!')}
+                onClick={() => window.location.href = `/story/${story.id}`}
               />
             ))}
           </div>
