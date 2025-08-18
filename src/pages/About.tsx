@@ -83,17 +83,33 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-24 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero Section */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-nunito font-bold text-foreground mb-6">
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative py-32 bg-gradient-sunset">
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 text-star-yellow float">
+            <Star className="h-6 w-6" />
+          </div>
+          <div className="absolute top-32 right-16 text-cloud-white float-delayed">
+            <Moon className="h-8 w-8" />
+          </div>
+          <div className="absolute bottom-20 left-1/4 text-moon-silver float">
+            <Heart className="h-10 w-10" />
+          </div>
+        </div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <Star className="h-12 w-12 text-star-yellow mx-auto mb-6 sparkle" />
+          <h1 className="text-5xl md:text-6xl font-nunito font-bold text-white mb-6 drop-shadow-2xl">
             About Snoozies
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto drop-shadow-lg">
             We're on a mission to transform bedtime from a daily struggle into a cherished family ritual filled with wonder, connection, and peaceful sleep.
           </p>
         </div>
+      </section>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
 
         {/* Mission Statement */}
         <div className="bg-gradient-dreamy rounded-3xl p-12 text-center mb-16">

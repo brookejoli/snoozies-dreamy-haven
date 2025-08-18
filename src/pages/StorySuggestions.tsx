@@ -75,20 +75,36 @@ const StorySuggestions = () => {
   ];
 
   return (
-    <div className="min-h-screen py-12">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center gap-2 mb-6">
-            <img src={logoImage} alt="Snoozies Logo" className="h-12 w-auto" />
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative py-32 bg-gradient-night">
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 text-star-yellow float">
+            <Lightbulb className="h-6 w-6" />
           </div>
-          <h1 className="text-4xl md:text-5xl font-nunito font-bold text-foreground mb-6">
+          <div className="absolute top-32 right-16 text-cloud-white float-delayed">
+            <Star className="h-8 w-8" />
+          </div>
+          <div className="absolute bottom-20 left-1/4 text-moon-silver float">
+            <Heart className="h-10 w-10" />
+          </div>
+        </div>
+        
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <img src={logoImage} alt="Snoozies Logo" className="h-12 w-auto float" />
+          </div>
+          <Moon className="h-12 w-12 text-star-yellow mx-auto mb-6 sparkle" />
+          <h1 className="text-5xl md:text-6xl font-nunito font-bold text-white mb-6 drop-shadow-2xl">
             Share Your Story Ideas
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto leading-relaxed drop-shadow-lg">
             Have a magical story idea? We'd love to hear it! Your creativity could become the next beloved Snoozies bedtime story.
           </p>
         </div>
+      </section>
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
 
         {/* Main Form */}
         <Card className="card-story mb-12">

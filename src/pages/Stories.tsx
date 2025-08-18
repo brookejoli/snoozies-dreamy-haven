@@ -20,20 +20,35 @@ const Stories = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-16">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Snoozies Story Collection</h1>
-          <p className="text-xl opacity-90 max-w-3xl mx-auto">
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative py-32 bg-gradient-sunset">
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 text-star-yellow float">
+            <Star className="h-6 w-6" />
+          </div>
+          <div className="absolute top-32 right-16 text-cloud-white float-delayed">
+            <Search className="h-8 w-8" />
+          </div>
+          <div className="absolute bottom-20 left-1/4 text-moon-silver float">
+            <Filter className="h-10 w-10" />
+          </div>
+        </div>
+        
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <Star className="h-12 w-12 text-star-yellow mx-auto mb-6 sparkle" />
+          <h1 className="text-5xl md:text-6xl font-nunito font-bold text-white mb-6 drop-shadow-2xl">
+            Snoozies Story Collection
+          </h1>
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto drop-shadow-lg">
             {stories.length > 0
               ? `A growing library of ${stories.length} magical bedtime stories.`
               : "Your magical bedtime story library is being prepared! Check back soon."}
           </p>
         </div>
-      </div>
+      </section>
 
-      <div className="max-w-6xl mx-auto px-4 py-12">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         {/* Search & Filter */}
         {stories.length > 0 && (
           <div className="bg-white rounded-xl shadow-lg p-6 mb-8">

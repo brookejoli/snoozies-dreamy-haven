@@ -36,17 +36,33 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-24 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-nunito font-bold text-foreground mb-6">
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative py-32 bg-gradient-dreamy">
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 text-star-yellow float">
+            <Mail className="h-6 w-6" />
+          </div>
+          <div className="absolute top-32 right-16 text-cloud-white float-delayed">
+            <Heart className="h-8 w-8" />
+          </div>
+          <div className="absolute bottom-20 left-1/4 text-moon-silver float">
+            <MessageCircle className="h-10 w-10" />
+          </div>
+        </div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <Heart className="h-12 w-12 text-white mx-auto mb-6 sparkle" />
+          <h1 className="text-5xl md:text-6xl font-nunito font-bold text-white mb-6 drop-shadow-2xl">
             Get in Touch
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto drop-shadow-lg">
             We're here to help make your bedtime experience magical. Reach out with questions, feedback, or just to say hello!
           </p>
         </div>
+      </section>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
 
         {/* Contact Methods */}
         <div className="grid md:grid-cols-3 gap-8 mb-16">
