@@ -1,0 +1,25 @@
+import { useParams, Link } from 'react-router-dom'
+import { stories } from '../data/stories'
+
+export default function StoryDetail() {
+  const { slug } = useParams()
+  const story = stories.find(s => s.slug === slug)
+
+  if (!story) {
+    return (
+      <section style={{ padding: '2rem' }}>
+        <h1>Story not found</h1>
+        <p><Link to="/stories">← Back to stories</Link></p>
+      </section>
+    )
+  }
+
+  return (
+    <article style={{ padding: '2rem', maxWidth: '800px' }}>
+      <p><Link to="/stories">← Back to stories</Link></p>
+      <h1>{story.title}</h1>
+      <p style={{ color: '#666' }}>{story.summary}</p>
+      <div dangerouslySetInnerHTML={{ __html: story.body || '' }} />
+    </article>
+  )
+}
