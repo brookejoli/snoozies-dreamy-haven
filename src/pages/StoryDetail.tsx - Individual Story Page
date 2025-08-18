@@ -1,85 +1,25 @@
-// src/pages/StoryDetail.tsx
-import React from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Star, Clock, Calendar, User, Heart } from 'lucide-react';
-import storiesData from '../data/stories.json';
+import { useParams, Link } from 'react-router-dom'
+import { stories } from '../data/stories'
 
-import { VideoPlayer } from '../components/VideoPlayer';
-import { AffiliateLinks } from '../components/AffiliateLinks';
-
-const StoryDetail: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const story = storiesData.stories.find((s) => s.id === id);
+export default function StoryDetail() {
+  const { slug } = useParams()
+  const story = stories.find(s => s.slug === slug)
 
   if (!story) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center p-8">
-          <Star className="w-12 h-12 text-purple-400 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold mb-2">Story Not Found</h2>
-          <p className="text-gray-600 mb-4">We couldn’t find the story you requested.</p>
-          <Link to="/stories" className="text-purple-600 hover:underline">
-            ← Back to Stories
-          </Link>
-        </div>
-      </div>
-    );
+      <section style={{ padding: '2rem' }}>
+        <h1>Story not found</h1>
+        <p><Link to="/stories">← Back to stories</Link></p>
+      </section>
+    )
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Back Link */}
-      <div className="bg-white border-b">
-        <div className="max-w-4xl mx-auto px-4 py-4">
-          <Link to="/stories" className="flex items-center text-purple-600 hover:underline">
-            <ArrowLeft className="w-4 h-4 mr-2" /> Back to Stories
-          </Link>
-        </div>
-      </div>
-
-      {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-12">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold mb-2">{story.title}</h1>
-          <p className="text-lg opacity-90">{story.excerpt}</p>
-          <div className="flex flex-wrap justify-center gap-4 mt-4 text-sm opacity-80">
-            <span className="flex items-center gap-1">
-              <Clock className="w-4 h-4" /> {story.duration}
-            </span>
-            <span className="flex items-center gap-1">
-              <Calendar className="w-4 h-4" /> {story.publishedAt}
-            </span>
-            <span className="flex items-center gap-1">
-              <User className="w-4 h-4" /> Snoozies Stories
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Media */}
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <VideoPlayer youtubeId={story.youtubeId} audioUrl={story.audioUrl} />
-      </div>
-
-      {/* Full Text */}
-      <div className="max-w-4xl mx-auto px-4 pb-8 text-gray-700 leading-relaxed">
-        {story.fullText ? (
-          story.fullText.split('\n').map((para, i) => (
-            <p key={i} className="mb-4">
-              {para}
-            </p>
-          ))
-        ) : (
-          <p className="italic">Full story text coming soon!</p>
-        )}
-      </div>
-
-      {/* Affiliate Products */}
-      <div className="max-w-4xl mx-auto px-4 pb-12">
-        <AffiliateLinks products={story.affiliateProducts || []} />
-      </div>
-    </div>
-  );
-};
-
-export default StoryDetail;
+    <article style={{ padding: '2rem', maxWidth: '800px' }}>
+      <p><Link to="/stories">← Back to stories</Link></p>
+      <h1>{story.title}</h1>
+      <p style={{ color: '#666' }}>{story.summary}</p>
+      <div dangerouslySetInnerHTML={{ __html: story.body || '' }} />
+    </article>
+  )
+}
