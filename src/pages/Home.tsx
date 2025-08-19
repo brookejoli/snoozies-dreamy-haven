@@ -180,7 +180,7 @@ const Home = () => {
                 <Card key={story.id} className="card-story group flex flex-col">
                   <div className="relative mb-4">
                     <img 
-                      src={story.thumbnail_url || '/images/story-placeholder.jpg'} 
+                      src={story.thumbnail_url || '/placeholder.svg'} 
                       alt={story.title}
                       className="w-full h-48 object-cover rounded-2xl"
                     />
