@@ -43,27 +43,27 @@ const Home = () => {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section 
-        className="relative h-screen flex items-center justify-center bg-cover bg-center"
+        className="relative min-h-screen flex items-center justify-center bg-cover bg-center"
         style={{ backgroundImage: `url(${heroImage})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-primary/20 to-secondary/30"></div>
-        <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
-          <div className="mb-8">
-            <Star className="h-12 w-12 text-star-yellow mx-auto mb-4 float" />
-            <h1 className="text-6xl md:text-8xl font-nunito font-bold text-white mb-4 leading-tight drop-shadow-2xl">
+        <div className="relative z-10 text-center max-w-4xl mx-auto px-4 py-20">
+          <div className="mb-6 sm:mb-8">
+            <Star className="h-10 w-10 sm:h-12 sm:w-12 text-star-yellow mx-auto mb-4 float" />
+            <h1 className="text-4xl sm:text-6xl lg:text-8xl font-nunito font-bold text-white mb-4 leading-tight drop-shadow-2xl">
               Snoozies
             </h1>
-            <p className="text-2xl md:text-3xl font-nunito font-medium text-white/95 mb-2 drop-shadow-lg">
+            <p className="text-lg sm:text-2xl lg:text-3xl font-nunito font-medium text-white/95 mb-2 drop-shadow-lg">
               Boring Stories for Sleepy Kids
             </p>
-            <p className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto drop-shadow-md">
+            <p className="text-base sm:text-lg lg:text-xl text-white/80 mb-6 sm:mb-8 max-w-2xl mx-auto drop-shadow-md leading-relaxed">
               Magical bedtime stories designed to help your little ones drift off to peaceful sleep
             </p>
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button asChild className="btn-dreamy text-lg px-8 py-4">
-              <Link to="/stories">
+          <div className="flex flex-col gap-3 sm:gap-4 justify-center items-center">
+            <Button asChild className="btn-dreamy text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto min-h-[48px]">
+              <Link to="/stories" className="flex items-center justify-center">
                 <Play className="h-5 w-5 mr-2" />
                 Listen Now
               </Link>
@@ -71,7 +71,7 @@ const Home = () => {
             <Button 
               onClick={() => setShowNewsletterPopup(true)}
               variant="outline" 
-              className="btn-sleepy text-lg px-8 py-4 bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white hover:text-primary"
+              className="btn-sleepy text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white hover:text-primary w-full sm:w-auto min-h-[48px]"
             >
               Get New Stories
               <ArrowRight className="h-5 w-5 ml-2" />
@@ -103,45 +103,47 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="bg-card rounded-3xl overflow-hidden shadow-dreamy max-w-4xl mx-auto">
-            <div className="md:flex">
+          <div className="bg-card rounded-2xl sm:rounded-3xl overflow-hidden shadow-dreamy max-w-4xl mx-auto">
+            <div className="flex flex-col md:flex-row">
               <div className="md:w-1/2">
                 <img 
                   src={featuredStoryImage} 
                   alt="Tonight's featured story"
-                  className="w-full h-64 md:h-full object-cover"
+                  className="w-full h-48 sm:h-64 md:h-full object-cover"
                 />
               </div>
-              <div className="md:w-1/2 p-8">
-                <div className="mb-6">
-                  <span className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium mb-4">
+              <div className="md:w-1/2 p-4 sm:p-6 lg:p-8">
+                <div className="mb-4 sm:mb-6">
+                  <span className="inline-block bg-primary/10 text-primary px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium mb-3 sm:mb-4">
                     ✨ Featured Tonight
                   </span>
-                  <h3 className="text-2xl md:text-3xl font-nunito font-bold text-foreground mb-4">
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-nunito font-bold text-foreground mb-3 sm:mb-4 leading-tight">
                     Let's Talk About Dirt
                   </h3>
-                  <p className="text-muted-foreground mb-6">
+                  <p className="text-muted-foreground mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed">
                     A wonderfully boring bedtime story about dirt. Just dirt. Perfect for helping little minds slow down and drift off to sleep with gentle, earthy thoughts.
                   </p>
                 </div>
 
-                <AudioPlayer 
-                  src="/audio/lets-talk-about-dirt.mp3" 
-                  title="Let's Talk About Dirt"
-                  duration="7:20"
-                  compact={true}
-                />
+                <div className="mb-4 sm:mb-6">
+                  <AudioPlayer 
+                    src="/audio/lets-talk-about-dirt.mp3" 
+                    title="Let's Talk About Dirt"
+                    duration="7:20"
+                    compact={true}
+                  />
+                </div>
 
-                <div className="mt-6 flex gap-3">
-                  <Button asChild className="btn-dreamy">
-                    <Link to="/stories">
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Button asChild className="btn-dreamy min-h-[44px] text-sm sm:text-base">
+                    <Link to="/stories" className="flex items-center justify-center">
                       Listen to More Stories
                     </Link>
                   </Button>
                   <Button 
                     onClick={() => setShowNewsletterPopup(true)}
                     variant="outline" 
-                    className="btn-sleepy"
+                    className="btn-sleepy min-h-[44px] text-sm sm:text-base"
                   >
                     Get Updates
                   </Button>
@@ -164,13 +166,13 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
             {isLoading ? (
-              <div className="col-span-3 flex justify-center items-center py-12">
+              <div className="col-span-full flex justify-center items-center py-12">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
               </div>
             ) : stories.length === 0 ? (
-              <div className="col-span-3 text-center py-12">
+              <div className="col-span-full text-center py-12">
                 <Star className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">No stories available</h3>
                 <p className="text-muted-foreground">Stories will appear here once they're added to the database.</p>
@@ -182,32 +184,32 @@ const Home = () => {
                     <img 
                       src={story.thumbnail_url || '/placeholder.svg'} 
                       alt={story.title}
-                      className="w-full h-48 object-cover rounded-2xl"
+                      className="w-full h-40 sm:h-48 object-cover rounded-xl sm:rounded-2xl"
                     />
-                    <div className="absolute inset-0 bg-primary/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <Button asChild className="btn-dreamy">
-                        <Link to={`/stories/${story.slug}`}>
+                    <div className="absolute inset-0 bg-primary/10 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                      <Button asChild className="btn-dreamy min-h-[44px]">
+                        <Link to={`/stories/${story.slug}`} className="flex items-center">
                           <Play className="h-4 w-4 mr-2" />
                           Listen
                         </Link>
                       </Button>
                     </div>
                     {story.tags && story.tags.length > 0 && (
-                      <span className="absolute top-4 left-4 bg-card/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-primary">
+                      <span className="absolute top-3 left-3 bg-card/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-xs font-medium text-primary">
                         {story.tags[0]}
                       </span>
                     )}
                     {story.duration && (
-                      <span className="absolute top-4 right-4 bg-card/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-muted-foreground">
+                      <span className="absolute top-3 right-3 bg-card/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-xs font-medium text-muted-foreground">
                         {story.duration}
                       </span>
                     )}
                   </div>
-                  <div className="flex-1 flex flex-col">
-                    <h3 className="text-xl font-nunito font-semibold text-foreground mb-3">
+                  <div className="flex-1 flex flex-col p-4 sm:p-0">
+                    <h3 className="text-lg sm:text-xl font-nunito font-semibold text-foreground mb-3 leading-tight">
                       {story.title}
                     </h3>
-                    <p className="text-muted-foreground mb-4 flex-1">
+                    <p className="text-muted-foreground mb-4 flex-1 text-sm sm:text-base leading-relaxed">
                       {story.summary || story.excerpt}
                     </p>
                     <div className="mt-auto">

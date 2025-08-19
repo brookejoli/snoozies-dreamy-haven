@@ -138,26 +138,26 @@ export default function Auth() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-night flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-night flex items-center justify-center px-4 py-8">
       <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <Button asChild variant="ghost" className="text-white hover:bg-white/10 mb-6">
+        <div className="text-center mb-6 sm:mb-8">
+          <Button asChild variant="ghost" className="text-white hover:bg-white/10 mb-4 sm:mb-6 min-h-[44px]">
             <Link to="/" className="flex items-center gap-2">
               <ArrowLeft className="h-4 w-4" />
               Back to Home
             </Link>
           </Button>
           
-          <Star className="h-12 w-12 text-star-yellow mx-auto mb-4 float" />
-          <h1 className="text-3xl font-nunito font-bold text-white mb-2">
+          <Star className="h-10 w-10 sm:h-12 sm:w-12 text-star-yellow mx-auto mb-4 float" />
+          <h1 className="text-2xl sm:text-3xl font-nunito font-bold text-white mb-2">
             Welcome to Snoozies
           </h1>
-          <p className="text-white/80">
+          <p className="text-white/80 text-sm sm:text-base">
             {isLogin ? 'Sign in to manage your stories' : 'Create your account to get started'}
           </p>
         </div>
 
-        <Card className="p-8 bg-white/95 backdrop-blur-sm">
+        <Card className="p-4 sm:p-6 lg:p-8 bg-white/95 backdrop-blur-sm">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <Label htmlFor="email" className="flex items-center gap-2 mb-2">
@@ -214,7 +214,7 @@ export default function Auth() {
             <Button
               type="submit"
               disabled={isLoading}
-              className="w-full btn-dreamy text-lg py-3"
+              className="w-full btn-dreamy text-base sm:text-lg py-3 sm:py-4 min-h-[48px]"
             >
               {isLoading ? (
                 <>
