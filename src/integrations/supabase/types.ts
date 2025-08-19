@@ -14,6 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
+      playlist_items: {
+        Row: {
+          created_at: string
+          id: string
+          order_index: number
+          playlist_id: string
+          story_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          order_index?: number
+          playlist_id: string
+          story_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          order_index?: number
+          playlist_id?: string
+          story_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "playlist_items_playlist_id_fkey"
+            columns: ["playlist_id"]
+            isOneToOne: false
+            referencedRelation: "user_playlists"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "playlist_items_story_id_fkey"
+            columns: ["story_id"]
+            isOneToOne: false
+            referencedRelation: "stories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       stories: {
         Row: {
           audio_url: string | null
@@ -67,6 +106,97 @@ export type Database = {
           youtube_id?: string | null
         }
         Relationships: []
+      }
+      user_favorites: {
+        Row: {
+          created_at: string
+          id: string
+          story_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          story_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          story_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_favorites_story_id_fkey"
+            columns: ["story_id"]
+            isOneToOne: false
+            referencedRelation: "stories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_playlists: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_recent_stories: {
+        Row: {
+          completed: boolean | null
+          id: string
+          played_at: string
+          progress_seconds: number | null
+          story_id: string
+          user_id: string
+        }
+        Insert: {
+          completed?: boolean | null
+          id?: string
+          played_at?: string
+          progress_seconds?: number | null
+          story_id: string
+          user_id: string
+        }
+        Update: {
+          completed?: boolean | null
+          id?: string
+          played_at?: string
+          progress_seconds?: number | null
+          story_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_recent_stories_story_id_fkey"
+            columns: ["story_id"]
+            isOneToOne: false
+            referencedRelation: "stories"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
