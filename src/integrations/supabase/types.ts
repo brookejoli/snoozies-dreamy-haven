@@ -14,7 +14,60 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      stories: {
+        Row: {
+          audio_url: string | null
+          body: string | null
+          created_at: string
+          duration: string | null
+          excerpt: string | null
+          full_text: string | null
+          id: string
+          published_at: string | null
+          slug: string
+          summary: string | null
+          tags: string[] | null
+          thumbnail_url: string | null
+          title: string
+          updated_at: string
+          youtube_id: string | null
+        }
+        Insert: {
+          audio_url?: string | null
+          body?: string | null
+          created_at?: string
+          duration?: string | null
+          excerpt?: string | null
+          full_text?: string | null
+          id?: string
+          published_at?: string | null
+          slug: string
+          summary?: string | null
+          tags?: string[] | null
+          thumbnail_url?: string | null
+          title: string
+          updated_at?: string
+          youtube_id?: string | null
+        }
+        Update: {
+          audio_url?: string | null
+          body?: string | null
+          created_at?: string
+          duration?: string | null
+          excerpt?: string | null
+          full_text?: string | null
+          id?: string
+          published_at?: string | null
+          slug?: string
+          summary?: string | null
+          tags?: string[] | null
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string
+          youtube_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
