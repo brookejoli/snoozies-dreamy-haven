@@ -1,12 +1,36 @@
 import { useParams, Link } from 'react-router-dom'
-import { stories } from '../data/stories'
-import { useEffect } from 'react'
+import { StoriesService, type Story } from '../services/storiesService'
+import { useEffect, useState } from 'react'
 import { ArrowLeft, Book, Star } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export default function StoryDetail() {
   const { slug } = useParams()
-  const story = stories.find(s => s.slug === slug)
+  const [story, setStory] = useState<Story | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchStory = async () => {
+      if (!slug) return
+      
+      try {
+        const fetchedStory = await StoriesService.getStoryBySlug(slug)
+        setStory(fetchedStory)
+        
+        if (fetchedStory) {
+          document.title = `${fetchedStory.title} - Snoozies Dreamy Haven`
+          document.querySelector('meta[name="description"]')?.setAttribute('content', 
+            fetchedStory.summary || fetchedStory.excerpt || 'A magical bedtime story for children.')
+        }
+      } catch (error) {
+        console.error('Failed to fetch story:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    
+    fetchStory()
+  }, [slug])
 
   useEffect(() => {
     if (story) {

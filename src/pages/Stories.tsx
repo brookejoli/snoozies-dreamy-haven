@@ -1,16 +1,32 @@
 import { Link } from 'react-router-dom'
-import { stories } from '../data/stories'
-import { useEffect } from 'react'
+import { StoriesService, type Story } from '../services/storiesService'
+import { useEffect, useState } from 'react'
 import { Book, Star, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export default function Stories() {
+  const [stories, setStories] = useState<Story[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+
   useEffect(() => {
     document.title = 'Stories Archive | Snoozies - Magical Bedtime Stories'
     const metaDescription = document.querySelector('meta[name="description"]')
     if (metaDescription) {
       metaDescription.setAttribute('content', 'Browse our collection of soothing bedtime stories designed to help children relax and fall asleep peacefully.')
     }
+    
+    const fetchStories = async () => {
+      try {
+        const fetchedStories = await StoriesService.getAllStories()
+        setStories(fetchedStories)
+      } catch (error) {
+        console.error('Failed to fetch stories:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    
+    fetchStories()
   }, [])
 
   return (
@@ -38,27 +54,39 @@ export default function Stories() {
       {/* Stories Grid */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-subtle">
         <div className="max-w-6xl mx-auto">
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {stories.map(story => (
-              <div key={story.slug} className="group bg-card/80 backdrop-blur-sm rounded-2xl p-6 border border-border/20 hover:border-primary/30 transition-all duration-300 hover:shadow-elegant hover:-translate-y-1">
-                <div className="mb-4">
-                  <Star className="h-8 w-8 text-star-yellow mb-3 group-hover:scale-110 transition-transform duration-300" />
-                  <h3 className="text-xl font-nunito font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
-                    {story.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {story.summary}
-                  </p>
+          {isLoading ? (
+            <div className="flex justify-center items-center py-12">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+            </div>
+          ) : stories.length === 0 ? (
+            <div className="text-center py-12">
+              <Book className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+              <h3 className="text-xl font-semibold mb-2">No stories found</h3>
+              <p className="text-muted-foreground">Stories will appear here once they're added to the database.</p>
+            </div>
+          ) : (
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {stories.map(story => (
+                <div key={story.slug} className="group bg-card/80 backdrop-blur-sm rounded-2xl p-6 border border-border/20 hover:border-primary/30 transition-all duration-300 hover:shadow-elegant hover:-translate-y-1">
+                  <div className="mb-4">
+                    <Star className="h-8 w-8 text-star-yellow mb-3 group-hover:scale-110 transition-transform duration-300" />
+                    <h3 className="text-xl font-nunito font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                      {story.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {story.summary || story.excerpt}
+                    </p>
+                  </div>
+                  <Button asChild variant="ghost" className="w-full group-hover:bg-primary/10 transition-colors duration-300">
+                    <Link to={`/stories/${story.slug}`} className="flex items-center justify-center gap-2">
+                      Read Story
+                      <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    </Link>
+                  </Button>
                 </div>
-                <Button asChild variant="ghost" className="w-full group-hover:bg-primary/10 transition-colors duration-300">
-                  <Link to={`/stories/${story.slug}`} className="flex items-center justify-center gap-2">
-                    Read Story
-                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
-                  </Link>
-                </Button>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </div>
