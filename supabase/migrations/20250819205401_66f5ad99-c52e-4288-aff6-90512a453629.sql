@@ -1,0 +1,77 @@
+-- Insert the YouTube bedtime stories into the stories table with proper UUIDs
+INSERT INTO public.stories (
+  slug, title, summary, excerpt, body, full_text, 
+  thumbnail_url, audio_url, youtube_id, duration, tags, published_at
+) VALUES 
+(
+  'tree-that-looked-like-broccoli', 
+  'The Tree That Looked Like Broccoli',
+  'This is a boring bedtime story. On purpose. Meet a tree that looks suspiciously like broccoli — and the kid who thinks it might just be too broccoli-like. Nothing much happens. And that''s kind of the point.',
+  'This is a boring bedtime story. On purpose. Meet a tree that looks suspiciously like broccoli — and the kid who thinks it might just be too broccoli-like. Nothing much happens. And that''s kind of the point.',
+  'In a quiet little town nestled between soft hills and whispering fields, there stood a very curious tree. It wasn''t like the other trees that stretched their branches wide or grew tall and slender. No, this tree was different. Its branches curled in thick, bumpy clumps, round and clustered, almost like a giant head of broccoli. It was the kind of tree that made you stop and smile without really knowing why.
+
+Every spring, when the sun grew warmer and the air smelled fresh and sweet, the tree began to wake from its winter sleep. Tiny buds appeared on the bumpy green clusters, soft and pale, like little clouds resting gently on the branches. The buds would slowly stretch and stretch, unfolding into delicate leaves that shimmered a gentle green. Sometimes, if you stood very still and listened, you could hear the quiet rustle of the leaves as the breeze tiptoed through them, like a soft sigh of the earth waking up.',
+  'In a quiet little town nestled between soft hills and whispering fields, there stood a very curious tree. It wasn''t like the other trees that stretched their branches wide or grew tall and slender. No, this tree was different. Its branches curled in thick, bumpy clumps, round and clustered, almost like a giant head of broccoli.',
+  'https://img.youtube.com/vi/RWkfuB1wst0/maxresdefault.jpg',
+  '/audio/tree-broccoli.mp3',
+  'RWkfuB1wst0',
+  '18:00',
+  ARRAY['boring', 'trees', 'calming', 'bedtime', 'mindful'],
+  '2024-12-01T19:00:00Z'
+),
+(
+  'sleepy-sunflower',
+  'The Sleepy Sunflower', 
+  'Follow a tall sunflower throughout a long summer day, gently turning to follow the sun''s warmth, greeting buzzing bees and fluttering butterflies. As twilight draws near, she finds peaceful rest in the soft evening breeze.',
+  'Follow a tall sunflower throughout a long summer day, gently turning to follow the sun''s warmth, greeting buzzing bees and fluttering butterflies. As twilight draws near, she finds peaceful rest in the soft evening breeze.',
+  'The Sleepy Sunflower. Chapter 1. Morning''s gentle Hello. In a quiet corner of Mrs. Chen''s garden, where the morning mist still clung softly to the roses, stood Stella the sunflower. She was the tallest flower in the whole garden, with a face as wide and golden as a dinner plate and petals that caught the early light like tiny pieces of sunshine.',
+  'The Sleepy Sunflower. Chapter 1. Morning''s gentle Hello. In a quiet corner of Mrs. Chen''s garden, where the morning mist still clung softly to the roses, stood Stella the sunflower.',
+  'https://img.youtube.com/vi/MA0LASrM-Qk/maxresdefault.jpg',
+  '/audio/sleepy-sunflower.mp3',
+  'MA0LASrM-Qk',
+  '15:30',
+  ARRAY['sunflower', 'summer', 'nature', 'bees', 'peaceful'],
+  '2024-11-01T19:00:00Z'
+),
+(
+  'hammock-between-two-trees',
+  'The Hammock Between Two Trees',
+  'Listen to the quiet whispers of a hammock recalling countless lazy summer naps—children reading, grandparents dozing, cats curled in the dappled shade. A slow, sleepy journey into soft memories and gentle sway.',
+  'Listen to the quiet whispers of a hammock recalling countless lazy summer naps—children reading, grandparents dozing, cats curled in the dappled shade. A slow, sleepy journey into soft memories and gentle sway.',
+  'Chapter 1: Between the Old Oak Trees. I am a hammock, woven from soft cotton threads, and I hang between two magnificent oak trees in a backyard where time moves slowly. My fibers have been kissed by countless summer breezes, and my memories are filled with the gentle weight of those who have rested upon me.',
+  'Chapter 1: Between the Old Oak Trees. I am a hammock, woven from soft cotton threads, and I hang between two magnificent oak trees in a backyard where time moves slowly.',
+  'https://img.youtube.com/vi/l08yo5Gr1Ws/maxresdefault.jpg',
+  '/audio/hammock-trees.mp3', 
+  'l08yo5Gr1Ws',
+  '16:45',
+  ARRAY['hammock', 'memories', 'summer', 'peaceful', 'nostalgia'],
+  '2024-10-15T19:00:00Z'
+),
+(
+  'cozy-pet-library', 
+  'The Cozy Pet Library',
+  'Emma and her puppy Cocoa visit a magical library where every book holds a pet''s dream. Together, they learn gentle lessons of empathy and understanding as they curl up by glowing lanterns and listen to whispering pages.',
+  'Emma and her puppy Cocoa visit a magical library where every book holds a pet''s dream. Together, they learn gentle lessons of empathy and understanding as they curl up by glowing lanterns and listen to whispering pages.',
+  'Chapter 1: The Sleepy Bookworm. Emma sat in her favorite reading chair by the window, watching the last golden rays of sunlight fade into the gentle purple of early evening. Her small hamster, Cocoa, was curled up in his cozy cage nearby, his tiny whiskers twitching as he dozed in his nest of soft paper strips.',
+  'Chapter 1: The Sleepy Bookworm. Emma sat in her favorite reading chair by the window, watching the last golden rays of sunlight fade into the gentle purple of early evening.',
+  '/images/cozy-pet-library.jpg',
+  '/audio/cozy-pet-library.mp3',
+  null,
+  '14:20',
+  ARRAY['pets', 'library', 'books', 'magical', 'cozy'],
+  '2024-10-01T19:00:00Z'
+),
+(
+  'little-clouds-evening-journey',
+  'The Little Cloud''s Evening Journey',
+  'Float along with a tiny cloud as it drifts across skies and rooftops on a gentle evening adventure. With whispers of wind and soft glows of sunset, this calming tale will lull little listeners into sweet, sleepy dreams.',
+  'Float along with a tiny cloud as it drifts across skies and rooftops on a gentle evening adventure. With whispers of wind and soft glows of sunset, this calming tale will lull little listeners into sweet, sleepy dreams.',
+  'High above the sleepy town, where chimney smoke curled lazily into the evening sky, lived a small, fluffy cloud named Nimbus. Unlike the other clouds who hurried across the heavens with important weather to deliver, Nimbus preferred to drift slowly, watching the world below grow quiet as day melted into night.',
+  'High above the sleepy town, where chimney smoke curled lazily into the evening sky, lived a small, fluffy cloud named Nimbus.',
+  '/images/little-cloud-journey.jpg',
+  '/audio/little-cloud-journey.mp3',
+  null,
+  '13:45',
+  ARRAY['clouds', 'evening', 'peaceful', 'nature', 'dreams'],
+  '2024-11-15T19:00:00Z'
+);

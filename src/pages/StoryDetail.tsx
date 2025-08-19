@@ -1,8 +1,9 @@
 import { useParams, Link } from 'react-router-dom'
 import { StoriesService, type Story } from '../services/storiesService'
 import { useEffect, useState } from 'react'
-import { ArrowLeft, Book, Star } from 'lucide-react'
+import { ArrowLeft, Book, Star, Clock, Play } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { VideoPlayer } from '@/components/VideoPlayer'
 
 export default function StoryDetail() {
   const { slug } = useParams()
@@ -85,14 +86,45 @@ export default function StoryDetail() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-nunito font-bold text-foreground mb-6 leading-tight">
                 {story.title}
               </h1>
-              <p className="text-xl text-muted-foreground leading-relaxed mb-8 font-medium">
-                {story.summary}
+              <p className="text-xl text-muted-foreground leading-relaxed mb-6 font-medium">
+                {story.summary || story.excerpt}
               </p>
+              
+              {/* Story metadata */}
+              <div className="flex flex-wrap gap-4 mb-8">
+                {story.duration && (
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <Clock className="h-4 w-4" />
+                    <span className="text-sm font-medium">{story.duration}</span>
+                  </div>
+                )}
+                {story.tags && story.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {story.tags.map(tag => (
+                      <span key={tag} className="px-3 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
             
-            <div className="prose prose-lg max-w-none prose-headings:font-nunito prose-headings:text-foreground prose-p:text-muted-foreground prose-p:leading-relaxed">
-              <div dangerouslySetInnerHTML={{ __html: story.body || '' }} />
-            </div>
+            {/* Video/Audio Player */}
+            {(story.youtube_id || story.audio_url) && (
+              <div className="mb-8">
+                <VideoPlayer youtubeId={story.youtube_id} audioUrl={story.audio_url} />
+              </div>
+            )}
+            
+            {/* Story text content */}
+            {(story.body || story.full_text) && (
+              <div className="prose prose-lg max-w-none prose-headings:font-nunito prose-headings:text-foreground prose-p:text-muted-foreground prose-p:leading-relaxed mb-8">
+                <div className="whitespace-pre-line">
+                  {story.body || story.full_text}
+                </div>
+              </div>
+            )}
             
             <div className="mt-12 pt-8 border-t border-border/20">
               <Button asChild className="bg-primary hover:bg-primary/90">

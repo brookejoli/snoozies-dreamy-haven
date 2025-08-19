@@ -5,14 +5,14 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import AudioPlayer from '@/components/AudioPlayer';
 import NewsletterPopup from '@/components/NewsletterPopup';
+import { StoriesService, type Story } from '@/services/storiesService';
 import heroImage from '@/assets/hero-bedtime.jpg';
 import featuredStoryImage from '@/assets/lets-talk-dirt-friendly.jpg';
-import littleCloudJourneyImage from '@/assets/little-cloud-journey-new.jpg';
-import treeMakingToastImage from '@/assets/tree-making-toast.jpg';
-import broccoliTreeImage from '@/assets/broccoli-tree.jpg';
 
 const Home = () => {
   const [showNewsletterPopup, setShowNewsletterPopup] = useState(false);
+  const [stories, setStories] = useState<Story[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Show newsletter popup after 18 seconds
   useEffect(() => {
@@ -23,38 +23,21 @@ const Home = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const featuredStories = [
-    {
-      id: 1,
-      title: "The Little Cloud's Evening Journey",
-      description: "Float along with a tiny cloud as it drifts across skies and rooftops on a gentle evening adventure.",
-      duration: "8:45",
-      category: "Magical + Mundane",
-      image: littleCloudJourneyImage,
-      audioSrc: "/audio/the-little-clouds-evening-journey.mp3",
-      youtubeUrl: "https://www.youtube.com/@snooziestories"
-    },
-    {
-      id: 2,
-      title: "The Tree That Made Toast",
-      description: "This is a boring bedtime story. On purpose. In this slow, sleepy tale, a tree quietly makes toast.",
-      duration: "6:30",
-      category: "Mundane",
-      image: treeMakingToastImage,
-      audioSrc: "/audio/the-tree-that-made-toast.mp3",
-      youtubeUrl: "https://www.youtube.com/@snooziestories"
-    },
-    {
-      id: 3,
-      title: "The Tree That Looked Like Broccoli",
-      description: "Meet a tree that looks suspiciously like broccoli — and the kid who thinks it might just be too broccoli-like.",
-      duration: "10:15",
-      category: "Magical + Mundane",
-      image: broccoliTreeImage,
-      audioSrc: "/audio/the-tree-that-looked-like-broccoli.mp3",
-      youtubeUrl: "https://www.youtube.com/@snooziestories"
-    }
-  ];
+  // Fetch stories from database
+  useEffect(() => {
+    const fetchStories = async () => {
+      try {
+        const fetchedStories = await StoriesService.getAllStories();
+        setStories(fetchedStories.slice(0, 3)); // Show first 3 stories
+      } catch (error) {
+        console.error('Failed to fetch stories:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    fetchStories();
+  }, []);
 
   return (
     <div className="min-h-screen">
@@ -182,48 +165,65 @@ const Home = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {featuredStories.map((story) => (
-              <Card key={story.id} className="card-story group flex flex-col">
-                <div className="relative mb-4">
-                  <img 
-                    src={story.image} 
-                    alt={story.title}
-                    className="w-full h-48 object-cover rounded-2xl"
-                  />
-                  <div className="absolute inset-0 bg-primary/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <Button 
-                      className="btn-dreamy"
-                      onClick={() => window.open(story.youtubeUrl, '_blank')}
-                    >
-                      <Play className="h-4 w-4 mr-2" />
-                      Listen
-                    </Button>
-                  </div>
-                  <span className="absolute top-4 left-4 bg-card/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-primary">
-                    {story.category}
-                  </span>
-                  <span className="absolute top-4 right-4 bg-card/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-muted-foreground">
-                    {story.duration}
-                  </span>
-                </div>
-                <div className="flex-1 flex flex-col">
-                  <h3 className="text-xl font-nunito font-semibold text-foreground mb-3">
-                    {story.title}
-                  </h3>
-                  <p className="text-muted-foreground mb-4 flex-1">
-                    {story.description}
-                  </p>
-                  <div className="mt-auto">
-                    <AudioPlayer 
-                      src={story.audioSrc} 
-                      title={story.title}
-                      duration={story.duration}
-                      compact={true}
+            {isLoading ? (
+              <div className="col-span-3 flex justify-center items-center py-12">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+              </div>
+            ) : stories.length === 0 ? (
+              <div className="col-span-3 text-center py-12">
+                <Star className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+                <h3 className="text-xl font-semibold mb-2">No stories available</h3>
+                <p className="text-muted-foreground">Stories will appear here once they're added to the database.</p>
+              </div>
+            ) : (
+              stories.map((story) => (
+                <Card key={story.id} className="card-story group flex flex-col">
+                  <div className="relative mb-4">
+                    <img 
+                      src={story.thumbnail_url || '/images/story-placeholder.jpg'} 
+                      alt={story.title}
+                      className="w-full h-48 object-cover rounded-2xl"
                     />
+                    <div className="absolute inset-0 bg-primary/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <Button asChild className="btn-dreamy">
+                        <Link to={`/stories/${story.slug}`}>
+                          <Play className="h-4 w-4 mr-2" />
+                          Listen
+                        </Link>
+                      </Button>
+                    </div>
+                    {story.tags && story.tags.length > 0 && (
+                      <span className="absolute top-4 left-4 bg-card/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-primary">
+                        {story.tags[0]}
+                      </span>
+                    )}
+                    {story.duration && (
+                      <span className="absolute top-4 right-4 bg-card/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-muted-foreground">
+                        {story.duration}
+                      </span>
+                    )}
                   </div>
-                </div>
-              </Card>
-            ))}
+                  <div className="flex-1 flex flex-col">
+                    <h3 className="text-xl font-nunito font-semibold text-foreground mb-3">
+                      {story.title}
+                    </h3>
+                    <p className="text-muted-foreground mb-4 flex-1">
+                      {story.summary || story.excerpt}
+                    </p>
+                    <div className="mt-auto">
+                      {story.audio_url && (
+                        <AudioPlayer 
+                          src={story.audio_url} 
+                          title={story.title}
+                          duration={story.duration || ''}
+                          compact={true}
+                        />
+                      )}
+                    </div>
+                  </div>
+                </Card>
+              ))
+            )}
           </div>
 
           <div className="text-center mt-12">
