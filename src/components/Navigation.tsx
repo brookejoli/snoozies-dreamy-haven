@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Moon, Menu, X, Star, Youtube } from 'lucide-react';
+import { Moon, Menu, X, Star, Youtube, User, Settings, LogOut } from 'lucide-react';
 import { Button } from './ui/button';
 import logoImage from '@/assets/snoozies-logo.png';
+import { useAuth } from '@/contexts/AuthContext';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { user, signOut } = useAuth();
 
   const navItems = [
     { name: 'Home', path: '/' },
@@ -16,6 +18,11 @@ const Navigation = () => {
   ];
 
   const isActive = (path: string) => location.pathname === path;
+
+  const handleSignOut = async () => {
+    await signOut();
+    setIsOpen(false);
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 py-2 bg-background/80 backdrop-blur-md border-b border-border/20">
@@ -56,7 +63,39 @@ const Navigation = () => {
               <Youtube className="h-5 w-5" />
               <span className="text-sm font-bold">Stories</span>
             </a>
-            
+
+            {/* Auth Navigation */}
+            {user ? (
+              <div className="flex items-center gap-3">
+                <Link 
+                  to="/story-management" 
+                  className={`flex items-center gap-2 font-bold text-base transition-colors duration-300 hover:text-primary px-2 py-2 rounded-lg ${
+                    isActive('/story-management')
+                      ? 'text-primary bg-primary/10'
+                      : 'text-foreground hover:bg-accent/50'
+                  }`}
+                >
+                  <Settings className="h-4 w-4" />
+                  Manage
+                </Link>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  onClick={handleSignOut}
+                  className="flex items-center gap-2 text-muted-foreground hover:text-primary"
+                >
+                  <LogOut className="h-4 w-4" />
+                  Sign Out
+                </Button>
+              </div>
+            ) : (
+              <Button asChild className="bg-primary hover:bg-primary/90 text-white">
+                <Link to="/auth" className="flex items-center gap-2">
+                  <User className="h-4 w-4" />
+                  Sign In
+                </Link>
+              </Button>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -104,7 +143,42 @@ const Navigation = () => {
                 <Youtube className="h-5 w-5" />
                 YouTube Stories
               </a>
-              
+
+              {/* Mobile Auth Navigation */}
+              {user ? (
+                <>
+                  <Link 
+                    to="/story-management" 
+                    className={`flex items-center gap-3 px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 ${
+                      isActive('/story-management')
+                        ? 'text-primary bg-primary/10'
+                        : 'text-foreground hover:text-primary hover:bg-accent'
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Settings className="h-5 w-5" />
+                    Manage Stories
+                  </Link>
+                  <button 
+                    onClick={handleSignOut}
+                    className="flex items-center gap-3 px-3 py-2 rounded-md text-base font-medium text-foreground hover:text-primary hover:bg-accent transition-colors duration-300 w-full text-left"
+                  >
+                    <LogOut className="h-5 w-5" />
+                    Sign Out
+                  </button>
+                </>
+              ) : (
+                <Link
+                  to="/auth"
+                  className="block mx-3 my-2"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <Button className="w-full bg-primary hover:bg-primary/90 text-white flex items-center justify-center gap-2">
+                    <User className="h-4 w-4" />
+                    Sign In
+                  </Button>
+                </Link>
+              )}
             </div>
           </div>
         )}
