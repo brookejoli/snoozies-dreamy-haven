@@ -29,7 +29,8 @@ const App = () => (
         <HashRouter>
           <div className="min-h-screen bg-background">
             <Navigation />
-            <Routes>
+            <main className="pt-20">
+              <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/stories" element={<Stories />} />
               <Route path="/stories/:slug" element={<StoryDetail />} />
@@ -54,6 +55,7 @@ const App = () => (
               } />
               <Route path="*" element={<NotFound />} />
             </Routes>
+            </main>
           </div>
         </HashRouter>
       </AuthProvider>
