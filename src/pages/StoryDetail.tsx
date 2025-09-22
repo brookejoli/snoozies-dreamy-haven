@@ -117,14 +117,36 @@ export default function StoryDetail() {
               </div>
             )}
             
-            {/* Story text content */}
-            {(story.body || story.full_text) && (
-              <div className="prose prose-lg max-w-none prose-headings:font-nunito prose-headings:text-foreground prose-p:text-muted-foreground prose-p:leading-relaxed mb-8">
-                <div className="whitespace-pre-line">
-                  {story.body || story.full_text}
+            {/* Extended Story Summary */}
+            <div className="mb-8">
+              <h2 className="text-2xl font-nunito font-bold text-foreground mb-6 flex items-center gap-3">
+                <Book className="h-7 w-7 text-primary" />
+                Story Summary
+              </h2>
+              
+              <div className="bg-gradient-subtle rounded-xl p-6 border border-border/20">
+                <div className="prose prose-lg max-w-none">
+                  <p className="text-muted-foreground leading-relaxed mb-4 text-lg">
+                    {story.excerpt || story.summary}
+                  </p>
+                  
+                  {story.full_text && (
+                    <div className="space-y-4">
+                      <h3 className="text-xl font-nunito font-semibold text-foreground">What happens in this story:</h3>
+                      <div className="text-muted-foreground leading-relaxed whitespace-pre-line">
+                        {story.full_text}
+                      </div>
+                    </div>
+                  )}
+                  
+                  <div className="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/10">
+                    <p className="text-sm text-primary font-medium">
+                      💤 Perfect for bedtime • Promotes peaceful sleep • Teaches valuable lessons about friendship and nature
+                    </p>
+                  </div>
                 </div>
               </div>
-            )}
+            </div>
             
             <div className="mt-12 pt-8 border-t border-border/20">
               <Button asChild className="bg-primary hover:bg-primary/90">
