@@ -1,36 +1,39 @@
-/*
-  src/components/EmailSignup.tsx
-  Newsletter subscription form
-*/
 import React, { useState } from 'react';
 import { Mail, Star } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 export const EmailSignup: React.FC = () => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
+    
     try {
-      const res = await fetch(
-        `https://api.beehiiv.com/v2/publications/${process.env.REACT_APP_BEEHIIV_PUBLICATION_ID}/subscriptions`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${process.env.REACT_APP_BEEHIIV_API_KEY}`,
-          },
-          body: JSON.stringify({ email }),
+      const { error } = await supabase
+        .from('email_subscriptions')
+        .insert([{ email }]);
+      
+      if (error) {
+        if (error.code === '23505') { // Unique constraint violation
+          toast({
+            title: "Already subscribed!",
+            description: "This email is already on our magical mailing list.",
+            variant: "destructive",
+          });
+        } else {
+          throw error;
         }
-      );
-      if (res.ok) {
+        setStatus('error');
+      } else {
         setStatus('success');
         setEmail('');
-      } else {
-        throw new Error('Failed');
       }
-    } catch {
+    } catch (error) {
+      console.error('Email signup error:', error);
       setStatus('error');
     }
   };

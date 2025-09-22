@@ -3,6 +3,7 @@ import { X, Mail, Star, Moon } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 import logoImage from '@/assets/snoozies-logo.png';
 
 interface NewsletterPopupProps {
@@ -29,13 +30,34 @@ const NewsletterPopup = ({ isVisible, onClose }: NewsletterPopupProps) => {
 
     setIsSubmitting(true);
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    toast({
-      title: "Welcome to the Snoozies family! ✨",
-      description: "You'll receive your first magical bedtime story soon. Sweet dreams!",
-    });
+    try {
+      const { error } = await supabase
+        .from('email_subscriptions')
+        .insert([{ email: email.trim(), name: name.trim() }]);
+      
+      if (error) {
+        if (error.code === '23505') { // Unique constraint violation
+          toast({
+            title: "Already part of the family! ✨",
+            description: "This email is already receiving our magical bedtime stories.",
+          });
+        } else {
+          throw error;
+        }
+      } else {
+        toast({
+          title: "Welcome to the Snoozies family! ✨",
+          description: "You'll receive your first magical bedtime story soon. Sweet dreams!",
+        });
+      }
+    } catch (error) {
+      console.error('Newsletter signup error:', error);
+      toast({
+        title: "Oops! Something went wrong",
+        description: "Please try again in a moment.",
+        variant: "destructive",
+      });
+    }
     
     setIsSubmitting(false);
     onClose();

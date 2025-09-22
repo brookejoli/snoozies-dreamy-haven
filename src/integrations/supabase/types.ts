@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      email_subscriptions: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          is_active: boolean
+          name: string | null
+          subscribed_at: string
+          unsubscribe_token: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          is_active?: boolean
+          name?: string | null
+          subscribed_at?: string
+          unsubscribe_token?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          is_active?: boolean
+          name?: string | null
+          subscribed_at?: string
+          unsubscribe_token?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       playlist_items: {
         Row: {
           created_at: string
