@@ -206,9 +206,6 @@ export default function StoryManagement() {
   }
 
   const handleEdit = (story: Story) => {
-    console.log('handleEdit called with story:', story)
-    console.log('Current showForm state:', showForm)
-    
     setEditingStory(story)
     setFormData({
       title: story.title || '',
@@ -225,7 +222,13 @@ export default function StoryManagement() {
     setImagePreview(story.thumbnail_url || null)
     setShowForm(true)
     
-    console.log('Form should now be visible, showForm set to true')
+    // Scroll to form after a brief delay to ensure it's rendered
+    setTimeout(() => {
+      const formElement = document.querySelector('#story-form')
+      if (formElement) {
+        formElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }, 100)
   }
 
   const handleDelete = async (storyId: string) => {
@@ -298,7 +301,7 @@ export default function StoryManagement() {
       <div className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         {/* Story Form */}
         {showForm && (
-          <Card className="mb-8 p-6">
+          <Card id="story-form" className="mb-8 p-6">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold">
                 {editingStory ? 'Edit Story' : 'Add New Story'}
