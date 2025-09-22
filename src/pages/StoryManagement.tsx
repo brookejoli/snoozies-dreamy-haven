@@ -206,6 +206,9 @@ export default function StoryManagement() {
   }
 
   const handleEdit = (story: Story) => {
+    console.log('handleEdit called with story:', story)
+    console.log('Current showForm state:', showForm)
+    
     setEditingStory(story)
     setFormData({
       title: story.title || '',
@@ -221,6 +224,8 @@ export default function StoryManagement() {
     })
     setImagePreview(story.thumbnail_url || null)
     setShowForm(true)
+    
+    console.log('Form should now be visible, showForm set to true')
   }
 
   const handleDelete = async (storyId: string) => {
