@@ -336,9 +336,10 @@ export default function StoryManagement() {
                   name="summary"
                   value={formData.summary}
                   onChange={handleInputChange}
-                  placeholder="A brief description of the story..."
+                  placeholder="Main description shown on story page and cards..."
                   rows={2}
                 />
+                <p className="text-xs text-muted-foreground mt-1">Primary description used throughout the site</p>
               </div>
 
               <div>
@@ -348,9 +349,10 @@ export default function StoryManagement() {
                   name="excerpt"
                   value={formData.excerpt}
                   onChange={handleInputChange}
-                  placeholder="A short teaser for the story..."
+                  placeholder="Alternative short description (fallback if no summary)..."
                   rows={3}
                 />
+                <p className="text-xs text-muted-foreground mt-1">Used if summary is empty</p>
               </div>
 
               <div>
@@ -360,9 +362,10 @@ export default function StoryManagement() {
                   name="full_text"
                   value={formData.full_text}
                   onChange={handleInputChange}
-                  placeholder="Write your bedtime story here..."
+                  placeholder="Full story content for extended summary section..."
                   rows={8}
                 />
+                <p className="text-xs text-muted-foreground mt-1">Appears in "What happens in this story" section on detail page</p>
               </div>
 
               <div className="grid md:grid-cols-3 gap-4">
