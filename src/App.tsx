@@ -13,7 +13,8 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Auth from "./pages/Auth";
 import StoryManagement from "./pages/StoryManagement";
-import EmailManagement from "./pages/EmailManagement";
+import EmailManagement from './pages/EmailManagement';
+import NewsletterManagement from './pages/NewsletterManagement';
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -44,6 +45,11 @@ const App = () => (
               <Route path="/email-management" element={
                 <ProtectedRoute>
                   <EmailManagement />
+                </ProtectedRoute>
+              } />
+              <Route path="/newsletter-management" element={
+                <ProtectedRoute>
+                  <NewsletterManagement />
                 </ProtectedRoute>
               } />
               <Route path="*" element={<NotFound />} />
