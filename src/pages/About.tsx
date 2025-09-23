@@ -257,47 +257,6 @@ const About = () => {
           </div>
         </div>
 
-        {/* Recognition */}
-        <div className="bg-card rounded-3xl p-12 shadow-soft mb-16">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-nunito font-bold text-foreground mb-4">
-              Recognition & Awards
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div>
-              <Star className="h-12 w-12 text-star-yellow mx-auto mb-4" />
-              <h3 className="font-nunito font-semibold text-foreground mb-2">
-                Parent's Choice Gold Award
-              </h3>
-              <p className="text-muted-foreground text-sm">
-                2023 - Best Children's App
-              </p>
-            </div>
-
-            <div>
-              <Heart className="h-12 w-12 text-primary mx-auto mb-4" />
-              <h3 className="font-nunito font-semibold text-foreground mb-2">
-                Family App of the Year
-              </h3>
-              <p className="text-muted-foreground text-sm">
-                2022 - Digital Health Awards
-              </p>
-            </div>
-
-            <div>
-              <Shield className="h-12 w-12 text-dreamy-blue mx-auto mb-4" />
-              <h3 className="font-nunito font-semibold text-foreground mb-2">
-                Child Safety Certified
-              </h3>
-              <p className="text-muted-foreground text-sm">
-                kidSAFE COPPA Certified
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* CTA */}
         <div className="text-center">
           <Card className="card-story max-w-2xl mx-auto">
