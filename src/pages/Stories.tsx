@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { StoriesService, type Story } from '../services/storiesService'
 import { useEffect, useState } from 'react'
-import { Book, Star, ArrowRight } from 'lucide-react'
+import { Book, Star, ArrowRight, Moon, Cloud } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export default function Stories() {
@@ -38,6 +38,20 @@ export default function Stories() {
         <div className="absolute top-32 right-20 w-1 h-1 bg-white rounded-full sparkle" style={{ animationDelay: '1s' }} />
         <div className="absolute bottom-20 left-1/4 w-1.5 h-1.5 bg-primary rounded-full sparkle" style={{ animationDelay: '2s' }} />
         
+        {/* Floating elements */}
+        <div className="absolute top-20 left-10 text-star-yellow float">
+          <Star className="h-6 w-6" />
+        </div>
+        <div className="absolute top-32 right-16 text-cloud-white float" style={{ animationDelay: '0.5s' }}>
+          <Cloud className="h-8 w-8" />
+        </div>
+        <div className="absolute bottom-32 left-1/4 text-moon-silver float" style={{ animationDelay: '1.5s' }}>
+          <Moon className="h-10 w-10" />
+        </div>
+        <div className="absolute top-1/2 right-8 text-star-yellow sparkle">
+          <Star className="h-4 w-4" />
+        </div>
+        
         <div className="relative max-w-4xl mx-auto text-center">
           <div className="mb-4 sm:mb-6">
             <Book className="h-12 w-12 sm:h-16 sm:w-16 text-star-yellow mx-auto mb-4 float" />
@@ -52,7 +66,7 @@ export default function Stories() {
       </section>
 
       {/* Stories Grid */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-subtle">
         <div className="max-w-6xl mx-auto">
           {isLoading ? (
             <div className="flex justify-center items-center py-12">
@@ -69,7 +83,7 @@ export default function Stories() {
               {stories.map(story => (
                 <div key={story.slug} className="group bg-card/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-border/20 hover:border-primary/30 transition-all duration-300 hover:shadow-elegant hover:-translate-y-1">
                   <div className="mb-4">
-                    <Star className="h-6 w-6 sm:h-8 sm:w-8 text-star-yellow mb-3 group-hover:scale-110 transition-transform duration-300" />
+                    <Star className="h-6 w-6 sm:h-8 sm:w-8 text-star-yellow mb-3 group-hover:scale-110 transition-transform duration-300 sparkle" />
                     <h3 className="text-lg sm:text-xl font-nunito font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300 leading-tight">
                       {story.title}
                     </h3>
