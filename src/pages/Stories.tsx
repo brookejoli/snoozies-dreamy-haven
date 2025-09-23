@@ -32,7 +32,7 @@ export default function Stories() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-night overflow-hidden">
+      <section className="relative py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-sunset overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20" />
         <div className="absolute top-10 left-10 w-2 h-2 bg-star-yellow rounded-full sparkle" />
         <div className="absolute top-32 right-20 w-1 h-1 bg-white rounded-full sparkle" style={{ animationDelay: '1s' }} />
@@ -52,7 +52,7 @@ export default function Stories() {
       </section>
 
       {/* Stories Grid */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-subtle">
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {isLoading ? (
             <div className="flex justify-center items-center py-12">
