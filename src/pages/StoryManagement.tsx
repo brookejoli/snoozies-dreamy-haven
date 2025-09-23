@@ -159,7 +159,14 @@ export default function StoryManagement() {
       }
 
       const storyData = {
-        ...formData,
+        title: formData.title,
+        slug: formData.slug,
+        summary: formData.summary,
+        excerpt: formData.excerpt,
+        body: formData.body,
+        full_text: formData.full_text,
+        youtube_id: formData.youtube_id,
+        duration: formData.duration,
         thumbnail_url,
         audio_url,
         tags: formData.tags ? formData.tags.split(',').map(tag => tag.trim()) : null,
