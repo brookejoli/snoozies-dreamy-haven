@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { StoriesService, type Story } from '../services/storiesService'
 import { useEffect, useState } from 'react'
-import { Book, Star, ArrowRight, Moon, Cloud } from 'lucide-react'
+import { Book, Star, ArrowRight, Moon, Cloud, Youtube } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export default function Stories() {
@@ -83,7 +83,21 @@ export default function Stories() {
               {stories.map(story => (
                 <div key={story.slug} className="group bg-card/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-border/20 hover:border-primary/30 transition-all duration-300 hover:shadow-elegant hover:-translate-y-1">
                   <div className="mb-4">
-                    <Star className="h-6 w-6 sm:h-8 sm:w-8 text-star-yellow mb-3 group-hover:scale-110 transition-transform duration-300 sparkle" />
+                    <div className="flex items-start justify-between mb-3">
+                      <Star className="h-6 w-6 sm:h-8 sm:w-8 text-star-yellow group-hover:scale-110 transition-transform duration-300 sparkle" />
+                      {story.youtube_id && (
+                        <a 
+                          href={`https://www.youtube.com/watch?v=${story.youtube_id}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-red-600 hover:bg-red-700 text-white p-2 rounded-full transition-colors duration-200 flex-shrink-0"
+                          title="Watch on YouTube"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <Youtube className="h-4 w-4" />
+                        </a>
+                      )}
+                    </div>
                     <h3 className="text-lg sm:text-xl font-nunito font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300 leading-tight">
                       {story.title}
                     </h3>

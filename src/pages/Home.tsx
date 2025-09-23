@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Star, Moon, Cloud, Play, ArrowRight, Heart } from 'lucide-react';
+import { Star, Moon, Cloud, Play, ArrowRight, Heart, Youtube } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import AudioPlayer from '@/components/AudioPlayer';
@@ -199,11 +199,22 @@ const Home = () => {
                         {story.tags[0]}
                       </span>
                     )}
-                    {story.duration && (
-                      <span className="absolute top-3 right-3 bg-card/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-xs font-medium text-muted-foreground">
-                        {story.duration}
-                      </span>
-                    )}
+                     {story.duration && (
+                       <span className="absolute top-3 right-3 bg-card/90 backdrop-blur-sm px-2.5 py-1 rounded-full text-xs font-medium text-muted-foreground">
+                         {story.duration}
+                       </span>
+                     )}
+                     {story.youtube_id && (
+                       <a 
+                         href={`https://www.youtube.com/watch?v=${story.youtube_id}`}
+                         target="_blank"
+                         rel="noopener noreferrer"
+                         className="absolute bottom-3 right-3 bg-red-600 hover:bg-red-700 text-white p-2 rounded-full transition-colors duration-200"
+                         title="Watch on YouTube"
+                       >
+                         <Youtube className="h-4 w-4" />
+                       </a>
+                     )}
                   </div>
                   <div className="flex-1 flex flex-col p-4 sm:p-0">
                     <h3 className="text-lg sm:text-xl font-nunito font-semibold text-foreground mb-3 leading-tight">
