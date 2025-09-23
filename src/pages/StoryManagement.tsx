@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { Switch } from '@/components/ui/switch'
 import { supabase } from '@/integrations/supabase/client'
 import { StoriesService, type Story } from '@/services/storiesService'
 import { useToast } from '@/hooks/use-toast'
@@ -30,7 +31,8 @@ export default function StoryManagement() {
     youtube_id: '',
     duration: '',
     tags: '',
-    published_at: new Date().toISOString().slice(0, 16)
+    published_at: new Date().toISOString().slice(0, 16),
+    is_published: true
   })
 
   // File uploads
@@ -70,7 +72,8 @@ export default function StoryManagement() {
       youtube_id: '',
       duration: '',
       tags: '',
-      published_at: new Date().toISOString().slice(0, 16)
+      published_at: new Date().toISOString().slice(0, 16),
+      is_published: true
     })
     setImageFile(null)
     setAudioFile(null)
@@ -160,7 +163,7 @@ export default function StoryManagement() {
         thumbnail_url,
         audio_url,
         tags: formData.tags ? formData.tags.split(',').map(tag => tag.trim()) : null,
-        published_at: new Date(formData.published_at).toISOString()
+        published_at: formData.is_published ? new Date(formData.published_at).toISOString() : null
       }
 
       if (editingStory) {
@@ -217,7 +220,8 @@ export default function StoryManagement() {
       youtube_id: story.youtube_id || '',
       duration: story.duration || '',
       tags: story.tags?.join(', ') || '',
-      published_at: story.published_at ? new Date(story.published_at).toISOString().slice(0, 16) : new Date().toISOString().slice(0, 16)
+      published_at: story.published_at ? new Date(story.published_at).toISOString().slice(0, 16) : new Date().toISOString().slice(0, 16),
+      is_published: !!story.published_at
     })
     setImagePreview(story.thumbnail_url || null)
     setShowForm(true)
@@ -397,6 +401,7 @@ export default function StoryManagement() {
                     placeholder="12:30"
                   />
                 </div>
+              <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="published_at">Published Date</Label>
                   <Input
@@ -407,6 +412,26 @@ export default function StoryManagement() {
                     onChange={handleInputChange}
                   />
                 </div>
+                <div className="flex items-center space-x-2">
+                  <Switch
+                    id="is_published"
+                    checked={formData.is_published}
+                    onCheckedChange={(checked) => 
+                      setFormData(prev => ({ 
+                        ...prev, 
+                        is_published: checked,
+                        published_at: checked ? prev.published_at : new Date().toISOString().slice(0, 16)
+                      }))
+                    }
+                  />
+                  <Label htmlFor="is_published" className="text-sm font-medium">
+                    {formData.is_published ? '✅ Published' : '📝 Draft'}
+                  </Label>
+                  <p className="text-xs text-muted-foreground">
+                    {formData.is_published ? 'Story is visible to users' : 'Story is hidden from users'}
+                  </p>
+                </div>
+              </div>
               </div>
 
               <div>
@@ -528,7 +553,18 @@ export default function StoryManagement() {
                           />
                         )}
                         <div className="flex-1">
-                          <h3 className="text-xl font-bold mb-2">{story.title}</h3>
+                          <div className="flex items-center gap-2 mb-2">
+                            <h3 className="text-xl font-bold">{story.title}</h3>
+                            {story.published_at ? (
+                              <Badge variant="default" className="bg-green-100 text-green-800 border-green-200">
+                                ✅ Published
+                              </Badge>
+                            ) : (
+                              <Badge variant="secondary" className="bg-orange-100 text-orange-800 border-orange-200">
+                                📝 Draft
+                              </Badge>
+                            )}
+                          </div>
                           <p className="text-muted-foreground mb-3 line-clamp-2">
                             {story.summary || story.excerpt}
                           </p>
@@ -547,7 +583,11 @@ export default function StoryManagement() {
                             ))}
                           </div>
                           <p className="text-sm text-muted-foreground">
-                            Published: {story.published_at ? new Date(story.published_at).toLocaleDateString() : 'Draft'}
+                            {story.published_at ? (
+                              <>Published: {new Date(story.published_at).toLocaleDateString()}</>
+                            ) : (
+                              <>Created: {story.created_at ? new Date(story.created_at).toLocaleDateString() : 'Unknown'}</>
+                            )}
                           </p>
                         </div>
                       </div>

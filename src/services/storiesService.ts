@@ -33,6 +33,21 @@ export class StoriesService {
     return data || [];
   }
 
+  static async getPublishedStories(): Promise<Story[]> {
+    const { data, error } = await supabase
+      .from('stories')
+      .select('*')
+      .not('published_at', 'is', null)
+      .order('published_at', { ascending: false });
+    
+    if (error) {
+      console.error('Error fetching published stories:', error);
+      throw error;
+    }
+    
+    return data || [];
+  }
+
   static async getStoryBySlug(slug: string): Promise<Story | null> {
     const { data, error } = await supabase
       .from('stories')

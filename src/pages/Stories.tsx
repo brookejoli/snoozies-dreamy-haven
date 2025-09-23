@@ -17,7 +17,7 @@ export default function Stories() {
     
     const fetchStories = async () => {
       try {
-        const fetchedStories = await StoriesService.getAllStories()
+        const fetchedStories = await StoriesService.getPublishedStories()
         setStories(fetchedStories)
       } catch (error) {
         console.error('Failed to fetch stories:', error)

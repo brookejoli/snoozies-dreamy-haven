@@ -27,7 +27,7 @@ const Home = () => {
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const fetchedStories = await StoriesService.getAllStories();
+        const fetchedStories = await StoriesService.getPublishedStories();
         setStories(fetchedStories.slice(0, 3)); // Show first 3 stories
       } catch (error) {
         console.error('Failed to fetch stories:', error);
