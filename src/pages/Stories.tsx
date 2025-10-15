@@ -87,11 +87,11 @@ export default function Stories() {
                       <Star className="h-6 w-6 sm:h-8 sm:w-8 text-star-yellow group-hover:scale-110 transition-transform duration-300 sparkle" />
                       {story.youtube_id && (
                         <a 
-                          href="https://www.youtube.com/@snooziestories"
+                          href={`https://www.youtube.com/watch?v=${story.youtube_id}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="bg-red-600 hover:bg-red-700 text-white p-2 rounded-full transition-colors duration-200 flex-shrink-0"
-                          title="Visit our YouTube channel"
+                          title="Watch on YouTube"
                           onClick={(e) => e.stopPropagation()}
                         >
                           <Youtube className="h-4 w-4" />

@@ -206,11 +206,12 @@ const Home = () => {
                      )}
                      {story.youtube_id && (
                        <a 
-                         href="https://www.youtube.com/@snooziestories"
+                         href={`https://www.youtube.com/watch?v=${story.youtube_id}`}
                          target="_blank"
                          rel="noopener noreferrer"
                          className="absolute bottom-3 right-3 bg-red-600 hover:bg-red-700 text-white p-2 rounded-full transition-colors duration-200"
-                         title="Visit our YouTube channel"
+                         title="Watch on YouTube"
+                         onClick={(e) => e.stopPropagation()}
                        >
                          <Youtube className="h-4 w-4" />
                        </a>
