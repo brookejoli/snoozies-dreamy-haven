@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import { Mail, Star } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { z } from 'zod';
+
+const emailSchema = z.object({
+  email: z.string().email('Invalid email address').max(255, 'Email must be less than 255 characters')
+});
 
 export const EmailSignup: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -13,9 +18,21 @@ export const EmailSignup: React.FC = () => {
     setStatus('loading');
     
     try {
+      // Validate input
+      const validation = emailSchema.safeParse({ email: email.trim() });
+      if (!validation.success) {
+        toast({
+          title: "Invalid email",
+          description: validation.error.issues[0].message,
+          variant: "destructive",
+        });
+        setStatus('error');
+        return;
+      }
+
       const { error } = await supabase
         .from('email_subscriptions')
-        .insert([{ email }]);
+        .insert([{ email: validation.data.email }]);
       
       if (error) {
         if (error.code === '23505') { // Unique constraint violation

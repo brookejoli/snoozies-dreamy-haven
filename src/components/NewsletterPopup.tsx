@@ -5,6 +5,12 @@ import { Input } from './ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import logoImage from '@/assets/snoozies-logo.png';
+import { z } from 'zod';
+
+const newsletterSchema = z.object({
+  name: z.string().min(1, 'Name is required').max(100, 'Name must be less than 100 characters').trim(),
+  email: z.string().email('Invalid email address').max(255, 'Email must be less than 255 characters').trim()
+});
 
 interface NewsletterPopupProps {
   isVisible: boolean;
@@ -19,10 +25,17 @@ const NewsletterPopup = ({ isVisible, onClose }: NewsletterPopupProps) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !email.trim()) {
+    
+    // Validate input
+    const validation = newsletterSchema.safeParse({ 
+      name: name.trim(), 
+      email: email.trim() 
+    });
+    
+    if (!validation.success) {
       toast({
-        title: "Please fill in all fields",
-        description: "We need your name and email to send you magical bedtime stories.",
+        title: "Invalid input",
+        description: validation.error.issues[0].message,
         variant: "destructive",
       });
       return;
@@ -33,7 +46,7 @@ const NewsletterPopup = ({ isVisible, onClose }: NewsletterPopupProps) => {
     try {
       const { error } = await supabase
         .from('email_subscriptions')
-        .insert([{ email: email.trim(), name: name.trim() }]);
+        .insert([validation.data]);
       
       if (error) {
         if (error.code === '23505') { // Unique constraint violation

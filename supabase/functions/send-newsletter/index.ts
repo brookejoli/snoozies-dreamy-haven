@@ -1,6 +1,8 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+import { z } from 'https://deno.land/x/zod@v3.22.4/mod.ts';
+import DOMPurify from 'npm:isomorphic-dompurify@2.9.0';
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
@@ -9,6 +11,13 @@ const corsHeaders = {
   "Access-Control-Allow-Headers":
     "authorization, x-client-info, apikey, content-type",
 };
+
+// Validation schema
+const newsletterSchema = z.object({
+  subject: z.string().min(1, 'Subject is required').max(200, 'Subject must be less than 200 characters'),
+  content: z.string().min(1, 'Content is required').max(10000, 'Content must be less than 10000 characters'),
+  preview: z.string().max(200, 'Preview must be less than 200 characters').optional()
+});
 
 interface NewsletterRequest {
   subject: string;
@@ -34,7 +43,21 @@ const handler = async (req: Request): Promise<Response> => {
       });
     }
 
-    const { subject, content, preview }: NewsletterRequest = await req.json();
+    const body: NewsletterRequest = await req.json();
+
+    // Validate input
+    const validation = newsletterSchema.safeParse(body);
+    if (!validation.success) {
+      return new Response(JSON.stringify({ 
+        success: false, 
+        error: validation.error.errors[0].message 
+      }), {
+        status: 400,
+        headers: { "Content-Type": "application/json", ...corsHeaders },
+      });
+    }
+
+    const { subject, content, preview } = validation.data;
 
     // Initialize Supabase client with anon key for role checking
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!
@@ -103,9 +126,12 @@ const handler = async (req: Request): Promise<Response> => {
       });
     }
 
+    // Sanitize HTML content to prevent XSS
+    const sanitizedContent = DOMPurify.sanitize(content);
+
     // Send newsletter to all subscribers
     const emailPromises = subscribers.map(async (subscriber) => {
-      const personalizedContent = content.replace(
+      const personalizedContent = sanitizedContent.replace(
         '{{name}}', 
         subscriber.name || 'Little Dreamer'
       );

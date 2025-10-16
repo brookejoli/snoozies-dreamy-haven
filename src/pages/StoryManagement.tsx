@@ -11,6 +11,20 @@ import { Switch } from '@/components/ui/switch'
 import { supabase } from '@/integrations/supabase/client'
 import { StoriesService, type Story } from '@/services/storiesService'
 import { useToast } from '@/hooks/use-toast'
+import { z } from 'zod'
+import DOMPurify from 'dompurify'
+
+const storySchema = z.object({
+  title: z.string().min(1, 'Title is required').max(200, 'Title must be less than 200 characters'),
+  slug: z.string().min(1, 'Slug is required').max(200, 'Slug must be less than 200 characters').regex(/^[a-z0-9-]+$/, 'Slug must contain only lowercase letters, numbers, and hyphens'),
+  summary: z.string().max(500, 'Summary must be less than 500 characters').optional(),
+  excerpt: z.string().max(500, 'Excerpt must be less than 500 characters').optional(),
+  body: z.string().optional(),
+  full_text: z.string().max(5000, 'Story content must be less than 5000 characters').optional(),
+  youtube_id: z.string().max(20, 'YouTube ID must be less than 20 characters').optional(),
+  duration: z.string().max(10, 'Duration must be less than 10 characters').optional(),
+  tags: z.string().max(200, 'Tags must be less than 200 characters').optional(),
+});
 
 export default function StoryManagement() {
   const [stories, setStories] = useState<Story[]>([])
@@ -143,6 +157,29 @@ export default function StoryManagement() {
     setIsSubmitting(true)
 
     try {
+      // Validate input
+      const validation = storySchema.safeParse({
+        title: formData.title.trim(),
+        slug: formData.slug.trim(),
+        summary: formData.summary.trim() || undefined,
+        excerpt: formData.excerpt.trim() || undefined,
+        body: formData.body.trim() || undefined,
+        full_text: formData.full_text.trim() || undefined,
+        youtube_id: formData.youtube_id.trim() || undefined,
+        duration: formData.duration.trim() || undefined,
+        tags: formData.tags.trim() || undefined,
+      });
+
+      if (!validation.success) {
+        toast({
+          title: "Invalid input",
+          description: validation.error.issues[0].message,
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
       let thumbnail_url = editingStory?.thumbnail_url || null
       let audio_url = editingStory?.audio_url || null
 
@@ -158,18 +195,22 @@ export default function StoryManagement() {
         audio_url = await uploadFile(audioFile, 'story-audio', audioPath)
       }
 
+      // Sanitize HTML content
+      const sanitizedBody = validation.data.body ? DOMPurify.sanitize(validation.data.body) : null;
+      const sanitizedFullText = validation.data.full_text ? DOMPurify.sanitize(validation.data.full_text) : null;
+
       const storyData = {
-        title: formData.title,
-        slug: formData.slug,
-        summary: formData.summary,
-        excerpt: formData.excerpt,
-        body: formData.body,
-        full_text: formData.full_text,
-        youtube_id: formData.youtube_id,
-        duration: formData.duration,
+        title: validation.data.title,
+        slug: validation.data.slug,
+        summary: validation.data.summary || null,
+        excerpt: validation.data.excerpt || null,
+        body: sanitizedBody,
+        full_text: sanitizedFullText,
+        youtube_id: validation.data.youtube_id || null,
+        duration: validation.data.duration || null,
         thumbnail_url,
         audio_url,
-        tags: formData.tags ? formData.tags.split(',').map(tag => tag.trim()) : null,
+        tags: validation.data.tags ? validation.data.tags.split(',').map(tag => tag.trim()) : null,
         published_at: formData.is_published ? new Date(formData.published_at).toISOString() : null
       }
 
