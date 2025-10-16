@@ -22,12 +22,65 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
+    // Get auth header from request
+    const authHeader = req.headers.get('Authorization');
+    if (!authHeader) {
+      return new Response(JSON.stringify({ 
+        success: false, 
+        error: 'Unauthorized - No authorization header' 
+      }), {
+        status: 401,
+        headers: { "Content-Type": "application/json", ...corsHeaders },
+      });
+    }
+
     const { subject, content, preview }: NewsletterRequest = await req.json();
 
-    // Initialize Supabase client
+    // Initialize Supabase client with anon key for role checking
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!
-    const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
-    const supabase = createClient(supabaseUrl, supabaseKey)
+    const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')!
+    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
+    
+    // Create client with user's auth header to check their role
+    const supabaseAuth = createClient(supabaseUrl, supabaseAnonKey, {
+      global: { headers: { Authorization: authHeader } }
+    });
+
+    // Get the authenticated user
+    const { data: { user }, error: authError } = await supabaseAuth.auth.getUser();
+    
+    if (authError || !user) {
+      console.error('Authentication error:', authError);
+      return new Response(JSON.stringify({ 
+        success: false, 
+        error: 'Unauthorized - Invalid token' 
+      }), {
+        status: 401,
+        headers: { "Content-Type": "application/json", ...corsHeaders },
+      });
+    }
+
+    // Check if user has admin role
+    const { data: isAdmin, error: roleError } = await supabaseAuth.rpc('has_role', {
+      _user_id: user.id,
+      _role: 'admin'
+    });
+
+    if (roleError || !isAdmin) {
+      console.error('Role check error:', roleError, 'User ID:', user.id);
+      return new Response(JSON.stringify({ 
+        success: false, 
+        error: 'Forbidden - Admin access required' 
+      }), {
+        status: 403,
+        headers: { "Content-Type": "application/json", ...corsHeaders },
+      });
+    }
+
+    console.log('Admin user verified:', user.email);
+
+    // Initialize Supabase client with service role for database operations
+    const supabase = createClient(supabaseUrl, supabaseServiceKey)
 
     // Get all active email subscribers
     const { data: subscribers, error: fetchError } = await supabase
