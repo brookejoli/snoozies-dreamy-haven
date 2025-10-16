@@ -57,10 +57,10 @@ export default function Stories() {
             <Book className="h-12 w-12 sm:h-16 sm:w-16 text-star-yellow mx-auto mb-4 float" />
           </div>
           <h1 className="text-3xl sm:text-4xl lg:text-6xl font-nunito font-bold text-white mb-4 sm:mb-6 leading-tight">
-            Story Archive
+            Snoozies Story Collection
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-white/90 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed">
-            Discover all our magical bedtime stories, each crafted to bring peace and wonder to your little one's dreams.
+            This is where our magical bedtime stories are located.
           </p>
         </div>
       </section>
